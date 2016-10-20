@@ -19,6 +19,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
 
+<!-- Google Web fonts -->
+
+
+<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Patua+One'
+	rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans'
+	rel='stylesheet' type='text/css'>
+
 <!-- Bootstrap CSS -->
 
 <link rel="stylesheet"
@@ -91,9 +101,9 @@
 			
 			<td>
 			
-			<p>	
+			
 				<img src="resources${sample.path}" alt="${sample.id}" />
-			</p>
+			
 			
 			</td>
 			</c:forEach>
@@ -115,13 +125,13 @@
 						<tr>
 					</c:if>
 					<td>
-						<p>
+						
 							<form:checkbox style="display:inline"
 								path="resultList[${vs.index}].answer" value="Yes" />
 
 							<img style="display: inline" src="resources${result.image.path}"
 								alt="${result.image.id}" />
-						</p>
+						
 					</td>
 					<c:if test="${vs.count % 5 == 0}">
 						</tr>

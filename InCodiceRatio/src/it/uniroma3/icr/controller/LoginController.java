@@ -1,6 +1,5 @@
 package it.uniroma3.icr.controller;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -8,13 +7,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.icr.model.Administrator;
 import it.uniroma3.icr.model.Student;
-import it.uniroma3.icr.model.Task;
 import it.uniroma3.icr.service.impl.StudentFacade;
 import it.uniroma3.icr.service.impl.TaskFacade;
 

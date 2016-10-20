@@ -1,7 +1,6 @@
 package it.uniroma3.icr.dao;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.util.List;
 
 import it.uniroma3.icr.model.Image;
@@ -16,6 +15,8 @@ public interface ImageDao {
 	public List<Image> findImageForTypeAndWidth(String type, int width);
 	
 	public List<String> findAllManuscript();
+	
+	public List<Image> countImage();
 		 
 
 }

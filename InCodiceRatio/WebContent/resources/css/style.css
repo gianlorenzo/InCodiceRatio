@@ -30,7 +30,7 @@ div, article, section, header, footer, nav, li {
 }
 
 table, th, td {
-   border: 1px solid grey;
+	border: 1px solid grey;
 	padding: 5px 4px;
 }
 
@@ -167,15 +167,19 @@ body, input, textarea {
 
 a:link, a:visited {
 	color: #ffffff;
+	font-family: 'Patua One', cursive;
 }
 
 a:hover, a:active {
 	color: #ffffff;
 	text-decoration: underline;
+	font-family: 'Patua One', cursive;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-weight: normal;
+	font-family: 'Patua One', cursive;
+
 	/* reset default browser weight for our webfonts */
 }
 

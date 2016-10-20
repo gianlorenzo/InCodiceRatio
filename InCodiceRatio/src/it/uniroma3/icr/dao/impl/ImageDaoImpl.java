@@ -1,17 +1,8 @@
 package it.uniroma3.icr.dao.impl;
 
-import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 import java.util.List;
-import java.util.Scanner;
 
-import javax.imageio.ImageIO;
-
-import org.apache.commons.io.*;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -86,6 +77,21 @@ public class ImageDaoImpl implements ImageDao {
 		List<String> manuscripts = query.list();
 		session.close();
 		return manuscripts;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Image> countImage() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String s = "select count (*), type,width from image group by type,width";
+		Query query = session.createQuery(s);
+		List<Image> images = query.list();
+		session.close();
+		System.out.println("Image List:"+images);
+
+		
+		return images;
 	}
 	
 	

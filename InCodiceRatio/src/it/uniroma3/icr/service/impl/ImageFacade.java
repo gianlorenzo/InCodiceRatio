@@ -45,6 +45,10 @@ public class ImageFacade {
 	public List<String> findAllManuscript() {
 		return this.imageDaoImpl.findAllManuscript();
 	}
+	public List<Image> countImage() {
+		return this.countImage();
+	}
+
 
 }
 	

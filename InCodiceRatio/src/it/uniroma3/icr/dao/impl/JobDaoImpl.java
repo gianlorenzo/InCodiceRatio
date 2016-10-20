@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import it.uniroma3.icr.dao.JobDao;
 import it.uniroma3.icr.model.Job;
-import it.uniroma3.icr.model.Task;
 
 @Repository
 public class JobDaoImpl implements JobDao {

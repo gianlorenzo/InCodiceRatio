@@ -1,32 +1,25 @@
 package it.uniroma3.icr.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.icr.model.Image;
 import it.uniroma3.icr.model.Job;
 import it.uniroma3.icr.model.Result;
 import it.uniroma3.icr.model.Sample;
 import it.uniroma3.icr.model.Student;
-import it.uniroma3.icr.model.Symbol;
 import it.uniroma3.icr.model.Task;
 import it.uniroma3.icr.model.TaskWrapper;
 import it.uniroma3.icr.service.editor.ImageEditor;

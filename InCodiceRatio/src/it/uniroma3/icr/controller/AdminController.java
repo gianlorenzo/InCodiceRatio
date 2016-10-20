@@ -230,6 +230,13 @@ public class AdminController {
 
 
 		}
+	@RequestMapping(value="listImages")
+	public String imageList(Model model) {
+		List<Image> images = imageFacade.countImage();
+		model.addAttribute("images", images);
+		return "administration/listImages";
+
+	}
 
 	}
 	
