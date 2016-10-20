@@ -55,7 +55,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Job's Creation </a>
+						<a href="#">Pagina di creazione di un Job </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
@@ -78,64 +78,45 @@
 
 	<div align="center">
 
-		<h1>
-			<font color="white">Insert a new Job</font>
-		</h1>
+		
 
 
 
 		<form:form method="post" action="addJob" modelAttribute="job"
 			name="form">
+			<div style="position: inline; top: 35px;">
 
 			<div>
-				<h2>Title:</h2>
+				<h2>Titolo:</h2>
 				<form:input type="text" path="title" placeholder="Title" />
 			</div>
 
 			<div>
-				<h2>Description:</h2>
+				<h2>Descrizione:</h2>
 				<form:textarea path="description" rows="5" cols="5" />
 			</div>
 
 			<div>
-				<h2>#Students:</h2>
+				<h2>#Studenti:</h2>
 				<form:input type="text" path='students' placeholder="Students"
 					onBlur="isnum(this)" />
 			</div>
 
 			<div>
-				<h2>#Images:</h2>
+				<h2>#Immagini:</h2>
 				<form:input type="text" path='numberOfImages' placeholder="images"
 					onBlur="isnum(this)" />
 			</div>
 
 			<div>
-				<h2>%Type1:</h2>
-				<form:input type="text" path='percentageType1' placeholder="Images"
-					onBlur="isnum(this)" />
-			</div>
-
-			<div>
-				<h2>%Type2:</h2>
-				<form:input type="text" path='percentageType2' placeholder="Images"
-					onBlur="isnum(this)" />
-			</div>
-
-			<div>
-				<h2>%Type3:</h2>
-				<form:input type="text" path='percentageType3' placeholder="Images"
-					onBlur="isnum(this)" />
-			</div>
-
-			<div>
-				<h2>TaskSize:</h2>
+				<h2>Dimensione Task:</h2>
 				<form:input type="text" path='taskSize' placeholder="TaskSize"
 					onBlur="isnum(this)" />
 			</div>
 
 
 			<div>
-				<h2>ImageManuscript:</h2>
+				<h2>Manoscritto:</h2>
 				<form:select path="imageManuscript">
 
 					<form:options items="${manuscripts}" />
@@ -143,7 +124,7 @@
 				</form:select>
 
 				<div>
-					<h2>Symbol:</h2>
+					<h2>Simbolo:</h2>
 					<form:select path="symbol">
 						<font color="7a0000"><form:options items="${symbols}"
 								itemLabel="transcription" itemValue="id" /> </font>
@@ -154,6 +135,7 @@
 				<form:hidden path="id" />
 
 				<input type="submit" value="Send" />
+			</div>
 			</div>
 		</form:form>
 	</div>

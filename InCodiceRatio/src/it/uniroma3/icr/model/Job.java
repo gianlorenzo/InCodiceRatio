@@ -40,15 +40,6 @@ public class Job {
 	private int numberOfImages;
 	
 	@Column(nullable=false)
-	private int percentageType1;
-	
-	@Column(nullable=false)
-	private int percentageType2;
-	
-	@Column(nullable=false)
-	private int percentageType3;
-	
-	@Column(nullable=false)
 	private int numberOfStudents;
 	
 	@Column(nullable=false)
@@ -87,30 +78,8 @@ public class Job {
 		this.numberOfImages = numberOfImages;
 	}
 
-	public int getPercentageType1() {
-		return percentageType1;
-	}
-
-	public void setPercentageType1(int percentageType1) {
-		this.percentageType1 = percentageType1;
-	}
-
-	public int getPercentageType2() {
-		return percentageType2;
-	}
-
-	public void setPercentageType2(int percentageType2) {
-		this.percentageType2 = percentageType2;
-	}
-
-	public int getPercentageType3() {
-		return percentageType3;
-	}
-
-	public void setPercentageType3(int percentageType3) {
-		this.percentageType3 = percentageType3;
-	}
-
+	
+	
 	public int getNumberOfStudents() {
 		return numberOfStudents;
 	}
@@ -163,8 +132,7 @@ public class Job {
 	
 	
 	public Job(Long id, String title, int taskSize, 
-			int numberOfImages, int percentageType1, int percentageType2,
-			int percentageType3, int numberOfStudents, 
+			int numberOfImages, int numberOfStudents, 
 			List<Image> images, List<Task> tasks, 
 			Symbol symbol) {
 		super();
@@ -172,9 +140,7 @@ public class Job {
 		this.title = title;
 		this.taskSize = taskSize;
 		this.numberOfImages = numberOfImages;
-		this.percentageType1 = percentageType1;
-		this.percentageType2 = percentageType2;
-		this.percentageType3 = percentageType3;
+		
 		this.numberOfStudents = numberOfStudents;
 		this.images = images;
 		this.tasks = tasks;

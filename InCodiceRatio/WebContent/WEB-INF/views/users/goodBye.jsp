@@ -48,7 +48,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Fantastic! You have completed all tasks available
+						<a href="#">Complimenti! Hai completato tutti i Task disponibili
 						</a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
@@ -58,8 +58,7 @@
 							
 
 
-									<a title="newAdmin" href="studentTasks"> Tasks
-											Performed</a>&nbsp;
+									<a title="studentTasks" href="studentTasks"> Task Effettuati</a>&nbsp;
 
 									<a title="logout" href="logout"> Logout</a>
 					

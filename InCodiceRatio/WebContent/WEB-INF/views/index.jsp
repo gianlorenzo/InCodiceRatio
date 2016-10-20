@@ -64,7 +64,7 @@ body {
 						<ul id="menu-main" class="nav">
 
 
-							<a title="login" href="login">Sign in</a>
+							<a title="login" href="login">Login</a>
 
 
 						</ul>

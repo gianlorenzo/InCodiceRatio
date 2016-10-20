@@ -38,8 +38,8 @@ public class ImageFacade {
 		insertImageInDb.getListJpegProperties();
 	}
 	
-	public List<Image> getImagesForType(String type) {
-		return this.imageDaoImpl.findImageForType(type);
+	public List<Image> getImagesForTypeAndWidth(String type, int width) {
+		return this.imageDaoImpl.findImageForTypeAndWidth(type, width);
 	}
 	
 	public List<String> findAllManuscript() {

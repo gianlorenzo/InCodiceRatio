@@ -64,12 +64,13 @@ public class ImageDaoImpl implements ImageDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Image> findImageForType(String type) {
+	public List<Image> findImageForTypeAndWidth(String type,int width) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String s ="FROM Image i WHERE i.type = :type ORDER BY RANDOM()";
+		String s ="FROM Image i WHERE i.type = :type and i.width = :width ORDER BY RANDOM()";
 		Query query = session.createQuery(s);
 		query.setParameter("type", type);
+		query.setParameter("width", width);
 		List<Image> images = query.list();
 		session.close();
 		return images;

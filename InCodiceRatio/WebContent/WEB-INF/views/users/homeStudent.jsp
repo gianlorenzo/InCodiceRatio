@@ -65,10 +65,10 @@ body {
 
 							
 							<a title="newTask" href="newTask">
-									Go to Your Task Page</a>&nbsp;
+									Vai alla pagina del tuo task</a>&nbsp;
 							
 							<a title="newAdmin" href="studentTasks">
-									Tasks Performed</a>		&nbsp;
+									Task Effettuati</a>		&nbsp;
 									
 							<a title="logout" href="logout">
 									Logout</a>

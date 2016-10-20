@@ -54,8 +54,8 @@
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
-							<a title="login" href="login">Administrator's
-									registration page</a>
+							<a title="login" href="login">Pagina di registrazione di un
+								Amministratore</a>
 
 						</ul>
 					</nav>
@@ -69,48 +69,32 @@
 
 
 	<div align="center">
-		<div>
-			<h2>Create a new Administrator</h2>
-		</div>
-		<form:form method="post" action="confirmAdmin"
+
+		<form:form method="post" action="addAdmin"
 			modelAttribute="administrator" name="form">
-			<div>
-				<h3>Username:</h3>
-				<font size="3" color="red">${usernameError}</font>
+			<div style="position: inline; top: 40px;">
 
-				<form:input type="text" path="username" placeholder="Username" />
-			</div>
+				<div>
+					<h3>Username:</h3>
+					<font size="3" color="red">${usernameError}</font>
 
-			<div>
-				<h3>Password:</h3>
-				<form:input type="password" path="password" placeholder="Password" />
-			</div>
-			<font color="white"><springForm:errors path="username" /></font>
-			<font color="white"><springForm:errors path="password" /></font>
-			<div>
-				<input type="submit" value="Send" />
-			</div>
+					<form:input type="text" path="username" placeholder="Username" />
+				</div>
 
+				<div>
+					<h3>Password:</h3>
+					<form:input type="password" path="password" placeholder="Password" />
+				</div>
+				<font color="white"><springForm:errors path="username" /></font> <font
+					color="white"><springForm:errors path="password" /></font>
+				<div>
+					<input type="submit" value="Send" />
+				</div>
+			</div>
 		</form:form>
 
-		<c:if test="${not empty administrator.username}">
-			<div class="normal">
-				<strong><c:out value="Username:" /></strong>
-				${administrator.username}<br> <strong><c:out
-						value="Password:" /></strong> ${administrator.password}
-			</div>
-			<form:form method="post" action="addAdmin"
-				modelAttribute="administrator" name="form2">
-				<input type="submit" value="Confirm" />
 
 
-				<form:input type="hidden" path='username' placeholder="id" />
-
-
-				<form:input type="hidden" path='password' placeholder="id" />
-				<form:input type="hidden" path='role' placeholder="id" />
-			</form:form>
-		</c:if>
 
 	</div>
 

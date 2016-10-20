@@ -52,12 +52,12 @@
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
-						
 
 
-							<a title="homeAdmin" href="homeAdmin"> Go Back to Administrator Page</a> &nbsp;
+
+							<a title="homeAdmin" href="homeAdmin"> Torna al pannello di amminisrazione</a> &nbsp;
 							<a title="logout" href="logout"> Logout</a>
-						
+
 						</ul>
 					</nav>
 				</div>
@@ -74,54 +74,52 @@
 		<h2>
 			<c:out value="Confirms the following information:" />
 		</h2>
-		
+
 		<div>
-		<h3><c:out value="Title:" />${job.title}</h3>
-		</div>		
-		
-		
-		<div>
-		<h3><c:out value="Description:" /></h3>${job.description}
+			<h3>
+				<c:out value="Titolo:" />${job.title}</h3>
 		</div>
-		
-		<div>		
-			<h3><c:out value="#Students:" /></h3>${job.students}
-		</div>
-		
-		<div>	
-			<h3><c:out value="#Images:" /></h3>${job.numberOfImages} 
-		</div>
-		
-		<div>	
-			<h3><c:out value="%Type1:" /></h3>${job.percentageType1} 
-		</div>
-		
-		<div>	
-			<h3><c:out value="%Type2:" /></h3>${job.percentageType2} 
-		</div>
-		
-		<div>	
-			<h3><c:out value="%Type3:" /></h3>${job.percentageType3} 
-		</div>
-		
-		<div>	
-			<h3><c:out value="TaskSize:" /></h3>${job.taskSize} 
-		</div>
-		
-		<div>	
-			<h3><c:out value="ImageManuscript:" /></h3>${job.imageManuscript} 
-		</div>
-		
-		<div>			
-			<h3><c:out value="Symbol:" /></h3>${job.symbol.transcription}
-		</div>
-		
 
 
+		<div>
+			<h3>
+				<c:out value="Descrizione:" />
+			</h3>${job.description}
+		</div>
+
+		<div>
+			<h3>
+				<c:out value="#Studenti:" />
+			</h3>${job.students}
+		</div>
+
+		<div>
+			<h3>
+				<c:out value="#Immagini:" />
+			</h3>${job.numberOfImages}
+		</div>
+
+		<div>
+			<h3>
+				<c:out value="Dimensione Task:" />
+			</h3>${job.taskSize}
+		</div>
+
+		<div>
+			<h3>
+				<c:out value="Manoscritto:" />
+			</h3>${job.imageManuscript}
+		</div>
+
+		<div>
+			<h3>
+				<c:out value="Simbolo:" />
+			</h3>${job.symbol.transcription}
+		</div>
 
 	</div>
-	
-	
+
+
 
 </body>
 </html>

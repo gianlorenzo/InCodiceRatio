@@ -31,7 +31,7 @@
 
 <style type="text/css">
 body {
-	background-image: url('./resources/img/siteImages/homePage.png');
+	background-color: #000000;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
@@ -60,10 +60,9 @@ body {
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
 
-							
 
-									<a title="newAdmin" href="insertJob"><font color="white"> Create a new Job</a> &nbsp;
-									<a title="logout" href="logout"> Logout</a>
+
+							<a title="logout" href="logout"> Logout</a>
 						</ul>
 					</nav>
 				</div>
@@ -74,6 +73,39 @@ body {
 		<!-- /.navbar -->
 	</div>
 
+	<div align="center">
+	<div style="position: inline; top: 100px;">
+		<h1>
+		<a title="newAdmin" href="insertJob"> Crea un nuovo Job</a>
+		</h1>
+		<div>
+		<h1>
+		<a title="insertImage" href="insertImage">Inserisci le immagini nel Database</a>
+		</h1>
+		</div>
+		<div>
+		<h1>
+		<a title="insertSymbol" href="insertSymbol">Inserisci i simboli nel Database</a>
+		</h1>
+		</div>
+		<div>
+		<h1>
+		<a title="insertSample" href="insertSample">Inserisci gli esempi nel Database</a>
+		</h1>
+		</div>
+		<div>
+		<h1>
+		<a title="Jobs" href="listJobs">Job creati</a>
+		</h1>
+		</div>
+		<div>
+		<h1>
+		<a title="images" href="imagesList">Informazioni immagini</a>
+		</h1>
+		</div>
+		
+</div>
+	</div>
 
 
 </body>

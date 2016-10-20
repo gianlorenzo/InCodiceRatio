@@ -2,6 +2,8 @@ package it.uniroma3.icr.controller;
 
 
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +42,8 @@ import it.uniroma3.icr.service.impl.ResultFacade;
 public class AdminController {
 
 	private @Autowired SymbolEditor symbolEditor;
+	
+	
 
 	@Autowired
 	private AdminFacade adminFacade;
@@ -116,37 +120,17 @@ public class AdminController {
 		
 		List<Image> jobImages = new ArrayList<>();
 
-		int perc1 = (job.getNumberOfImages()*job.getPercentageType1())/100;
-		int perc2 = (job.getNumberOfImages()*job.getPercentageType2())/100;
-		int perc3 = (job.getNumberOfImages()*job.getPercentageType3())/100;
-
-		List<Image> imgsType1 = imageFacade.getImagesForType("t1");
-		List<Image> imgsType2 = imageFacade.getImagesForType("t2");
-		List<Image> imgsType3 = imageFacade.getImagesForType("t3");
+		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth());
 		
 		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
-		//Inserisco le Immagini secondo le percentuali di tipo 1
-
-		for(int k=0;k<job.getNumberOfImages() && k<perc1;k++) {
-			image = imgsType1.get(k);
-			jobImages.add(image);
-		}
+		//Inserisco le Immagini secondo le percentuali di tipo 
 			
+			for(int y=0;y<imagesTask.size();y++) {
+				image = imagesTask.get(y);
+				jobImages.add(image);
+			}
 
-		//Inserisco le Immagini secondo le percentuali di tipo 2
-
-		for(int h=0;h<job.getNumberOfImages() && h<perc2;h++) {
-			image = imgsType2.get(h);
-			jobImages.add(image);
-		}
-
-		//Inserisco le Immagini secondo le percentuali di tipo 3
-
-		for(int n=0; n<job.getNumberOfImages() && n<perc3;n++) {
-			image = imgsType3.get(n);
-			jobImages.add(image);
-		}
-
+		
 		job.setImages(jobImages);
 		facadeJob.addJob(job);
 
@@ -190,32 +174,71 @@ public class AdminController {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String passwordEncode = passwordEncoder.encode(administrator.getPassword());
 		administrator.setPassword(passwordEncode);
+		model.addAttribute("administrator", administrator);
+
 		adminFacade.addAdmin(administrator);
 		return "login";
 
 	}
 
-	@RequestMapping(value="/confirmAdmin", method = RequestMethod.POST)
-	public String addAdmin(@ModelAttribute Administrator administrator, 
-			@Validated Administrator a,BindingResult bindingResult,Model model){
+//	@RequestMapping(value="/confirmAdmin", method = RequestMethod.POST)
+//	public String addAdmin(@ModelAttribute Administrator administrator, 
+//			@Validated Administrator a,BindingResult bindingResult,Model model){
+//
+//		Administrator p = adminFacade.retrieveAdmin(administrator.getUsername());
+//		if(bindingResult.hasErrors()) {
+//			return "registrationAdmin";
+//		}
+//		if(p!=null) {
+//			model.addAttribute("usernameError", "Username Already Exists");
+//			return "registrationAdmin";
+//		}
+//
+//		model.addAttribute("administrator", administrator);
+//		return "registrationAdmin";
+//	}
+	
+	
+	@RequestMapping(value="insertImage")
+	public String insertImages() throws FileNotFoundException, IOException {
+		imageFacade.getListImageProperties();
+		return "administration/homeAdmin";
+		
+	}
+	
+	@RequestMapping(value="insertSymbol")
+	public String insertSymbol() throws FileNotFoundException, IOException {
+		symbolFacade.insertSymbolInDb();
 
-		Administrator p = adminFacade.retrieveAdmin(administrator.getUsername());
-		if(bindingResult.hasErrors()) {
-			return "registrationAdmin";
-		}
-		if(p!=null) {
-			model.addAttribute("usernameError", "Username Already Exists");
-			return "registrationAdmin";
+		return "administration/homeAdmin";
+
+	}
+	
+	@RequestMapping(value="insertSample")
+	public String insertSample() throws FileNotFoundException, IOException {
+		symbolFacade.getSampleImage();
+
+		return "administration/homeAdmin";
+
+	}
+	
+	@RequestMapping(value="listJobs") 
+		public String jobList(Model model) {
+			List<Job> jobs = facadeJob.retriveAlljobs();
+	    	model.addAttribute("jobs", jobs);
+			return "administration/listJobs";
+
+
 		}
 
-		model.addAttribute("administrator", administrator);
-		return "registrationAdmin";
 	}
 	
 	
+	
+	
 
 
-}
+
 
 
 

@@ -13,7 +13,7 @@ public interface ImageDao {
 	
 	public List<Image> findAll();
 	
-	public List<Image> findImageForType(String type);
+	public List<Image> findImageForTypeAndWidth(String type, int width);
 	
 	public List<String> findAllManuscript();
 		 

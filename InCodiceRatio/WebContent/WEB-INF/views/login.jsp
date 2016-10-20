@@ -54,10 +54,8 @@
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
 
-							<a href="registrationAdmin"> Sign
-									up new Admin</a> &nbsp;
-							<a href="registration">Sign up new
-									Account</a>
+							<a href="registrationAdmin"> Registra un nuovo Admin</a> &nbsp;
+							<a href="registration">Registra un nuovo Studente</a>
 
 
 						</ul>

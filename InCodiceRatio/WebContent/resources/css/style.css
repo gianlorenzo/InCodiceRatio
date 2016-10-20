@@ -29,6 +29,11 @@ div, article, section, header, footer, nav, li {
 	position: relative;
 }
 
+table, th, td {
+   border: 1px solid grey;
+	padding: 5px 4px;
+}
+
 .dropbtn {
 	background-color: #7c6f46;
 	color: white;
