@@ -16,7 +16,7 @@ public interface ImageDao {
 	
 	public List<String> findAllManuscript();
 	
-	public List<Image> countImage();
+	public Object[] countImage();
 		 
 
 }

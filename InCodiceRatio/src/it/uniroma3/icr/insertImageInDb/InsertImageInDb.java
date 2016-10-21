@@ -66,15 +66,15 @@ public void getListJpegProperties() throws FileNotFoundException, IOException {
 						String name = FilenameUtils.getBaseName(nameComplete);
 						String[] parts = name.split("_");
 						
-						int x = Integer.valueOf(parts[0]);
-						int y = Integer.valueOf(parts[1]);
+						int width = Integer.valueOf(parts[0]);
+						int x = Integer.valueOf(parts[1]);
+						int y = Integer.valueOf(parts[2]);
 						
 						BufferedInputStream in = null;
 						
 						try {
 							BufferedImage b = ImageIO.read(images[g]);
 							
-							int width = b.getWidth();
 							int height = b.getHeight();
 							int xImg = x;
 							int yImg = y;

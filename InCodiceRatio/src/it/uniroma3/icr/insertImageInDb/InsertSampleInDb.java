@@ -88,8 +88,9 @@ public class InsertSampleInDb {
 						String name = FilenameUtils.getBaseName(nameComplete);
 						String[] parts = name.split("_");
 						
-						int x = Integer.valueOf(parts[0]);
-						int y = Integer.valueOf(parts[1]);
+						int width = Integer.valueOf(parts[0]);
+						int x = Integer.valueOf(parts[1]);
+						int y = Integer.valueOf(parts[2]);
 						
 						BufferedInputStream in = null;
 						
@@ -98,7 +99,6 @@ public class InsertSampleInDb {
 							
 							Symbol s = this.findSymbol(transcriptionSymbol);
 							String type = symbolType;
-							int width = f.getWidth();
 							int height = f.getHeight();
 							int xImg = x;
 							int yImg = y;

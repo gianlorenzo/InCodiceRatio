@@ -81,17 +81,20 @@ public class ImageDaoImpl implements ImageDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Image> countImage() {
+	public Object[] countImage() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		String s = "select count (*), type,width from image group by type,width";
 		Query query = session.createQuery(s);
 		List<Image> images = query.list();
-		session.close();
+		Object[] objectList = images.toArray();
+		session.close(); 
+	
+		
 		System.out.println("Image List:"+images);
 
 		
-		return images;
+		return objectList;
 	}
 	
 	

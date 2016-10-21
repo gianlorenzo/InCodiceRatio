@@ -8,6 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,16 +48,21 @@ public class InsertSymbolInDb {
 				for(int y=0;y<manuscriptsSymbol.length;y++) {
 					File[] images = manuscriptsSymbol[y].listFiles();
 					File image = images[0];
+					String nameComplete = image.getName();
+					String name = FilenameUtils.getBaseName(nameComplete);
+					String[] parts = name.split("_");
+					
+					int width = Integer.valueOf(parts[0]);
+					
+					
 
 
 					BufferedInputStream in = null;
 
 					try {
-						BufferedImage b = ImageIO.read(image);
 
 						String transcription = transcriptionSymbol;
 						String type = symbolType;
-						int width = b.getWidth();
 
 						Symbol symbol = new Symbol (transcription,type,width);
 						this.insertSymbol(symbol);

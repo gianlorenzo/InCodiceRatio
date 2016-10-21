@@ -108,11 +108,6 @@ body {
 		<a title="Jobs" href="listJobs">Job creati</a>
 		</h1>
 		</div>
-		<div>
-		<h1>
-		<a title="images" href="listImages">Informazioni immagini</a>
-		</h1>
-		</div>
 		
 </div>
 	</div>

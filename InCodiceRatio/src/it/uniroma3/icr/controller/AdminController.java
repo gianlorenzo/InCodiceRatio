@@ -123,7 +123,6 @@ public class AdminController {
 		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth());
 		
 		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
-		//Inserisco le Immagini secondo le percentuali di tipo 
 			
 			for(int y=0;y<imagesTask.size();y++) {
 				image = imagesTask.get(y);
@@ -231,9 +230,9 @@ public class AdminController {
 
 		}
 	@RequestMapping(value="listImages")
-	public String imageList(Model model) {
-		List<Image> images = imageFacade.countImage();
-		model.addAttribute("images", images);
+	public String imageList( @ModelAttribute Object[] images,Model model) {
+//		 images = imageFacade.countImage();
+//		model.addAttribute("images", images);
 		return "administration/listImages";
 
 	}
