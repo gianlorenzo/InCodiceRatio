@@ -65,7 +65,7 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Welcome in your Student Panel:${pageContext.request.userPrincipal.name}
+						<a href="#">Benvenuto nella tua pagina:${pageContext.request.userPrincipal.name}
 						</a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->

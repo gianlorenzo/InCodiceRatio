@@ -46,11 +46,11 @@
 <body>
 	<div style="position: absolute; top: 15px; left: 10px">
 
-		<font size="6" color="white">Student Page</font>
+		<font size="6" color="white">Pagina dello studente</font>
 	</div>
 
 	<div style="position: absolute; top: 15px; right: 40px">
-		<font size="6" color="white">Welcome:
+		<font size="6" color="white">Benvenuto:
 			${pageContext.request.userPrincipal.name}</font>
 	</div>
 

@@ -58,21 +58,22 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Complimenti! Hai completato tutti i Task disponibili
-						</a>
+						<a href="#">Complimenti! Hai completato tutti i Task
+							disponibili </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
 
-							
 
 
-									<a title="studentTasks" href="studentTasks"> Task Effettuati</a>&nbsp;
 
-									<a title="logout" href="logout"> Logout</a>
-					
-						
+							<a title="studentTasks" href="studentTasks"> Task Effettuati</a>
+							&nbsp;
+
+							<a title="logout" href="logout"> Logout</a>
+
+
 						</ul>
 					</nav>
 				</div>
