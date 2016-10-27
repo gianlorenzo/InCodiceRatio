@@ -98,7 +98,7 @@
 				<font color="white"><springForm:errors path="username" /></font> <font
 					color="white"><springForm:errors path="password" /></font>
 				<div>
-					<input type="submit" value="Send" />
+					<input type="submit" value="Invio" />
 				</div>
 			</div>
 		</form:form>

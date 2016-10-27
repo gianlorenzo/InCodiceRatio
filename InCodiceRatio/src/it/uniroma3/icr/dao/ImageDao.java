@@ -12,11 +12,12 @@ public interface ImageDao {
 	
 	public List<Image> findAll();
 	
-	public List<Image> findImageForTypeAndWidth(String type, int width);
+	public List<Image> findImageForTypeAndWidth(String type, int width,int limit);
 	
 	public List<String> findAllManuscript();
 	
 	public Object[] countImage();
+
 		 
 
 }

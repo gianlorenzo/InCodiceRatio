@@ -26,8 +26,6 @@ public class Sample {
 	@Column(nullable=false)
 	private int height;
 	
-	
-	
 	@Column(nullable=false)
 	private String manuscript;
 	

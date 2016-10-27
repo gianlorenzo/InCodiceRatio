@@ -1,5 +1,6 @@
 package it.uniroma3.icr.service.impl;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,50 @@ public class TaskFacade {
 		return this.taskDaoImpl.findTaskByStudent(id);
 	}
 	
-	public Task assignTask(Student s) {
-		return this.taskDaoImpl.assignTask(s);
+	public Task assignTask(Student s, Long id) {
+		return this.taskDaoImpl.assignTask(s, id);
 	}
 	public void updateEndDate(Task t) {
 		taskDaoImpl.updateEndDate(t);
 	}	
+	
+	public double midTimeHour() {
+		return this.taskDaoImpl.midTimeHour();
+	}
+	
+	public double  midTimeMinute() {
+		return this.taskDaoImpl.midTimeMinute();
+	}
+	
+	public double  midTimeSecond() {
+		return this.taskDaoImpl.midTimeSecond();
+	}
+	public int maxTimeHour() {
+		return this.taskDaoImpl.maxTimeHour();
+	}
+	
+	public int maxTimeMinute() {
+		return this.taskDaoImpl.maxTimeMinute();
+	}
+	
+	public int maxTimeSecond() {
+		return this.taskDaoImpl.maxTimeSecond();
+	}
+	
+	public int minTimeHour() {
+		return this.taskDaoImpl.minTimeHour();
+	}
+	
+	public int minTimeMinute() {
+		return this.taskDaoImpl.minTimeMinute();
+	}
+	
+	public int minTimeSecond() {
+		return this.taskDaoImpl.minTimeSecond();
+	}
+	
+
+
+
 	
 }

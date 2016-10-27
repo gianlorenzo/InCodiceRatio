@@ -33,6 +33,7 @@ public class AdminDaoImpl implements AdminDao {
 		Query query = session.createQuery(s);
 		query.setParameter("username", username);
 		Administrator a = (Administrator)query.uniqueResult();
+		session.close();
 		return a;
 	}
 

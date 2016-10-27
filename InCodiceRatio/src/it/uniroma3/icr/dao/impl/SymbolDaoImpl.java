@@ -22,6 +22,7 @@ public class SymbolDaoImpl implements SymbolDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Symbol s = (Symbol) session.get(Symbol.class, id);
+		session.close();
 		return s;
 	}
 
@@ -32,7 +33,7 @@ public class SymbolDaoImpl implements SymbolDao {
 		String hql = "FROM Symbol";
 		Query query = session.createQuery(hql);
 		List<Symbol> empList = query.list();
-		System.out.println("Symbols List:" + empList);
+		session.close();
 		return empList;
 		
 	}

@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
-
-<!-- Google Web fonts -->
-
 
 <link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700'
 	rel='stylesheet' type='text/css'>
@@ -40,6 +35,16 @@
 	rel="stylesheet">
 
 <link rel="shortcut icon" href="resources/img/siteImages/favicon.ico" />
+
+<style type="text/css">
+body {
+	background-color: #000000;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: center;
+}
+</style>
+
 </head>
 <body>
 	<!--******************** NAVBAR ********************-->
@@ -53,16 +58,17 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Lista dei Job Creati </a>
+						<a href="#">Console dei risultati </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
+					<ul id="menu-main" class="nav">
 
-							<a title="homeAdmin" href="homeAdmin"> Torna al pannello di amminisrazione</a> 
+						<a title="homeAdmin" href="homeAdmin"> Torna al pannello di
+							amminisrazione</a>
 
-							<a title="logout" href="logout"> Logout</a>
-						</ul>
+						<a title="logout" href="logout"> Logout</a>
+					</ul>
 					</nav>
 				</div>
 				<!-- /.container -->
@@ -74,41 +80,16 @@
 
 	<div align="center">
 		<div style="position: inline; top: 100px;">
-			<table>
-				<tr>
-					<th>ID </th>
-					<th>Titolo</th>
-					<th>Descrizione</th>
-					<th>#Studenti</th>
-					<th>#Immagini</th>
-					<th>Dimensione Task</th>
-					<th>Manoscritto</th>
-					<th>Simbolo</th>
-
-
-
-				</tr>
-				<c:forEach var="job" items="${jobs}">
-					<tr>
-						<th><c:out value="${job.id}"></c:out></th>
-						<th><c:out value="${job.title}"></c:out></th>
-						<th><c:out value="${job.description}"></c:out></th>
-						<th><c:out value="${job.students}"></c:out></th>
-
-						<th><c:out value="${job.numberOfImages}"></c:out></th>
-
-						<th><c:out value="${job.taskSize}"></c:out></th>
-
-						<th><c:out value="${job.imageManuscript}"></c:out></th>
-						<th><c:out value="${job.symbol.transcription}"></c:out></th>
-				</tr>
-				</c:forEach>
-			</table>
+			<h1>
+				<a title="newAdmin" href="studentsProductivity"> Produttività degli studenti</a>
+			</h1>
+			<div>
+				<h1>
+					<a title="Jobs" href="tasksTime">Tempi Task</a>
+				</h1>
+			</div>
 		</div>
 	</div>
-
-
-
 
 </body>
 </html>

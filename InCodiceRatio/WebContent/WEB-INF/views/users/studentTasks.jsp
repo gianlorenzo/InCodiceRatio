@@ -61,19 +61,16 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Tasks carried out
-							by:${pageContext.request.userPrincipal.name} </a>
+						<a href="#">Task effettuati da:
+							${pageContext.request.userPrincipal.name} </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
 
-							<a title="newTask" href="homeStudent"> Go to Your Student
-								Page</a>&nbsp;
+							<a title="newTask" href="homeStudent">Torna alla tua pagina</a> 
 
-
-
-							<a title="logout" href="logout"> Logout</a>
+							<a title="logout" href="logout">Logout</a>
 
 						</ul>
 					</nav>
@@ -88,24 +85,26 @@
 	<div align="center">
 
 		<div style="position: inline; top: 100px;">
-		<table>
+			<table class="ex">
 				<tr>
-					<th>ID </th>
+					<th>ID</th>
 					<th>Iniziato il:</th>
 					<th>Terminato il:</th>
 				</tr>
 
 
 
-			<c:forEach var="task" items="${studentTasks}">
-				<tr>
-					<th><c:out value="${task.id}"></c:out></th>
-					<th><c:out value="${task.startDate}"></c:out></th>
-					<th><c:out value="${task.endDate}"></c:out></th>
-				</tr>
-			</c:forEach>
+				<c:forEach var="task" items="${studentTasks}">
+					<tr>
+						<th><c:out value="${task.id}"></c:out></th>
+						<th><c:out value="${task.startDate}"></c:out></th>
+						<th><c:out value="${task.endDate}"></c:out></th>
+					</tr>
+				</c:forEach>
 			</table>
 		</div>
+	</div>
+
 
 
 		<script src="resources/js/dropdown.js"></script>

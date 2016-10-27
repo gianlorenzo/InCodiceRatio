@@ -56,7 +56,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Job's Recap </a>
+						<a href="#">Riepilogo del Job </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
@@ -64,7 +64,7 @@
 
 
 
-							<a title="homeAdmin" href="homeAdmin"> Torna al pannello di amminisrazione</a> &nbsp;
+							<a title="homeAdmin" href="homeAdmin"> Torna al pannello di amminisrazione</a> 
 							<a title="logout" href="logout"> Logout</a>
 
 						</ul>

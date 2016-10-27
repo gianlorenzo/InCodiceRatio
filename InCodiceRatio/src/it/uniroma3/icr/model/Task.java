@@ -69,9 +69,6 @@ public class Task {
 		this.results = results;
 	}
 
-	
-
-	
 	public Task(Long id, int batch, Timestamp startDate, Timestamp endDate, Student student, Job job,
 			List<Result> results) {
 		super();
@@ -104,11 +101,6 @@ public class Task {
 		
 	}
 	
-	
-	
-	
-
-
 	public int getBatch() {
 		return batch;
 	}

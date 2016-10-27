@@ -40,9 +40,10 @@
 	rel="stylesheet">
 
 <link rel="shortcut icon" href="resources/img/siteImages/favicon.ico" />
+
 </head>
 <body>
-	<!--******************** NAVBAR ********************-->
+<!--******************** NAVBAR ********************-->
 	<div class="navbar-wrapper">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
@@ -53,7 +54,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Lista dei Job Creati </a>
+						<a href="#">Tempi di svolgimento dei Task </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
@@ -72,43 +73,25 @@
 		<!-- /.navbar -->
 	</div>
 
+
 	<div align="center">
 		<div style="position: inline; top: 100px;">
 			<table>
 				<tr>
-					<th>ID </th>
-					<th>Titolo</th>
-					<th>Descrizione</th>
-					<th>#Studenti</th>
-					<th>#Immagini</th>
-					<th>Dimensione Task</th>
-					<th>Manoscritto</th>
-					<th>Simbolo</th>
+					<th>Tempo Medio</th>
+					<th>Tempo Massimo</th>
+					<th>Tempo Minimo</th>
+				</tr>
+				<tr>
+					<th>${midHour}:${midMinute}:${midSecond}</th>
+					<th>${maxHour}:${maxMinute}:${maxSecond}</th>
+					<th>${minHour}:${minMinute}:${minSecond}</th>
 
 
 
 				</tr>
-				<c:forEach var="job" items="${jobs}">
-					<tr>
-						<th><c:out value="${job.id}"></c:out></th>
-						<th><c:out value="${job.title}"></c:out></th>
-						<th><c:out value="${job.description}"></c:out></th>
-						<th><c:out value="${job.students}"></c:out></th>
-
-						<th><c:out value="${job.numberOfImages}"></c:out></th>
-
-						<th><c:out value="${job.taskSize}"></c:out></th>
-
-						<th><c:out value="${job.imageManuscript}"></c:out></th>
-						<th><c:out value="${job.symbol.transcription}"></c:out></th>
-				</tr>
-				</c:forEach>
 			</table>
 		</div>
 	</div>
-
-
-
-
 </body>
 </html>

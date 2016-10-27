@@ -45,7 +45,6 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;
-	background-size: 1420px 650px;
 }
 </style>
 
@@ -63,8 +62,8 @@ body {
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Welcome in your Administration
-							Panel:${pageContext.request.userPrincipal.name} </a>
+						<a href="#">Benvenuto nella tua pagina:
+							${pageContext.request.userPrincipal.name} </a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
@@ -84,32 +83,42 @@ body {
 	</div>
 
 	<div align="center">
-	<div style="position: inline; top: 100px;">
-		<h1>
-		<a title="newAdmin" href="insertJob"> Crea un nuovo Job</a>
-		</h1>
-		<div>
-		<h1>
-		<a title="insertImage" href="insertImage">Inserisci le immagini nel Database</a>
-		</h1>
+		<div style="position: inline; top: 100px;">
+			<h1>
+				<a title="newAdmin" href="insertJob"> Crea un nuovo Job</a>
+			</h1>
+			<div>
+				<h1>
+					<a title="insertImage" href="insertImage">Inserisci le immagini
+						nel Database</a>
+				</h1>
+			</div>
+			<div>
+				<h1>
+					<a title="insertSymbol" href="insertSymbol">Inserisci i simboli
+						nel Database</a>
+				</h1>
+			</div>
+			<div>
+				<h1>
+					<a title="insertSample" href="insertSample">Inserisci gli
+						esempi nel Database</a>
+				</h1>
+			</div>
+			<div>
+				<h1>
+					<a title="Jobs" href="listJobs">Job creati</a>
+				</h1>
+			</div>
+
+			<div>
+				<h1>
+					<a title="Jobs" href="resultConsole">Console dei Risultati</a>
+				</h1>
+			</div>
+			
+
 		</div>
-		<div>
-		<h1>
-		<a title="insertSymbol" href="insertSymbol">Inserisci i simboli nel Database</a>
-		</h1>
-		</div>
-		<div>
-		<h1>
-		<a title="insertSample" href="insertSample">Inserisci gli esempi nel Database</a>
-		</h1>
-		</div>
-		<div>
-		<h1>
-		<a title="Jobs" href="listJobs">Job creati</a>
-		</h1>
-		</div>
-		
-</div>
 	</div>
 
 

@@ -64,7 +64,7 @@
 					<nav class="pull-right nav-collapse collapse">
 						<ul id="menu-main" class="nav">
 
-							<a href="registrationAdmin"> Registra un nuovo Admin</a> &nbsp;
+							<a href="registrationAdmin"> Registra un nuovo Admin</a> 
 							<a href="registration">Registra un nuovo Studente</a>
 
 
@@ -92,7 +92,7 @@
 					<h3>Password</h3>
 					<input type='password' name='j_password'>
 					<div>
-						<input name="submit" type="submit" value="Send">
+						<input name="submit" type="submit" value="Invio">
 					</div>
 				</form>
 			</div>

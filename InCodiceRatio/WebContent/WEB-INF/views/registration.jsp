@@ -81,65 +81,67 @@
 
 	<div align="center">
 
-		<h2>
-			<strong><font color="ffffff">Create a new Account</font></strong>
-		</h2>
+
 		<form:form method="post" action="addUser" modelAttribute="student"
 			name="form">
 
-			<div>
-				<h2>Nome:</h2>
-				<form:input type="text" path='name' placeholder="Name" />
+			<div style="position: inline; top: 40px;">
+
+
+				<div>
+					<h2>Nome:</h2>
+					<form:input type="text" path='name' placeholder="Name" />
+				</div>
+
+				<div>
+
+					<h2>Cognome:</h2>
+					<form:input type="text" path='surname' placeholder="Surname" />
+				</div>
+				<div>
+
+					<h2>Scuola:</h2>
+					<form:input type="text" path='school' placeholder="School" />
+				</div>
+				<div>
+
+					<h2>Anno:</h2>
+
+
+					<form:select path="schoolGroup">
+						<form:options items="${schoolGroups}" />
+					</form:select>
+				</div>
+				<div>
+
+					<h2>Sezione:</h2>
+					<form:input type="text" path='section' placeholder="Section" />
+				</div>
+
+				<div>
+
+					<h2>
+						Username: <font size="3" color="red">${usernameError}</font>
+					</h2>
+					<form:input type="text" path='username' placeholder="Username" />
+				</div>
+				<div>
+
+					<h2>Password:</h2>
+					<form:input type="Password" path='password' placeholder="Password" />
+				</div>
+
+				<font color="red"><springForm:errors path="username" /></font> <font
+					color="red"><springForm:errors path="password" /></font> <input
+					type="submit" value="Invio" />
+
+
+
+
 			</div>
 
-			<div>
 
-				<h2>Cognome:</h2>
-				<form:input type="text" path='surname' placeholder="Surname" />
-			</div>
-			<div>
-
-				<h2>Scuola:</h2>
-				<form:input type="text" path='school' placeholder="School" />
-			</div>
-			<div>
-
-				<h2>Anno:</h2>
-
-
-				<form:select path="schoolGroup">
-					<form:options items="${schoolGroups}" />
-				</form:select>
-			</div>
-			<div>
-
-				<h2>Sezione:</h2>
-				<form:input type="text" path='section' placeholder="Section" />
-			</div>
-			
-			<div>
-				
-				<h2>Username:</h2>
-				<font size="3" color="red">${usernameError}</font>
-				<form:input type="text" path='username' placeholder="Username" />
-			</div>
-			<div>
-
-				<h2>Password:</h2>
-				<form:input type="Password" path='password' placeholder="Password" />
-			</div>
-
-			<font color="white"><springForm:errors path="username" /></font>
-			<font color="white"><springForm:errors path="password" /></font>
-			<input type="submit" value="Send" />
-
-
-
-
-
-		
-
-			</form:form>
+		</form:form>
 
 
 

@@ -69,7 +69,7 @@
 
 
 							<a title="studentTasks" href="studentTasks"> Task Effettuati</a>
-							&nbsp;
+							
 
 							<a title="logout" href="logout"> Logout</a>
 

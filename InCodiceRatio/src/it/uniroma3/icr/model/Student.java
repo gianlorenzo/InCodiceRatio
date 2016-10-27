@@ -1,5 +1,6 @@
 package it.uniroma3.icr.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -52,6 +53,7 @@ public class Student {
 		return tasks;
 	}
 
+	
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
@@ -131,10 +133,5 @@ public class Student {
 	public void addTask(Task t) {
 		this.tasks.add(t);
 	}
-	
-	
-
-	
-	
 	
 }

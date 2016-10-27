@@ -16,12 +16,12 @@ import it.uniroma3.icr.model.Image;
 
 @Repository
 public class ImageDaoImpl implements ImageDao {
-	
+
 	public InsertImageInDb insertImageInDb;
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	@Override
 	public void insertImage(Image image) {
 		Session session = sessionFactory.openSession();
@@ -29,7 +29,7 @@ public class ImageDaoImpl implements ImageDao {
 		session.save(image);
 		session.getTransaction().commit();
 		session.close();
-		
+
 	}
 
 	@Override
@@ -37,7 +37,8 @@ public class ImageDaoImpl implements ImageDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Image i = (Image) session.get(Image.class, id);
-		
+		session.getTransaction().commit();
+		session.close();
 		return i;
 	}
 
@@ -55,14 +56,14 @@ public class ImageDaoImpl implements ImageDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Image> findImageForTypeAndWidth(String type,int width) {
+	public List<Image> findImageForTypeAndWidth(String type,int width, int limit) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		String s ="FROM Image i WHERE i.type = :type and i.width = :width ORDER BY RANDOM()";
 		Query query = session.createQuery(s);
 		query.setParameter("type", type);
 		query.setParameter("width", width);
-		List<Image> images = query.list();
+		List<Image> images = query.setMaxResults(limit).list();
 		session.close();
 		return images;
 	}
@@ -89,31 +90,18 @@ public class ImageDaoImpl implements ImageDao {
 		List<Image> images = query.list();
 		Object[] objectList = images.toArray();
 		session.close(); 
-	
-		
-		System.out.println("Image List:"+images);
-
 		
 		return objectList;
 	}
-	
-	
-	
-	
-	
-
-
-	
-
 
 }
 
 
-	
-	
-	
 
-	
-	
+
+
+
+
+
 
 

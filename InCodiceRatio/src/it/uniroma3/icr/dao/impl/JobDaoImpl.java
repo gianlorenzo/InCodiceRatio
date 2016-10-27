@@ -35,6 +35,7 @@ public class JobDaoImpl implements JobDao {
 		Query query = session.createQuery(hql);
 		List<Job> empList = query.list();
 		System.out.println("Job List:" + empList);
+		session.close();
 		return empList;
 	}
 
@@ -43,6 +44,7 @@ public class JobDaoImpl implements JobDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Job j = (Job) session.get(Job.class, id);
+		session.close();
 		
 		return j;
 	}

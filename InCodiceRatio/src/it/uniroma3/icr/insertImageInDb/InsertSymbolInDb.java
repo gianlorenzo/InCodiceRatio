@@ -54,9 +54,6 @@ public class InsertSymbolInDb {
 					
 					int width = Integer.valueOf(parts[0]);
 					
-					
-
-
 					BufferedInputStream in = null;
 
 					try {

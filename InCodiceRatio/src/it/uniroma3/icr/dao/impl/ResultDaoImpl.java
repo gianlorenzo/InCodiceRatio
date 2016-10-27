@@ -34,6 +34,7 @@ public class ResultDaoImpl implements ResultDao {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		Result r = (Result) session.get(Result.class, id);
+		session.close();
 		return r;
 		
 	}
@@ -45,6 +46,7 @@ public class ResultDaoImpl implements ResultDao {
 		String hql = "FROM Result";
 		Query query = session.createQuery(hql);
 		List<Result> empList = query.list();
+		session.close();
 		return empList;
 	}
 
@@ -74,7 +76,7 @@ public class ResultDaoImpl implements ResultDao {
 		session.beginTransaction();
 		List<Result> results =  (List<Result>) session.createQuery("select r from Result r where r.task.id="+task.getId()).list();
 		session.getTransaction().commit();
-		System.out.println(results);
+		session.close();
 		return results;
 	}
 

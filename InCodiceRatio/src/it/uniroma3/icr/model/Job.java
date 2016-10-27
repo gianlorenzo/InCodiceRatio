@@ -22,15 +22,7 @@ public class Job {
 	@Column(nullable = false)
 	private String title;
 	
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	@Column(nullable=false)
+	@Column
 	private String description;
 	
 	@Column(nullable=false)
@@ -127,10 +119,14 @@ public class Job {
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
+	public String getDescription() {
+		return description;
+	}
 
-	
-	
-	
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	public Job(Long id, String title, int taskSize, 
 			int numberOfImages, int numberOfStudents, 
 			List<Image> images, List<Task> tasks, 

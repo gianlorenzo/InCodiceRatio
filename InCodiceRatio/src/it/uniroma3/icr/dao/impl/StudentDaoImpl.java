@@ -1,5 +1,7 @@
 package it.uniroma3.icr.dao.impl;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -16,8 +18,6 @@ public class StudentDaoImpl implements StudentDao {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
 	
 	public void insertUser(Student user){
 		
@@ -39,7 +39,17 @@ public class StudentDaoImpl implements StudentDao {
 		session.close();
 		return u;
 		
-		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Student> findAll() {
+		Session session = sessionFactory.openSession();
+		String hql = "FROM Student";
+		Query query = session.createQuery(hql);
+		List<Student> studentsList = query.list();
+		session.close();
+		return studentsList;
 	}
 	
 }

@@ -144,7 +144,7 @@
 
 				<form:hidden path="id" />
 
-				<input type="submit" value="Send" />
+				<input type="submit" value="Invio" />
 			</div>
 			</div>
 		</form:form>

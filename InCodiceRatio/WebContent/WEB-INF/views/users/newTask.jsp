@@ -43,8 +43,8 @@
 	href="<c:url value=" resources/css/fontello.css" />" type="text/css">
 <link rel="stylesheet"
 	href="<c:url value=" resources/css/prettyPhoto.css" />" type="text/css">
-<link rel="stylesheet" href="<c:url value=" resources/css/style.css" />"
-	type="text/css">
+<link rel="stylesheet"
+	href="<c:url value=" resources/css/tableTask.css" />" type="text/css">
 
 <!-- Favicon -->
 <link rel="shortcut icon"
@@ -65,7 +65,7 @@
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a>
 					<h2 class="brand">
-						<a href="#">Pagina del Task:${task.job.title} </a>
+						<a href="#">${task.job.title} ${task.job.symbol.transcription}</a>
 					</h2>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<nav class="pull-right nav-collapse collapse">
@@ -87,73 +87,71 @@
 
 	<div align="center">
 
-
-		
-		<div style="position: inline; top: 40px;">
-			<h2>${task.job.description}:${task.job.symbol.transcription}.
-				Qui trovi alcuni esempi:</h2>
-		</div>
-		
-		
-		<div style="position: inline; top: 50px;">
-		<table>
-			<c:forEach varStatus="vs" var="sample" items="${samples}">
-			
-			<td>
-			
-			
-				<img src="resources${sample.path}" alt="${sample.id}" />
-			
-			
-			</td>
-			</c:forEach>
-			</table>
-			</div>
-
-		
-		<form:form method="post" action="secondConsole"
-			modelAttribute="taskResults" name="form">
-	
 		<div style="position: inline; top: 60px;">
-	
 			<table>
-				<c:forEach varStatus="vs" var="result"
-					items="${taskResults.resultList}">
+				<c:forEach varStatus="vs" var="sample" items="${samples}">
 
-					<c:if test="${vs.count % 5 == 1}">
+					<td><img src="resources${sample.path}" alt="${sample.id}" />
 
-						<tr>
-					</c:if>
-					<td>
-						
-							<form:checkbox style="display:inline"
-								path="resultList[${vs.index}].answer" value="Yes" />
 
-							<img style="display: inline" src="resources${result.image.path}"
-								alt="${result.image.id}" />
-						
 					</td>
-					<c:if test="${vs.count % 5 == 0}">
-						</tr>
-
-
-					</c:if>
-					<form:hidden path="resultList[${vs.index}].id" />
-					<form:hidden path="resultList[${vs.index}].image.id" />
-					<form:hidden path="resultList[${vs.index}].task.id" />
-					<form:hidden path="resultList[${vs.index}].task.student.id" />
-					<form:hidden path="resultList[${vs.index}].task.batch" />
-					<form:hidden path="resultList[${vs.index}].task.job.id" />
-					<form:hidden path="resultList[${vs.index}].task.startDate" />
-
-
-
 				</c:forEach>
 			</table>
 		</div>
 
-		<div style="position: inline; top: 70px;">
-				<input type="submit" value="Send">
+		<div style="position: inline; top: 50px;">
+			<h3>Spunta le immagini che ti sembrano simili agli esempi sopra  
+			</h3>
+		</div>
+
+
+
+
+		<form:form method="post" action="secondConsole"
+			modelAttribute="taskResults" name="form">
+
+			<div style="position: inline; top: 60px;">
+
+				<table>
+					<c:forEach varStatus="vs" var="result"
+						items="${taskResults.resultList}">
+
+						<c:if test="${vs.count % 5 == 1}">
+
+							<tr>
+						</c:if>
+						<td>
+
+							<div>
+								<img style="display: inline" src="resources${result.image.path}"
+									alt="${result.image.id}" />
+							</div>
+							<div align="center">
+								<form:checkbox style="display:inline"
+									path="resultList[${vs.index}].answer" value="Yes" />
+							</div>
+						</td>
+						<c:if test="${vs.count % 5 == 0}">
+							</tr>
+
+
+						</c:if>
+						<form:hidden path="resultList[${vs.index}].id" />
+						<form:hidden path="resultList[${vs.index}].image.id" />
+						<form:hidden path="resultList[${vs.index}].task.id" />
+						<form:hidden path="resultList[${vs.index}].task.student.id" />
+						<form:hidden path="resultList[${vs.index}].task.batch" />
+						<form:hidden path="resultList[${vs.index}].task.job.id" />
+						<form:hidden path="resultList[${vs.index}].task.startDate" />
+
+
+
+					</c:forEach>
+				</table>
+			</div>
+
+			<div style="position: inline; top: 70px;">
+				<input type="submit" value="Invio">
 			</div>
 		</form:form>
 
