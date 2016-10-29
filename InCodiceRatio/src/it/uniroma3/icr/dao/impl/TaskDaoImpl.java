@@ -1,8 +1,6 @@
 package it.uniroma3.icr.dao.impl;
 
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -19,7 +17,6 @@ import it.uniroma3.icr.model.Task;
 
 @Repository
 public class TaskDaoImpl implements TaskDao {
-
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -64,7 +61,6 @@ public class TaskDaoImpl implements TaskDao {
 		return isNew;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Task> findTaskByStudent(Long id) {
@@ -75,9 +71,9 @@ public class TaskDaoImpl implements TaskDao {
 		query.setParameter("id", id);
 		List<Task> studentTasks = query.list();
 		session.close();
+		System.out.println("Tasks"+studentTasks);
 		return studentTasks;
 	}
-
 
 	@SuppressWarnings("unchecked")
 	public Task assignTask(Student s, Long id) {
@@ -108,7 +104,6 @@ public class TaskDaoImpl implements TaskDao {
 			}
 			if(task!=null) {
 				s1.addTask(task);
-				s1.getTasks().add(task);
 				session.merge(task);
 			}
 			session.getTransaction().commit();
@@ -120,7 +115,6 @@ public class TaskDaoImpl implements TaskDao {
 
 		return task;
 	}
-
 
 	public void updateEndDate(Task t) {
 		Session session = sessionFactory.openSession();
@@ -139,103 +133,4 @@ public class TaskDaoImpl implements TaskDao {
 
 	}
 
-	@Override
-	public double  midTimeHour() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select avg(hour(enddate) - hour(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		double date=   (double) query.uniqueResult();
-		session.close();
-		return date;
-	}
-	
-	@Override
-	public double  midTimeMinute() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select avg(minute(enddate) - minute(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		double date=   (double) query.uniqueResult();
-		session.close();
-		return date;
-	}
-	
-	@Override
-	public double  midTimeSecond() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select avg(second(enddate) - second(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		double date=   (double) query.uniqueResult();
-		session.close();
-		return date;
-	}
-
-	@Override
-	public int maxTimeHour() {
-
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select max(hour(enddate) - hour(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		int date = (int) query.uniqueResult();
-		session.close();
-		return date;
-	}
-
-	@Override
-	public int maxTimeMinute() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select max(minute(enddate) - minute(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		int date=   (int) query.uniqueResult();
-		session.close();
-		return date;
-	}
-
-	@Override
-	public int maxTimeSecond() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select max(second(enddate) - second(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		int date = (int) query.uniqueResult();
-		session.close();
-		return date;
-	}
-
-	@Override
-	public int minTimeHour() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select min(hour(enddate) - hour(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		int date = (int) query.uniqueResult();
-		session.close();
-		return date;
-	}
-
-	@Override
-	public int minTimeMinute() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select min(minute(enddate) - minute(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		int date = (int) query.uniqueResult();
-		session.close();
-		return date;
-	}
-
-	@Override
-	public int minTimeSecond() {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		String s = "Select min(second(enddate) - second(startdate)) FROM Task WHERE enddate is not null";
-		Query query = session.createQuery(s);
-		int date = (int) query.uniqueResult();
-		session.close();
-		return date;
-	}
 }

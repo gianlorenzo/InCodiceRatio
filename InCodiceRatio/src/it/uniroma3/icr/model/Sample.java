@@ -9,32 +9,32 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Sample {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable=false)
 	private int x;
-	
+
 	@Column(nullable=false)
 	private int y;
-	
+
 	@Column(nullable=false)
 	private int width;
-	
+
 	@Column(nullable=false)
 	private int height;
-	
+
 	@Column(nullable=false)
 	private String manuscript;
-	
+
 	@Column(nullable=false)
 	private String type;
-	
+
 	@Column(nullable=false)
 	private String path;
-	
+
 	@ManyToOne
 	private Symbol symbol;
 
@@ -102,9 +102,9 @@ public class Sample {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	
-	
-	
+
+
+
 	public Symbol getSymbol() {
 		return symbol;
 	}
@@ -114,28 +114,20 @@ public class Sample {
 	}
 
 	public Sample() {
-		
+
 	}
-	
+
 	public Sample(int width,int height,int xImg, int yImg,
-			
+
 			String manuscript,String type,String path) {
 		this.width = width;
 		this.height = height;
 		this.x = xImg;
 		this.y = yImg;
-	this.manuscript = manuscript;
+		this.manuscript = manuscript;
 		this.type = type;
 		this.path = path;
-		
+
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
 }

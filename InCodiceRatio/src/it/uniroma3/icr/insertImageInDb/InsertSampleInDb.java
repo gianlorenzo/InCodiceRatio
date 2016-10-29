@@ -21,12 +21,12 @@ import it.uniroma3.icr.model.Symbol;
 
 @Repository
 public class InsertSampleInDb {
-	
+
 	private static final String path ="/usr/share/tomcat/webapps/InCodiceRatio/resources/img/sources/samples/";
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void insertSample(Sample sample) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -34,7 +34,7 @@ public class InsertSampleInDb {
 		session.getTransaction().commit();
 		session.close();
 	}
-	
+
 	public Symbol findSymbol(String transcription) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -45,7 +45,7 @@ public class InsertSampleInDb {
 		session.close();
 		return symbol;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Sample> findAllSamplesBySymbolId(long id) {
 		Session session = sessionFactory.openSession();
@@ -56,46 +56,46 @@ public class InsertSampleInDb {
 		List<Sample> samples = query.list();
 		System.out.println("List Samples"+samples);
 		return samples;
-		
+
 	}
-	
+
 	public void getSampleImage() throws FileNotFoundException, IOException {
 		File[] files = new File(path).listFiles();
-		
+
 		for(int i=0;i<files.length;i++) {
-			
+
 			String symbolType = files[i].getName();
-			
+
 			//prendo la page
-			
+
 			File[] transcriptionsSymbol = files[i].listFiles();
 			for(int j = 0;j<transcriptionsSymbol.length;j++) {
 				String transcriptionSymbol = transcriptionsSymbol[j].getName();
-				
+
 				File[] manuscripts = transcriptionsSymbol[j].listFiles();
 				for(int m=0;m<manuscripts.length;m++) {
 					String manuscriptName = manuscripts[m].getName();
-					
+
 					File[] images = manuscripts[m].listFiles();
-					
+
 					for(int g=0;g<images.length;g++) {
 						String nameComplete = images[g].getName();
-						
-						
+
+
 						String pathFile = images[g].getPath();
-						
+
 						String name = FilenameUtils.getBaseName(nameComplete);
 						String[] parts = name.split("_");
-						
+
 						int width = Integer.valueOf(parts[0]);
 						int x = Integer.valueOf(parts[1]);
 						int y = Integer.valueOf(parts[2]);
-						
+
 						BufferedInputStream in = null;
-						
+
 						try {
 							BufferedImage f = ImageIO.read(images[g]);
-							
+
 							Symbol s = this.findSymbol(transcriptionSymbol);
 							String type = symbolType;
 							int height = f.getHeight();
@@ -103,39 +103,39 @@ public class InsertSampleInDb {
 							int yImg = y;
 							String manuscript = manuscriptName;
 							String path = pathFile.substring(49, pathFile.length());
-							
+
 							Sample sample = new Sample(width,height,xImg,yImg,manuscript,
 									type,path);
-							
+
 							sample.setSymbol(s);
 							this.insertSample(sample);
-							
+
 						}
 						finally {
-				            if (in != null) {
-				                try {
-				                	
-				                    in.close();
-				                }
-				                catch (IOException e) {
-				                	e.printStackTrace();
-				                }
-				           }
-				        }
+							if (in != null) {
+								try {
+
+									in.close();
+								}
+								catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
 					}
 				}
 			}
-			
-			
-			
+
+
+
 		}
-		
-		}
+
 	}
-	
-	
-	
-	
-	
-	
+}
+
+
+
+
+
+
 

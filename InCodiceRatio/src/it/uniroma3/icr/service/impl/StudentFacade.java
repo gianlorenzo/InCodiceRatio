@@ -1,7 +1,5 @@
 package it.uniroma3.icr.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +18,4 @@ public class StudentFacade {
 	public Student retrieveUser(String username) {
 		return this.userDaoImpl.findUser(username);
 	}
-	
-	public List<Student> findAll() {
-		return this.userDaoImpl.findAll();
-	}
-
 }

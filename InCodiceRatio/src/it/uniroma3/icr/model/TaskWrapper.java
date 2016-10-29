@@ -19,6 +19,4 @@ public class TaskWrapper {
 		this.resultList = resultList;
 	}
 	
-	
-
 }

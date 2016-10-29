@@ -16,7 +16,7 @@ import it.uniroma3.icr.model.Task;
 
 @Repository
 public class ResultDaoImpl implements ResultDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 
@@ -36,7 +36,7 @@ public class ResultDaoImpl implements ResultDao {
 		Result r = (Result) session.get(Result.class, id);
 		session.close();
 		return r;
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -57,9 +57,9 @@ public class ResultDaoImpl implements ResultDao {
 		session.merge(result);
 		session.getTransaction().commit();
 		session.close();
-		
+
 	}
-	
+
 	public void updateListResult(List<Result> results) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
@@ -97,8 +97,5 @@ public class ResultDaoImpl implements ResultDao {
 			r.setTask(t);
 		}
 	}
-
-	
-	
 
 }

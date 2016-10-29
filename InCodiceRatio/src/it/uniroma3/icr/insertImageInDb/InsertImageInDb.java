@@ -18,63 +18,63 @@ import it.uniroma3.icr.model.Image;
 
 @Repository
 public class InsertImageInDb {
-	
+
 	private static final String path ="/usr/share/tomcat/webapps/InCodiceRatio/resources/img/sources/training/";
 
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void insertImage(Image image) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(image);
 		session.getTransaction().commit();
 		session.close();
-		
+
 	}
-	
-public void getListJpegProperties() throws FileNotFoundException, IOException {
-		
+
+	public void getListJpegProperties() throws FileNotFoundException, IOException {
+
 		getListImageProperties();
 	}
-	
+
 	public void getListImageProperties() throws FileNotFoundException, IOException {
 		File[] files = new File(path).listFiles();
-		
+
 		for(int i=0;i<files.length;i++) {
-			
+
 			String manuscriptName = files[i].getName();
-			
+
 			//prendo la page
-			
+
 			File[] pages = files[i].listFiles();
 			for(int j = 0;j<pages.length;j++) {
 				String pageName = pages[j].getName();
-				
+
 				File[] types = pages[j].listFiles();
 				for(int m=0;m<types.length;m++) {
 					String typeName = types[m].getName();
-					
+
 					File[] images = types[m].listFiles();
-					
+
 					for(int g=0;g<images.length;g++) {
 						String nameComplete = images[g].getName();
 						String pathFile = images[g].getPath();
-						
-						
+
+
 						String name = FilenameUtils.getBaseName(nameComplete);
 						String[] parts = name.split("_");
-						
+
 						int width = Integer.valueOf(parts[0]);
 						int x = Integer.valueOf(parts[1]);
 						int y = Integer.valueOf(parts[2]);
-						
+
 						BufferedInputStream in = null;
-						
+
 						try {
 							BufferedImage b = ImageIO.read(images[g]);
-							
+
 							int height = b.getHeight();
 							int xImg = x;
 							int yImg = y;
@@ -82,31 +82,31 @@ public void getListJpegProperties() throws FileNotFoundException, IOException {
 							String manuscript = manuscriptName;
 							String type = typeName;
 							String path = pathFile.substring(49, pathFile.length());
-							
+
 							Image img = new Image(width,height,type,page,
 									manuscript,xImg,yImg,path);;
-									
-							this.insertImage(img);
+
+									this.insertImage(img);
 						}
 						finally {
-				            if (in != null) {
-				                try {
-				                	
-				                    in.close();
-				                }
-				                catch (IOException e) {
-				                	e.printStackTrace();
-				                }
-				           }
-				        }
+							if (in != null) {
+								try {
+
+									in.close();
+								}
+								catch (IOException e) {
+									e.printStackTrace();
+								}
+							}
+						}
 					}
 				}
-				
+
 			}
-			
+
 		}
-			
-}
+
+	}
 
 
 }

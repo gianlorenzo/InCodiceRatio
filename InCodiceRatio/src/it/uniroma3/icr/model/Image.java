@@ -12,39 +12,38 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Image {
-	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column
 	private int x;
-	
+
 	@Column
 	private int y;
-	
+
 	@Column
 	private int width;
-	
+
 	@Column
 	private int height;
-	
+
 	@Column
 	private String page;
-	
+
 	@Column
 	private String manuscript;
-	
+
 	@Column
 	private String type;
-	
+
 	@Column
 	private String path;
-	
+
 	@ManyToMany(mappedBy="images")
 	private List<Job> jobs;
-	
+
 	@OneToMany(mappedBy="image")
 	private List<Result> results;
 
@@ -120,8 +119,6 @@ public class Image {
 		this.jobs = jobs;
 	}
 
-	
-
 	public List<Result> getResults() {
 		return results;
 	}
@@ -155,15 +152,13 @@ public class Image {
 		this.x = x;
 		this.y = y;
 		this.path = path;
-		
+
 	}
 
 	public Image() {
-		
+
 	}
-	
-	
-	
+
 	public String getPath() {
 		return path;
 	}
@@ -175,7 +170,6 @@ public class Image {
 	@Override
 	public String toString() {
 		return "Image [id=" + id ;
-				
 	}
-			
+
 }

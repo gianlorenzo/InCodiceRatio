@@ -8,17 +8,17 @@ import javax.persistence.Id;
 
 @Entity
 public class Administrator {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable=false)
 	private String username;
-	
+
 	@Column(nullable=false)
 	private String password;
-	
+
 	@Column(nullable=false)
 	private String role;
 
@@ -53,7 +53,7 @@ public class Administrator {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
 	public Administrator() {
 		this.role = "ROLE_ADMIN";
 	}

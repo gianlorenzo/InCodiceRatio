@@ -11,10 +11,10 @@ import it.uniroma3.icr.model.Administrator;
 
 @Repository
 public class AdminDaoImpl implements AdminDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 
 	@Override
 	public void insertAdmin(Administrator administrator) {

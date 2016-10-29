@@ -17,7 +17,7 @@ public class AdminValidator implements Validator {
 	public void validate(Object o, Errors e) {
 		ValidationUtils.rejectIfEmptyOrWhitespace(e, "username", "Non deve essere vuoto");
 		ValidationUtils.rejectIfEmptyOrWhitespace(e, "password", "Non deve essere vuoto");
-		
+
 	}
 
 }

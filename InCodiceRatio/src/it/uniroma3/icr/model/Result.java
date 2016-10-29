@@ -27,8 +27,6 @@ public class Result {
 	@Column
 	private String answer;
 
-
-
 	public Long getId() {
 		return id;
 	}
@@ -61,8 +59,6 @@ public class Result {
 		this.answer = answer;
 	}
 
-
-
 	public Result(Long id, Image image, Task task, String answer) {
 		super();
 		this.id = id;
@@ -83,10 +79,5 @@ public class Result {
 				+ "task=" + task + ", "
 				+ "answer=" + answer + "]";
 	}
-
-
-
-
-
 
 }

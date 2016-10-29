@@ -21,7 +21,4 @@ public interface ResultDao {
 	
 	public void addImageAdnTaskToResult(Task t,Result r,Job j);
 	
-	
-	
-
 }

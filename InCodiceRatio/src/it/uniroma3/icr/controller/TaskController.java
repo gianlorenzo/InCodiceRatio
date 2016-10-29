@@ -1,11 +1,10 @@
 package it.uniroma3.icr.controller;
 
-
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.uniroma3.icr.model.ComparatorePerData;
 import it.uniroma3.icr.model.Image;
 import it.uniroma3.icr.model.Job;
 import it.uniroma3.icr.model.Result;
@@ -78,7 +78,6 @@ public class TaskController {
 			HttpServletRequest request) {
 
 		try {
-
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String s = auth.getName();
 			Student student = studentFacade.retrieveUser(s);
@@ -104,19 +103,18 @@ public class TaskController {
 				return "users/newTask";
 			}
 			return "users/goodBye";
-		}catch(Exception e) {
+		} catch (Exception e) {
 			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("error", e.getMessage());
+			model.addAttribute("e", e);
+			model.addAttribute("error", e.toString());
 			return "error";
 		}
-
 	}
 
 	@RequestMapping(value="/secondConsole", method = RequestMethod.POST)
 	public String taskRecap(@ModelAttribute("taskResults")TaskWrapper taskResults,
 			Model model, HttpServletRequest request) {
-
-		try{
+		try {
 			List<Result> results = taskResults.getResultList();
 			for(Result result : results) {
 				Task task = result.getTask();
@@ -128,9 +126,10 @@ public class TaskController {
 			request.getSession().removeAttribute("thisId");
 
 			return "users/homeStudent";
-		}catch(Exception e) {
+		} catch (Exception e) {
 			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("error", e.getMessage());
+			model.addAttribute("e", e);
+			model.addAttribute("error", e.toString());
 			return "error";
 		}
 
@@ -142,14 +141,17 @@ public class TaskController {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Student s = studentFacade.retrieveUser(auth.getName());
 			List<Task> studentTasks = taskFacade.findTaskByStudent(s.getId());
+			Collections.sort(studentTasks, new ComparatorePerData());
 			model.addAttribute("studentTasks", studentTasks);
 			return "users/studentTasks";
-		}catch(Exception e) {
+		} catch(Exception e) {
 			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("error", e.getMessage());
+			model.addAttribute("e", e);
+			model.addAttribute("error", e.toString());
 			return "error";
 		}
 	}
+
 
 }		
 

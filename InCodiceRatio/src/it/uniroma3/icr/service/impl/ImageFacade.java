@@ -17,31 +17,30 @@ public class ImageFacade {
 
 	@Autowired
 	private ImageDaoImpl imageDaoImpl;
-	
+
 	@Autowired
 	private InsertImageInDb insertImageInDb;
-	
+
 	public void addImage(Image i) {
 		imageDaoImpl.insertImage(i);
 	}
-	
+
 	public Image retrieveImage(long id) {
 		return this.imageDaoImpl.findImage(id);
 	}
-	
+
 	public List<Image> retrieveAllImages() {
-			return this.imageDaoImpl.findAll();
-		}
-	
-	
+		return this.imageDaoImpl.findAll();
+	}
+
 	public void getListImageProperties() throws FileNotFoundException, IOException {
 		insertImageInDb.getListJpegProperties();
 	}
-	
+
 	public List<Image> getImagesForTypeAndWidth(String type, int width, int limit) {
 		return this.imageDaoImpl.findImageForTypeAndWidth(type, width, limit);
 	}
-	
+
 	public List<String> findAllManuscript() {
 		return this.imageDaoImpl.findAllManuscript();
 	}
@@ -49,7 +48,6 @@ public class ImageFacade {
 		return this.countImage();
 	}
 
-
 }
-	
+
 

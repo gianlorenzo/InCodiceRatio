@@ -1,6 +1,5 @@
 package it.uniroma3.icr.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,48 +11,46 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Student {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
+
 	@Column(nullable = false)
 	private String name;
-	
+
 	@Column(nullable = false)
 	private String surname;
-	
+
 	@Column(nullable=false)
 	private String school;
-	
+
 	@Column(nullable = false)
 	private String username;
-	
+
 	@Column(nullable = false)
 	private String password;
-	
+
 	@Column(nullable = false)
 	private String schoolGroup;
-	
+
 	@Column(nullable = false)
 	private String section;
-	
+
 	@Column(nullable=false)
 	private String role;
-	
+
 	@OneToMany(mappedBy="student")
 	private List<Task> tasks;
-	
+
 	public Student() {
 		this.role = "ROLE_USER";
-		
 	}
-	
+
 	public List<Task> getTasks() {
 		return tasks;
 	}
 
-	
 	public void setTasks(List<Task> tasks) {
 		this.tasks = tasks;
 	}
@@ -129,9 +126,8 @@ public class Student {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public void addTask(Task t) {
 		this.tasks.add(t);
 	}
-	
 }

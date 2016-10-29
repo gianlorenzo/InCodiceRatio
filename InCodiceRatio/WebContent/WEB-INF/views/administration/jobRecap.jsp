@@ -8,127 +8,73 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
-<!-- Google Web fonts -->
 
+<!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="resources/css/main.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
-<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Patua+One'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-
-<!-- Bootstrap CSS -->
-
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.responsive.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello-ie7.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/prettyPhoto.css" />" type="text/css">
-<link rel="stylesheet" href="<c:url value=" resources/css/style.css" />"
-	type="text/css">
 
 <!-- Favicon -->
 <link rel="shortcut icon"
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
-
-
-
 </head>
-<body>
+<body class="landing">
 
-	<!--******************** NAVBAR ********************-->
-	<div class="navbar-wrapper">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<h2 class="brand">
-						<a href="#">Riepilogo del Job </a>
-					</h2>
-					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
+	<!-- Header -->
+	<header id="header" class="alt">
 
-
-
-							<a title="homeAdmin" href="homeAdmin"> Torna al pannello di amminisrazione</a> 
-							<a title="logout" href="logout"> Logout</a>
-
+		<nav id="nav">
+			<ul>
+				<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="homeAdmin">Torna alla pagina di
+									amministrazione</a></li>
+							<li><a href="logout">Logout</a></li>
 						</ul>
-					</nav>
-				</div>
-				<!-- /.container -->
-			</div>
-			<!-- /.navbar-inner -->
-		</div>
-		<!-- /.navbar -->
+					</div></li>
+			</ul>
+		</nav>
+	</header>
+	<div class="relative">
+		<h2>Riepilogo del Job creato</h2>
 	</div>
 
+	<table>
+		<tr>
+			<th>Titolo</th>
+			<th>Descrizione</th>
+			<th>Difficoltà</th>
+			<th>Numero di Studenti</th>
+			<th>Numero di Immagini</th>
+			<th>Dimensione del Task</th>
+			<th>Manoscritto</th>
+			<th>Simbolo</th>
+		</tr>
 
-	<div align="center">
+		<tr>
+			<th>${job.title}</th>
+			<th>${job.description}</th>
+			<th>${job.difficulty}</th>
+			<th>${job.students}</th>
+			<th>${job.numberOfImages}</th>
+			<th>${job.taskSize}</th>
+			<th>${job.imageManuscript}</th>
+			<th>${job.symbol.transcription}</th>
+		</tr>
+	</table>
 
-		<h2>
-			<c:out value="Confirms the following information:" />
-		</h2>
-
-		<div>
-			<h3>
-				<c:out value="Titolo:" />${job.title}</h3>
-		</div>
-
-
-		<div>
-			<h3>
-				<c:out value="Descrizione:" />
-			</h3>${job.description}
-		</div>
-
-		<div>
-			<h3>
-				<c:out value="#Studenti:" />
-			</h3>${job.students}
-		</div>
-
-		<div>
-			<h3>
-				<c:out value="#Immagini:" />
-			</h3>${job.numberOfImages}
-		</div>
-
-		<div>
-			<h3>
-				<c:out value="Dimensione Task:" />
-			</h3>${job.taskSize}
-		</div>
-
-		<div>
-			<h3>
-				<c:out value="Manoscritto:" />
-			</h3>${job.imageManuscript}
-		</div>
-
-		<div>
-			<h3>
-				<c:out value="Simbolo:" />
-			</h3>${job.symbol.transcription}
-		</div>
-
-	</div>
-
-
+	<!-- Scripts -->
+	<script src="resources/js/jquery.min.js"></script>
+	<script src="resources/js/jquery.scrollex.min.js"></script>
+	<script src="resources/js/jquery.scrolly.min.js"></script>
+	<script src="resources/js/skel.min.js"></script>
+	<script src="resources/js/util.js"></script>
+	<!--[if lte IE 8]>-->
+	<script src="resources/js/ie/respond.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 </body>
 </html>

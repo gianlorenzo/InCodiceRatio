@@ -17,28 +17,28 @@ import it.uniroma3.icr.service.impl.TaskFacade;
 
 @Controller
 public class LoginController {
-	
+
 	@Autowired
 	public TaskFacade taskFacade;
-	
+
 	@Autowired
 	public StudentFacade studentFacade;
-	
+
 	@RequestMapping(value="/logout", method = RequestMethod.GET)
 	public String logout() {
 		return "login";
 	}
-	
+
 	@RequestMapping(value="/admin**", method = RequestMethod.GET)
 	public String loginAdmin() {
 		return "administration/homeAdmin";
 	}
-	
+
 	@RequestMapping(value="/utente**", method = RequestMethod.GET)
 	public String loginUser() {
 		return "users/Task";
 	}
-	
+
 	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public String login (ModelMap model) {
 		model.addAttribute("user", new Student());
@@ -46,28 +46,25 @@ public class LoginController {
 		return "login";
 
 	}
-	
+
 	@RequestMapping(value="/role", method = RequestMethod.GET)
 	public String loginRole(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	        String role = auth.getAuthorities().toString();
+		String role = auth.getAuthorities().toString();
+		String targetUrl = "";
+		if(role.contains("ROLE_USER")) {
 
-	        String targetUrl = "";
-	        if(role.contains("ROLE_USER")) {
-	        	
-	        	 targetUrl = "/users/homeStudent";
-	        } else if(role.contains("ROLE_ADMIN")) {
-	            targetUrl = "/administration/homeAdmin";
-	        }
-	        return targetUrl;
-	    }
-	
-
-	
+			targetUrl = "/users/homeStudent";
+		} else if(role.contains("ROLE_ADMIN")) {
+			targetUrl = "/administration/homeAdmin";
+		}
+		return targetUrl;
 	}
 
-		
+}
 
-	
-	
+
+
+
+
 

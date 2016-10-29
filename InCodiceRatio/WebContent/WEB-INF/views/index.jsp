@@ -1,98 +1,66 @@
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html>
-
-
+<!DOCTYPE HTML>
+<!--
+	Spectral by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-
 <title>ICR</title>
+<meta charset="utf-8" />
+<!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="resources/css/main.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
-<!-- Google Web fonts -->
-
-
-<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Patua+One'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-
-<!-- Bootstrap CSS -->
-
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.responsive.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello-ie7.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/prettyPhoto.css" />" type="text/css">
-<link rel="stylesheet" href="<c:url value=" resources/css/style.css" />"
-	type="text/css">
 
 <!-- Favicon -->
-<link rel="shortcut icon"
-	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
-
-<style type="text/css">
-body {
-	background-image: url('./resources/img/siteImages/homePage.png');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-position: center;
-	background-size: 1420px 650px;
-}
-</style>
+<link rel="shortcut icon" href="resources/img/siteImages/favicon.ico" />
 
 </head>
+<body class="landing">
 
-<body>
-	<!--******************** NAVBAR ********************-->
-	<div class="navbar-wrapper">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<h1 class="brand">
-						<a href="index">In Codice Ratio</a>
-					</h1>
-					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
 
-
-							<a title="login" href="login">Login</a>
-
-
-						</ul>
-					</nav>
-				</div>
-				<!-- /.container -->
-			</div>
-			<!-- /.navbar-inner -->
-		</div>
-		<!-- /.navbar -->
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1>
+				<a href="index.html">In Codice Ratio</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="registration">Registra un nuovo Studente</a></li>
+								<li><a href="registrationAdmin">Registra un nuovo
+										Amministratore</a></li>
+								<li><a href="login">Log In</a></li>
+							</ul>
+						</div></li>
+				</ul>
+			</nav>
+		</header>
 	</div>
 
+	<!-- Banner -->
+	<section id="banner">
+		<div class="inner">
+			<h2>In Codice Ratio</h2>
+			<p>Un nuovo sistema per trascrivere manoscritti di ogni epoca</p>
+		</div>
+	</section>
 
-
-
-
-
+	<!-- Scripts -->
+	<script src="resources/js/jquery.min.js"></script>
+	<script src="resources/js/jquery.scrollex.min.js"></script>
+	<script src="resources/js/jquery.scrolly.min.js"></script>
+	<script src="resources/js/skel.min.js"></script>
+	<script src="resources/js/util.js"></script>
+	<!--[if lte IE 8]>-->
+	<script src="resources/js/ie/respond.min.js"></script>
+	<script src="resources/js/main.js"></script>
 
 </body>
-
 </html>

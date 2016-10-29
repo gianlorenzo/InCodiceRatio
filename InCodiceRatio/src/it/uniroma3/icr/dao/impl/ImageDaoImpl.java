@@ -1,8 +1,6 @@
 package it.uniroma3.icr.dao.impl;
 
-
 import java.util.List;
-
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -90,7 +88,7 @@ public class ImageDaoImpl implements ImageDao {
 		List<Image> images = query.list();
 		Object[] objectList = images.toArray();
 		session.close(); 
-		
+
 		return objectList;
 	}
 

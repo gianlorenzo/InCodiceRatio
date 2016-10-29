@@ -16,8 +16,8 @@ public class JobDaoImpl implements JobDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
+
+
 	@Override
 	public void insertJob(Job job) {
 		Session session = sessionFactory.openSession();
@@ -45,14 +45,8 @@ public class JobDaoImpl implements JobDao {
 		session.beginTransaction();
 		Job j = (Job) session.get(Job.class, id);
 		session.close();
-		
+
 		return j;
 	}
-
-	
-	
-	
-
-	
 
 }

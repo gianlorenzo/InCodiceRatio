@@ -31,8 +31,6 @@ public class Symbol {
 	@OneToMany(mappedBy="symbol")
 	private List<Job> jobs;
 	
-	
-	
 	public Symbol() {
 		
 	}
@@ -104,8 +102,4 @@ public class Symbol {
 		this.width = width;
 	}
 	
-	
-	
-	
-
 }

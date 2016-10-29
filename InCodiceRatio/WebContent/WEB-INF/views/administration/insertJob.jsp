@@ -16,140 +16,108 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
 
-<!-- Google Web fonts -->
-
-
-<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Patua+One'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-
-
-<!-- Bootstrap CSS -->
-
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.responsive.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello-ie7.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/prettyPhoto.css" />" type="text/css">
-<link rel="stylesheet" href="<c:url value=" resources/css/style.css" />"
-	type="text/css">
+<!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="resources/css/main.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
 <!-- Favicon -->
 <link rel="shortcut icon"
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
-
-
-
-
 </head>
-<body>
-	<!--******************** NAVBAR ********************-->
-	<div class="navbar-wrapper">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<h2 class="brand">
-						<a href="#">Pagina di creazione di un Job </a>
-					</h2>
-					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
+<body class="landing">
+	<!-- Header -->
+	<header id="header" class="alt">
 
-
-
-							<a title="logout" href="logout"> Logout</a>
-
+		<nav id="nav">
+			<ul>
+				<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="homeAdmin">Torna alla pagina di
+									amministrazione</a></li>
+							<li><a href="logout">Logout</a></li>
 						</ul>
-					</nav>
-				</div>
-				<!-- /.container -->
-			</div>
-			<!-- /.navbar-inner -->
-		</div>
-		<!-- /.navbar -->
-	</div>
-
+					</div></li>
+			</ul>
+		</nav>
+	</header>
 
 	<div align="center">
-
-		
-
-
 
 		<form:form method="post" action="addJob" modelAttribute="job"
 			name="form">
 			<div style="position: inline; top: 35px;">
 
-			<div>
-				<h2>Titolo:</h2>
-				<form:input type="text" path="title" placeholder="Title" />
-			</div>
-
-			<div>
-				<h2>Descrizione:</h2>
-				<form:textarea path="description" rows="5" cols="5" />
-			</div>
-
-			<div>
-				<h2>#Studenti:</h2>
-				<form:input type="text" path='students' placeholder="Students"
-					onBlur="isnum(this)" />
-			</div>
-
-			<div>
-				<h2>#Immagini:</h2>
-				<form:input type="text" path='numberOfImages' placeholder="images"
-					onBlur="isnum(this)" />
-			</div>
-
-			<div>
-				<h2>Dimensione Task:</h2>
-				<form:input type="text" path='taskSize' placeholder="TaskSize"
-					onBlur="isnum(this)" />
-			</div>
-
-
-			<div>
-				<h2>Manoscritto:</h2>
-				<form:select path="imageManuscript">
-
-					<form:options items="${manuscripts}" />
-
-				</form:select>
-
 				<div>
-					<h2>Simbolo:</h2>
-					<form:select path="symbol">
-						<font color="7a0000"><form:options items="${symbols}"
-								itemLabel="transcription" itemValue="id" /> </font>
-
-					</form:select>
+					<h2>Titolo:</h2>
+					<form:input type="text" path="title" placeholder="Titolo" />
 				</div>
 
-				<form:hidden path="id" />
+				<div>
+					<h2>Descrizione:</h2>
+					<form:textarea path="description" rows="5" cols="5" />
+				</div>
 
-				<input type="submit" value="Invio" />
-			</div>
+				<div>
+					<h2>Difficoltà:</h2>
+					<form:input type="text" path="difficulty" placeholder="Difficoltà" />
+				</div>
+
+
+				<div>
+					<h2>#Studenti:</h2>
+					<form:input type="text" path='students'
+						placeholder="Numero di Studenti" onBlur="isnum(this)" />
+				</div>
+
+				<div>
+					<h2>#Immagini:</h2>
+					<form:input type="text" path='numberOfImages'
+						placeholder="Numero di Immagini" onBlur="isnum(this)" />
+				</div>
+
+				<div>
+					<h2>Dimensione Task:</h2>
+					<form:input type="text" path='taskSize'
+						placeholder="Dimensione Task" onBlur="isnum(this)" />
+				</div>
+
+				<div>
+					<h2>Manoscritto:</h2>
+					<form:select path="imageManuscript">
+
+						<form:options items="${manuscripts}" />
+
+					</form:select>
+
+					<div>
+						<h2>Simbolo:</h2>
+						<form:select path="symbol">
+							<font color="7a0000"><form:options items="${symbols}"
+									itemLabel="transcription" itemValue="id" /> </font>
+						</form:select>
+					</div>
+
+					<form:hidden path="id" />
+					<div>
+						<br /> <input type="submit" value="Invio" />
+					</div>
+				</div>
 			</div>
 		</form:form>
 	</div>
 
+	<!-- Scripts -->
+	<script src="resources/js/jquery.min.js"></script>
+	<script src="resources/js/jquery.scrollex.min.js"></script>
+	<script src="resources/js/jquery.scrolly.min.js"></script>
+	<script src="resources/js/skel.min.js"></script>
+	<script src="resources/js/util.js"></script>
+	<!--[if lte IE 8]>-->
+	<script src="resources/js/ie/respond.min.js"></script>
+	<script src="resources/js/main.js"></script>
 	<script src="resources/js/file.js"></script>
 
 

@@ -114,6 +114,4 @@ public class Task {
 		return "Task [id=" + id;
 	}
 	
-	
-	
 }

@@ -1,20 +1,15 @@
 package it.uniroma3.icr.insertImageInDb;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FilenameUtils;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import it.uniroma3.icr.model.Image;
 import it.uniroma3.icr.model.Symbol;
 
 @Repository

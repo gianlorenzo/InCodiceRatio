@@ -12,32 +12,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
 
-<!-- Google Web fonts -->
+<!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
+<link rel="stylesheet" href="resources/css/main.css" />
+<!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
+<!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
-
-<link href='http://fonts.googleapis.com/css?family=Quattrocento:400,700'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Patua+One'
-	rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans'
-	rel='stylesheet' type='text/css'>
-
-<!-- Bootstrap CSS -->
-
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.responsive.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/bootstrap.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello-ie7.css" />"
-	type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/fontello.css" />" type="text/css">
-<link rel="stylesheet"
-	href="<c:url value=" resources/css/prettyPhoto.css" />" type="text/css">
-<link rel="stylesheet" href="<c:url value=" resources/css/style.css" />"
-	type="text/css">
 
 <!-- Favicon -->
 <link rel="shortcut icon"
@@ -46,37 +25,29 @@
 
 
 </head>
-<body>
+<body class="landing">
 
-	<!--******************** NAVBAR ********************-->
-	<div class="navbar-wrapper">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a>
-					<h1 class="brand">
-						<a href="index">In Codice Ratio</a>
-					</h1>
-					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-					<nav class="pull-right nav-collapse collapse">
-						<ul id="menu-main" class="nav">
-							<a title="login" href="login">Pagina di registrazione di un
-								Amministratore</a>
+	<!-- Page Wrapper -->
+	<div id="page-wrapper">
 
-						</ul>
-					</nav>
-				</div>
-				<!-- /.container -->
-			</div>
-			<!-- /.navbar-inner -->
-		</div>
-		<!-- /.navbar -->
+		<!-- Header -->
+		<header id="header" class="alt">
+			<h1>
+				<a href="index.html">In Codice Ratio</a>
+			</h1>
+			<nav id="nav">
+				<ul>
+					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+						<div id="menu">
+							<ul>
+								<li><a href="login">Log In</a></li>
+								<li><a href="index">Torna alla HomePage</a></li>
+							</ul>
+						</div></li>
+				</ul>
+			</nav>
+		</header>
 	</div>
-
 
 	<div align="center">
 
@@ -98,15 +69,20 @@
 				<font color="white"><springForm:errors path="username" /></font> <font
 					color="white"><springForm:errors path="password" /></font>
 				<div>
-					<input type="submit" value="Invio" />
+					<br /> <input type="submit" value="Invio" />
 				</div>
 			</div>
 		</form:form>
-
-
-
-
 	</div>
 
+	<!-- Scripts -->
+	<script src="resources/js/jquery.min.js"></script>
+	<script src="resources/js/jquery.scrollex.min.js"></script>
+	<script src="resources/js/jquery.scrolly.min.js"></script>
+	<script src="resources/js/skel.min.js"></script>
+	<script src="resources/js/util.js"></script>
+	<!--[if lte IE 8]>-->
+	<script src="resources/js/ie/respond.min.js"></script>
+	<script src="resources/js/main.js"></script>
 </body>
 </html>
