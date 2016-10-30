@@ -6,8 +6,7 @@ public class ComparatorePerData implements Comparator<Task> {
 
 	@Override
 	public int compare(Task t1, Task t2) {
-		return t1.getStartDate().compareTo(t2.getStartDate())
-				- t1.getEndDate().compareTo(t2.getEndDate());
+		return t1.getStartDate().compareTo(t2.getStartDate());
 	}
 
 }

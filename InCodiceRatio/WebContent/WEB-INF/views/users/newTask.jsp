@@ -30,10 +30,8 @@
 
 <style type="text/css">
 body {
-	background-color: ${task.job.difficulty
-}
-;
-}
+	background-color: ${task.job.difficulty};
+	}
 </style>
 
 

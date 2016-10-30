@@ -205,10 +205,17 @@ public class AdminController {
 	}
 
 	@RequestMapping(value="insertSymbol")
-	public String insertSymbol() throws FileNotFoundException, IOException {
+	public String insertSymbol(Model model) throws FileNotFoundException, IOException {
+		try {
 		symbolFacade.insertSymbolInDb();
-
 		return "administration/homeAdmin";
+		} catch(Exception e) {
+			logger.error("FATAL EXCEPTION", e);
+			model.addAttribute("e", e);
+			model.addAttribute("error", e.toString());
+			return "error";
+			
+		}
 
 	}
 
