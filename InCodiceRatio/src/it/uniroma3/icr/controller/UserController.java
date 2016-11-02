@@ -3,7 +3,6 @@ package it.uniroma3.icr.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -25,7 +24,6 @@ import it.uniroma3.icr.service.impl.StudentFacade;
 
 @Controller
 public class UserController {
-	private final static Logger logger = Logger.getLogger(UserController.class);
 
 	@Autowired
 	private StudentFacade userFacade;
@@ -40,9 +38,7 @@ public class UserController {
 
 	@RequestMapping(value="/registration", method = RequestMethod.GET)
 	public String registrazione(@ModelAttribute Student student, Model model) {
-
-		try {
-
+		
 			Map<String,String> schoolGroups = new HashMap<String,String>();
 			schoolGroups.put("3", "3");
 			schoolGroups.put("4", "4");
@@ -50,18 +46,12 @@ public class UserController {
 			model.addAttribute("schoolGroups", schoolGroups);
 
 			return "registration";
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-		}
 	}
 
 	@RequestMapping(value="/addUser", method = RequestMethod.POST)
 	public String confirmUser(@ModelAttribute Student student, Model model, @Validated Student p, BindingResult bindingResult) {
 
-		try {
+		
 
 			Map<String,String> schoolGroups = new HashMap<String,String>();
 			schoolGroups.put("3", "3");
@@ -85,12 +75,6 @@ public class UserController {
 			userFacade.addUser(student);
 			return "login";
 
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-		}
 
 	}
 

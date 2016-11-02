@@ -26,17 +26,24 @@ body {
 
 </head>
 <body class="landing">
+
+	<c:set var="exception"
+		value="${requestScope['javax.servlet.error.exception']}" />
+
 	<ul>
 		<h2>
-			${error} <a href="logout">Logout</a>
+			${exception} <a href="logout">Logout</a>
 		</h2>
 	</ul>
 
-	<div>
-		<c:forEach var="element" items="${e.stackTrace}">
-			<c:out value="${element}" />
 
-		</c:forEach>
-	</div>
+	<c:forEach var="e" items="${exception.stackTrace}">
+
+		<c:out value="${e}" />
+
+	</c:forEach>
+
+
+
 </body>
 </html>

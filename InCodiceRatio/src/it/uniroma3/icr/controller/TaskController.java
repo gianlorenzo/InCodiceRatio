@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,11 +33,8 @@ import it.uniroma3.icr.service.impl.StudentFacade;
 import it.uniroma3.icr.service.impl.SymbolFacade;
 import it.uniroma3.icr.service.impl.TaskFacade;
 
-
-
 @Controller
 public class TaskController {
-	private final static Logger logger = Logger.getLogger(TaskController.class);
 
 	private @Autowired ImageEditor imageEditor;
 
@@ -77,7 +73,6 @@ public class TaskController {
 			@ModelAttribute("taskResults")TaskWrapper taskResults, Model model,
 			HttpServletRequest request) {
 
-		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String s = auth.getName();
 			Student student = studentFacade.retrieveUser(s);
@@ -103,18 +98,12 @@ public class TaskController {
 				return "users/newTask";
 			}
 			return "users/goodBye";
-		} catch (Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-		}
 	}
 
 	@RequestMapping(value="/secondConsole", method = RequestMethod.POST)
 	public String taskRecap(@ModelAttribute("taskResults")TaskWrapper taskResults,
 			Model model, HttpServletRequest request) {
-		try {
+		 
 			List<Result> results = taskResults.getResultList();
 			for(Result result : results) {
 				Task task = result.getTask();
@@ -126,33 +115,18 @@ public class TaskController {
 			request.getSession().removeAttribute("thisId");
 
 			return "users/homeStudent";
-		} catch (Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-		}
-
 	}
 
 	@RequestMapping(value="/studentTasks")
 	public String studentTasks(Model model) {
-		try {
+		
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			Student s = studentFacade.retrieveUser(auth.getName());
 			List<Task> studentTasks = taskFacade.findTaskByStudent(s.getId());
 			Collections.sort(studentTasks, new ComparatorePerData());
 			model.addAttribute("studentTasks", studentTasks);
 			return "users/studentTasks";
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
 		}
-	}
-
-
 }		
 
 

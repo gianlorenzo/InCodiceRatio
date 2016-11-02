@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -39,7 +38,6 @@ import it.uniroma3.icr.service.impl.ResultFacade;
 
 @Controller
 public class AdminController {
-	private final static Logger logger = Logger.getLogger(AdminController.class);
 
 	private @Autowired SymbolEditor symbolEditor;
 
@@ -72,30 +70,25 @@ public class AdminController {
 
 	@RequestMapping(value="/insertJob")
 	private String newJob(@ModelAttribute Job job,@ModelAttribute Task task, Model model) {
-		try {
-			model.addAttribute("symbols", symbolFacade.retrieveAllSymbols());
-			model.addAttribute("images", imageFacade.retrieveAllImages());
 
-			List<String> manuscriptImage = imageFacade.findAllManuscript();
+		model.addAttribute("symbols", symbolFacade.retrieveAllSymbols());
+		model.addAttribute("images", imageFacade.retrieveAllImages());
 
-			Map<String,String> manuscripts = new HashMap<String,String>();
+		List<String> manuscriptImage = imageFacade.findAllManuscript();
 
-			for(String manuscript : manuscriptImage) {
-				manuscripts.put(manuscript, manuscript);
-			}
+		Map<String,String> manuscripts = new HashMap<String,String>();
 
-
-			model.addAttribute("manuscripts", manuscripts);
-
-			model.addAttribute("job", job);
-			model.addAttribute("task", task);
-			return"administration/insertJob";
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
+		for(String manuscript : manuscriptImage) {
+			manuscripts.put(manuscript, manuscript);
 		}
+
+
+		model.addAttribute("manuscripts", manuscripts);
+
+		model.addAttribute("job", job);
+		model.addAttribute("task", task);
+		return"administration/insertJob";
+
 	}
 
 	@RequestMapping(value="/homeAdmin")
@@ -106,69 +99,63 @@ public class AdminController {
 	@RequestMapping(value="/addJob", method = RequestMethod.POST)
 	public String confirmJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
 
-		try {
+		model.addAttribute("symbols", symbolFacade.retrieveAllSymbols());
+		model.addAttribute("images", imageFacade.retrieveAllImages());
 
-			model.addAttribute("symbols", symbolFacade.retrieveAllSymbols());
-			model.addAttribute("images", imageFacade.retrieveAllImages());
+		List<String> manuscriptImage = imageFacade.findAllManuscript();
 
-			List<String> manuscriptImage = imageFacade.findAllManuscript();
+		Map<String,String> manuscripts = new HashMap<String,String>();
 
-			Map<String,String> manuscripts = new HashMap<String,String>();
-
-			for(String manuscript : manuscriptImage) {
-				manuscripts.put(manuscript, manuscript);
-			}
-
-			model.addAttribute("manuscripts", manuscripts);
-			model.addAttribute("job", job);
-			model.addAttribute("task", task);
-
-			List<Image> jobImages = new ArrayList<>();
-
-			List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
-					job.getNumberOfImages());
-
-			if(job.getNumberOfImages()%job.getTaskSize() == 0) {
-
-				for(int y=0;y<imagesTask.size();y++) {
-					image = imagesTask.get(y);
-					jobImages.add(image);
-				}
-
-				job.setImages(jobImages);
-				facadeJob.addJob(job);
-
-				for(int i = 0; i<job.getNumberOfStudents();i++) {
-					int batchNumber = 0;
-
-					for(int r=0;r<job.getImages().size();r++) {
-
-						if ((r % job.getTaskSize())==0) {
-							task = new Task();
-							task.setBatch(batchNumber);
-							task.setJob(job);
-							facadeTask.addTask(task);
-							batchNumber++;
-						}
-
-						Image j = job.getImages().get(r);
-						result = new Result();
-						result.setImage(j);
-						result.setTask(task);
-						facadeResult.addResult(result);
-
-					}
-				}
-
-				return "administration/jobRecap";
-			}
-			return "administration/insertJob";
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
+		for(String manuscript : manuscriptImage) {
+			manuscripts.put(manuscript, manuscript);
 		}
+
+		model.addAttribute("manuscripts", manuscripts);
+		model.addAttribute("job", job);
+		model.addAttribute("task", task);
+
+		List<Image> jobImages = new ArrayList<>();
+
+		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
+				job.getNumberOfImages());
+
+		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
+
+			for(int y=0;y<imagesTask.size();y++) {
+				image = imagesTask.get(y);
+				jobImages.add(image);
+			}
+
+			job.setImages(jobImages);
+			facadeJob.addJob(job);
+
+			for(int i = 0; i<job.getNumberOfStudents();i++) {
+				int batchNumber = 0;
+
+				for(int r=0;r<job.getImages().size();r++) {
+
+					if ((r % job.getTaskSize())==0) {
+						task = new Task();
+						task.setBatch(batchNumber);
+						task.setJob(job);
+						facadeTask.addTask(task);
+						batchNumber++;
+					}
+
+					Image j = job.getImages().get(r);
+					result = new Result();
+					result.setImage(j);
+					result.setTask(task);
+					facadeResult.addResult(result);
+
+				}
+			}
+
+			return "administration/jobRecap";
+		}
+		return "administration/insertJob";
+
+
 	}
 
 	@RequestMapping(value="/registrationAdmin", method=RequestMethod.GET)
@@ -191,60 +178,29 @@ public class AdminController {
 
 	@RequestMapping(value="insertImage")
 	public String insertImages(Model model) throws FileNotFoundException, IOException {
-		try {
-			imageFacade.getListImageProperties();
-			return "administration/homeAdmin";
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-
-		}
-
+		imageFacade.getListImageProperties();
+		return "administration/homeAdmin";
 	}
 
 	@RequestMapping(value="insertSymbol")
 	public String insertSymbol(Model model) throws FileNotFoundException, IOException {
-		try {
+
 		symbolFacade.insertSymbolInDb();
 		return "administration/homeAdmin";
-		} catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-			
-		}
-
 	}
 
 	@RequestMapping(value="insertSample")
 	public String insertSample(Model model) throws FileNotFoundException, IOException {
-		try {
-			symbolFacade.getSampleImage();
-			return "administration/homeAdmin";
-		}catch(Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-		}
-
+		symbolFacade.getSampleImage();
+		return "administration/homeAdmin";
 	}
 
 	@RequestMapping(value="listJobs") 
 	public String jobList(Model model) {
-		try {
-			List<Job> jobs = facadeJob.retriveAlljobs();
-			model.addAttribute("jobs", jobs);
-			return "administration/listJobs";
-		} catch (Exception e) {
-			logger.error("FATAL EXCEPTION", e);
-			model.addAttribute("e", e);
-			model.addAttribute("error", e.toString());
-			return "error";
-		}
+
+		List<Job> jobs = facadeJob.retriveAlljobs();
+		model.addAttribute("jobs", jobs);
+		return "administration/listJobs";
 	}
 
 }

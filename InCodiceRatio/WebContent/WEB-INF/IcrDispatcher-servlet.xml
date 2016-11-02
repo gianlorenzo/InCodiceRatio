@@ -25,6 +25,8 @@
 		<property name="password" value="${jdbc.password}" />
 	</bean>
 	
+	
+	
 	 <beans:bean id="userValidator" class="it.uniroma3.icr.controller.UserValidator" />
 	 <beans:bean id="adminValidator" class="it.uniroma3.icr.controller.AdminValidator"></beans:bean>
 	<bean id="sessionFactory"
@@ -62,5 +64,6 @@
 		</property>
 	</bean>
 	
+
 	
 </beans>
