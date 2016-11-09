@@ -13,7 +13,7 @@
 <title>ICR</title>
 
 <!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="resources/css/registration.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
@@ -49,32 +49,50 @@
 		</header>
 	</div>
 
-	<div align="center">
-
-		<form:form method="post" action="addAdmin"
-			modelAttribute="administrator" name="form">
-			<div style="position: inline; top: 40px;">
-
-				<div>
-					<h3>Username:</h3>
-					<font size="3" color="red">${usernameError}</font>
-
-					<form:input type="text" path="username" placeholder="Username" />
-				</div>
-
-				<div>
-					<h3>Password:</h3>
-					<form:input type="password" path="password" placeholder="Password" />
-				</div>
-				<font color="white"><springForm:errors path="username" /></font> <font
+	<div class="form">
+      
+    
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Registrazione Admin</h1>
+          
+          <form:form method="post" action="addAdmin" modelAttribute="administrator" name="form">
+          
+          
+          
+          <div class="field-wrap">
+            <label>
+              Username<font size="3" color="red">${usernameError}</font>
+            </label>
+					<form:input type="text" path='username' placeholder="Username" />
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Password
+            </label>
+					<form:input type="password" path='password' placeholder="Password" />
+          </div>
+          
+          <font color="white"><springForm:errors path="username" /></font> <font
 					color="white"><springForm:errors path="password" /></font>
-				<div>
-					<br /> <input type="submit" value="Invio" />
-				</div>
-			</div>
-		</form:form>
-	</div>
+          
+          <button type="submit" class="button button-block">Conferma</button> 
+          </form:form>
+          </div>
+          
+         
 
+        
+        <div id="login">   
+         
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
+      
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>

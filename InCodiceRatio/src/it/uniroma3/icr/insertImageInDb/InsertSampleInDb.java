@@ -22,7 +22,7 @@ import it.uniroma3.icr.model.Symbol;
 @Repository
 public class InsertSampleInDb {
 
-	private static final String path ="/usr/share/tomcat/webapps/InCodiceRatio/resources/img/sources/samples/";
+	private static final String path ="C:\\Users\\NandG\\Documents\\img\\sources\\samples\\";
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -83,6 +83,7 @@ public class InsertSampleInDb {
 
 
 						String pathFile = images[g].getPath();
+						String newPath = pathFile.replace(File.separator, "/");
 
 						String name = FilenameUtils.getBaseName(nameComplete);
 						String[] parts = name.split("_");
@@ -102,7 +103,7 @@ public class InsertSampleInDb {
 							int xImg = x;
 							int yImg = y;
 							String manuscript = manuscriptName;
-							String path = pathFile.substring(49, pathFile.length());
+							String path = newPath.substring(24, newPath.length());
 
 							Sample sample = new Sample(width,height,xImg,yImg,manuscript,
 									type,path);

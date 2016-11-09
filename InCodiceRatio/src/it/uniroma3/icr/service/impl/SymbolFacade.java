@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.icr.dao.impl.SymbolDaoImpl;
+import it.uniroma3.icr.insertImageInDb.InsertNegativeSampleInDb;
 import it.uniroma3.icr.insertImageInDb.InsertSampleInDb;
 import it.uniroma3.icr.insertImageInDb.InsertSymbolInDb;
 import it.uniroma3.icr.model.Sample;
@@ -24,6 +25,9 @@ public class SymbolFacade {
 	
 	@Autowired
 	private InsertSampleInDb insertSample;
+	
+	@Autowired
+	private InsertNegativeSampleInDb insertNegativeSample;
 	
 	public Symbol retrieveSymbol(long id) {
 		return this.symbolDaoImpl.findSymbol(id);
@@ -46,8 +50,17 @@ public class SymbolFacade {
 		insertSample.getSampleImage();
 	}
 	
+	public void getNegativeSampleImage() throws FileNotFoundException, IOException {
+		insertNegativeSample.getNegativeSampleImage();
+	}
+
+	
 	public List<Sample> findAllSamplesBySymbolId(long id) {
 		return this.insertSample.findAllSamplesBySymbolId(id);
+	}
+	
+	public List<Sample> findAllNegativeSamplesBySymbolId(long id) {
+		return this.insertNegativeSample.findAllNegativeSamplesBySymbolId(id);
 	}
 	
 }

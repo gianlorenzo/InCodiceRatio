@@ -51,8 +51,6 @@ public class UserController {
 	@RequestMapping(value="/addUser", method = RequestMethod.POST)
 	public String confirmUser(@ModelAttribute Student student, Model model, @Validated Student p, BindingResult bindingResult) {
 
-		
-
 			Map<String,String> schoolGroups = new HashMap<String,String>();
 			schoolGroups.put("3", "3");
 			schoolGroups.put("4", "4");

@@ -33,7 +33,7 @@
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="annotatedClasses"
-			value="it.uniroma3.icr.model.Sample,it.uniroma3.icr.model.Student,it.uniroma3.icr.model.Administrator, it.uniroma3.icr.model.Job, it.uniroma3.icr.model.Symbol, it.uniroma3.icr.model.Task, it.uniroma3.icr.model.Result,it.uniroma3.icr.model.Image" />
+			value="it.uniroma3.icr.model.NegativeSample,it.uniroma3.icr.model.Sample,it.uniroma3.icr.model.Student,it.uniroma3.icr.model.Administrator, it.uniroma3.icr.model.Job, it.uniroma3.icr.model.Symbol, it.uniroma3.icr.model.Task, it.uniroma3.icr.model.Result,it.uniroma3.icr.model.Image" />
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>

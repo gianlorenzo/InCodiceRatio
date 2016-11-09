@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="InCodiceRatio">
+    <wb-module deploy-name="InCodiceRatioNew">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="InCodiceRatio"/>
-        <property name="java-output-path" value="/InCodiceRatio/build/classes"/>
+        <property name="java-output-path" value="/InCodiceRatioNew/build/classes"/>
+        <property name="context-root" value="InCodiceRatioNew"/>
     </wb-module>
 </project-modules>

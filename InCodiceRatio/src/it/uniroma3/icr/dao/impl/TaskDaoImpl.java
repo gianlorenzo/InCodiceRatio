@@ -18,8 +18,11 @@ import it.uniroma3.icr.model.Task;
 @Repository
 public class TaskDaoImpl implements TaskDao {
 
+
 	@Autowired
 	private SessionFactory sessionFactory;
+
+
 
 	@Override
 	public void insertTask(Task task) {
@@ -61,6 +64,7 @@ public class TaskDaoImpl implements TaskDao {
 		return isNew;
 	}
 
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Task> findTaskByStudent(Long id) {
@@ -74,6 +78,7 @@ public class TaskDaoImpl implements TaskDao {
 		System.out.println("Tasks"+studentTasks);
 		return studentTasks;
 	}
+
 
 	@SuppressWarnings("unchecked")
 	public Task assignTask(Student s, Long id) {
@@ -115,6 +120,7 @@ public class TaskDaoImpl implements TaskDao {
 
 		return task;
 	}
+
 
 	public void updateEndDate(Task t) {
 		Session session = sessionFactory.openSession();

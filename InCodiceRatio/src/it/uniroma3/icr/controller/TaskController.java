@@ -1,9 +1,12 @@
 package it.uniroma3.icr.controller;
 
+
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,6 +35,8 @@ import it.uniroma3.icr.service.impl.ResultFacade;
 import it.uniroma3.icr.service.impl.StudentFacade;
 import it.uniroma3.icr.service.impl.SymbolFacade;
 import it.uniroma3.icr.service.impl.TaskFacade;
+
+
 
 @Controller
 public class TaskController {
@@ -73,60 +78,65 @@ public class TaskController {
 			@ModelAttribute("taskResults")TaskWrapper taskResults, Model model,
 			HttpServletRequest request) {
 
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			String s = auth.getName();
-			Student student = studentFacade.retrieveUser(s);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String s = auth.getName();
+		Student student = studentFacade.retrieveUser(s);
 
-			Long taskId = (Long)request.getSession().getAttribute("thisId");
+		Long taskId = (Long)request.getSession().getAttribute("thisId");
+		
+		task = taskFacade.assignTask(student, taskId);
 
-			task = taskFacade.assignTask(student, taskId);
+		if(task!=null) {
 
-			if(task!=null) {
+			request.getSession().setAttribute("thisId", task.getId());
 
-				request.getSession().setAttribute("thisId", task.getId());
+			List<Sample> positiveSamples = symbolFacade.findAllSamplesBySymbolId(task.getJob().getSymbol().getId());
+			List<Sample> negativeSamples = symbolFacade.findAllNegativeSamplesBySymbolId(task.getJob().getSymbol().getId());
 
-				List<Sample> samples = symbolFacade.findAllSamplesBySymbolId(task.getJob().getSymbol().getId());
+			List<Result> list = resultFacade.findTaskResult(task);
+			Collections.shuffle(list);
+			taskResults.setResultList(list);	
 
-				List<Result> list = resultFacade.findTaskResult(task);
-				taskResults.setResultList(list);	
+			model.addAttribute("positiveSamples", positiveSamples);
+			model.addAttribute("negativeSamples", negativeSamples);
 
-				model.addAttribute("samples", samples);
+			model.addAttribute("task", task);
+			model.addAttribute("taskResults", taskResults);
+			
 
-				model.addAttribute("task", task);
-				model.addAttribute("taskResults", taskResults);
-
-				return "users/newTask";
-			}
-			return "users/goodBye";
+			return "users/newTask";
+		}
+		return "users/goodBye";
 	}
 
 	@RequestMapping(value="/secondConsole", method = RequestMethod.POST)
 	public String taskRecap(@ModelAttribute("taskResults")TaskWrapper taskResults,
-			Model model, HttpServletRequest request) {
-		 
-			List<Result> results = taskResults.getResultList();
-			for(Result result : results) {
-				Task task = result.getTask();
-				taskFacade.updateEndDate(task);
-				if(result.getAnswer() == null)
-					result.setAnswer("No");
-			}
-			resultFacade.updateListResult(results);
-			request.getSession().removeAttribute("thisId");
+			Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		List<Result> results = taskResults.getResultList();
+		for(Result result : results) {
+			Task task = result.getTask();
+			taskFacade.updateEndDate(task);
+			if(result.getAnswer() == null)
+				result.setAnswer("No");
+		}
+		resultFacade.updateListResult(results);
+		request.getSession().removeAttribute("thisId");
+		response.sendRedirect("newTask");
 
-			return "users/homeStudent";
+		return "users/newTask";
+
 	}
 
 	@RequestMapping(value="/studentTasks")
 	public String studentTasks(Model model) {
-		
-			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-			Student s = studentFacade.retrieveUser(auth.getName());
-			List<Task> studentTasks = taskFacade.findTaskByStudent(s.getId());
-			Collections.sort(studentTasks, new ComparatorePerData());
-			model.addAttribute("studentTasks", studentTasks);
-			return "users/studentTasks";
-		}
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Student s = studentFacade.retrieveUser(auth.getName());
+		List<Task> studentTasks = taskFacade.findTaskByStudent(s.getId());
+		Collections.sort(studentTasks, new ComparatorePerData());
+		model.addAttribute("studentTasks", studentTasks);
+		return "users/studentTasks";
+	}
+
 }		
 
 

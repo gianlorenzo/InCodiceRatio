@@ -36,6 +36,25 @@ li a:hover {
 	background-color: #2e3842;
 }
 
+table.pos {
+	background: #00ff00;
+	position: relative;
+	left: 180px;
+	top: 50;
+}
+
+table.neg {
+	background: #ff0000;
+	position: relative;
+	left: 180px;
+	top: 50;
+}
+
+img.resized {
+	width: 40px;
+	height: auto;
+}
+
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
 	blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn,
 	em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
@@ -1163,10 +1182,6 @@ body {
 	width: device-width;
 }
 
-body {
-	background: #2e3842;
-}
-
 body.is-loading *, body.is-loading *:before, body.is-loading *:after {
 	-moz-animation: none !important;
 	-webkit-animation: none !important;
@@ -1233,7 +1248,7 @@ p {
 	margin: 0 0 2em 0;
 }
 
-h1, h3, h4, h5, h6 {
+h1, h4, h5, h6 {
 	color: #000;
 	font-weight: 800;
 	letter-spacing: 0.225em;
@@ -1259,20 +1274,12 @@ h2 {
 }
 
 
-h3 {
-	text-align: center;
-}
 
 @media screen and (max-width: 736px) {
 	h2 {
 		font-size: 1.1em;
 		line-height: 1.65em;
 	}
-}
-
-h3 {
-	font-size: 1.15em;
-	line-height: 1.75em;
 }
 
 @media screen and (max-width: 736px) {
@@ -1831,7 +1838,6 @@ table {
 	top: 50;
 	border-spacing: 10px;
 	border-collapse: separate;
-	top: 50;
 }
 
 th, td {
@@ -1845,9 +1851,38 @@ table.check {
 	border-spacing: 10px;
 	border-collapse: separate;
 	position: relative;
-	left: 320px;
+	left: 500px;
 	top: 50;
-	
+}
+
+table.alto {
+	background: #ff0000;
+	margin: 0 0 2em 0;
+	border-spacing: 10px;
+	border-collapse: separate;
+	position: relative;
+	left: 500px;
+	top: 50;
+}
+
+table.medio {
+	background: #ffff00;
+	margin: 0 0 2em 0;
+	border-spacing: 10px;
+	border-collapse: separate;
+	position: relative;
+	left: 500px;
+	top: 50;
+}
+
+table.basso {
+	background: #00ff00;
+	margin: 0 0 2em 0;
+	border-spacing: 10px;
+	border-collapse: separate;
+	position: relative;
+	left: 500px;
+	top: 50;
 }
 
 /* Button */
@@ -1867,7 +1902,7 @@ input[type="submit"], input[type="reset"], input[type="button"], button,
 	background-color: transparent;
 	border: 1px solid #000;
 	box-shadow: inset 0 0 0 2px #fff;
-	color: #fff;
+	color: #000;
 	cursor: pointer;
 	display: inline-block;
 	font-size: 0.8em;

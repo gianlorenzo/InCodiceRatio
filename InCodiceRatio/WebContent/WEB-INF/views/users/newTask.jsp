@@ -28,12 +28,6 @@
 <link rel="shortcut icon"
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
-<style type="text/css">
-body {
-	background-color: ${task.job.difficulty};
-	}
-</style>
-
 
 </head>
 
@@ -42,39 +36,55 @@ body {
 		<h2>${task.job.title}${task.job.symbol.transcription}</h2>
 	</ul>
 
-	<table>
-		<c:forEach varStatus="vs" var="sample" items="${samples}">
+
+
+
+
+
+	<div align="center">
+		<h3>Spunta le immagini che ti sembrano simili agli esempi sopra</h3>
+	</div>
+	<table class="pos">
+		<c:forEach varStatus="vs" var="sample" items="${positiveSamples}">
 
 			<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
 		</c:forEach>
 	</table>
 
 	<div align="center">
-		<h3>Spunta le immagini che ti sembrano simili agli esempi sopra</h3>
+		<h3>Attenzione: non vanno bene immagini come queste</h3>
 	</div>
+	<table class="neg">
+		<c:forEach varStatus="vs" var="sample" items="${negativeSamples}">
+
+			<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
+		</c:forEach>
+	</table>
+
+
 	<form:form method="post" action="secondConsole"
 		modelAttribute="taskResults" name="form">
 
-		<table class="check">
+		<table class="${task.job.difficulty}">
 			<c:forEach varStatus="vs" var="result"
 				items="${taskResults.resultList}">
 
-				<c:if test="${vs.count % 5 == 1}">
+				<c:if test="${vs.count % 10 == 1}">
 
 					<tr>
 				</c:if>
 				<td>
 
 					<div>
-						<img style="display: inline" src="resources${result.image.path}"
-							alt="${result.image.id}" />
+						<img src="resources${result.image.path}" alt="${result.image.id}"
+							class="resized" />
 					</div>
 					<div align="center">
 						<label><form:checkbox style="display:inline"
 								path="resultList[${vs.index}].answer" value="Yes" /> </label>
 					</div>
 				</td>
-				<c:if test="${vs.count % 5 == 0}">
+				<c:if test="${vs.count % 10 == 0}">
 					</tr>
 
 
@@ -91,9 +101,16 @@ body {
 		</table>
 
 		<div align="center">
-			<input type="submit" value="Invio">
+			<input type="submit" value="Conferma e vai al prossimo Task">
 		</div>
 	</form:form>
+	
+	<div align="center">
+		<form:form method="post" action="homeStudent">
+			<input type="submit" value="Torna alla pagina dello studente">
+		</form:form>
+	
+	</div>
 
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>

@@ -17,7 +17,7 @@
 <title>ICR</title>
 
 <!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="resources/css/registration.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
@@ -43,72 +43,95 @@
 			</ul>
 		</nav>
 	</header>
+	
+	<div class="form">
+      
+    
+      
+      <div class="tab-content">
+        <div id="signup">   
+          <h1>Crea un nuovo Job</h1>
+          
+          <form:form method="post" action="addJob" modelAttribute="job" name="form">
+          
+            <div class="field-wrap">
+              <label>
+                Titolo
+              </label>
+<form:input type="text" path="title" placeholder="Titolo" />            </div>
+        
+            <div class="field-wrap">
+              <label>
+                Descrizione
+              </label>
+<form:textarea path="description" rows="5" cols="5" />          
 
-	<div align="center">
-
-		<form:form method="post" action="addJob" modelAttribute="job"
-			name="form">
-			<div style="position: inline; top: 35px;">
-
-				<div>
-					<h2>Titolo:</h2>
-					<form:input type="text" path="title" placeholder="Titolo" />
-				</div>
-
-				<div>
-					<h2>Descrizione:</h2>
-					<form:textarea path="description" rows="5" cols="5" />
-				</div>
-
-				<div>
-					<h2>Difficoltà:</h2>
-					<form:input type="text" path="difficulty" placeholder="Difficoltà" />
-				</div>
-
-
-				<div>
-					<h2>#Studenti:</h2>
-					<form:input type="text" path='students'
+          <div class="field-wrap">
+            <label>
+              Difficoltà
+            </label>
+<form:input type="text" path="difficulty" placeholder="Difficoltà" />          </div>
+          
+          <div class="field-wrap">
+            <label>
+              #Studenti
+            </label>
+            <form:input type="text" path='students'
 						placeholder="Numero di Studenti" onBlur="isnum(this)" />
-				</div>
-
-				<div>
-					<h2>#Immagini:</h2>
-					<form:input type="text" path='numberOfImages'
-						placeholder="Numero di Immagini" onBlur="isnum(this)" />
-				</div>
-
-				<div>
-					<h2>Dimensione Task:</h2>
-					<form:input type="text" path='taskSize'
-						placeholder="Dimensione Task" onBlur="isnum(this)" />
-				</div>
-
-				<div>
-					<h2>Manoscritto:</h2>
+          </div>
+          
+          <div class="field-wrap">
+            <label>
+              #Immagini
+            </label>
+<form:input type="text" path='numberOfImages'
+						placeholder="Numero di Immagini" onBlur="isnum(this)" />          </div>
+          
+          <div class="field-wrap">
+            <label>
+             Dimensione Task
+            </label>
+<form:input type="text" path='taskSize'
+						placeholder="Dimensione Task" onBlur="isnum(this)" />          </div>
+          
+          <div class="field-wrap">
+            <label>
+              Manoscritto
+            </label>
 					<form:select path="imageManuscript">
 
 						<form:options items="${manuscripts}" />
 
 					</form:select>
-
-					<div>
-						<h2>Simbolo:</h2>
-						<form:select path="symbol">
+          </div>
+          <div class="field-wrap">
+            <label>
+            Simbolo
+            </label>
+					<form:select path="symbol">
 							<font color="7a0000"><form:options items="${symbols}"
 									itemLabel="transcription" itemValue="id" /> </font>
 						</form:select>
-					</div>
+          </div>
+          
+         
+          
+          <button type="submit" class="button button-block">Conferma</button> 
+          </div>
+          </form:form>
 
-					<form:hidden path="id" />
-					<div>
-						<br /> <input type="submit" value="Invio" />
-					</div>
-				</div>
-			</div>
-		</form:form>
-	</div>
+        </div>
+        
+        <div id="login">   
+         
+        </div>
+        
+      </div><!-- tab-content -->
+      
+</div> <!-- /form -->
+      
 
+	
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>

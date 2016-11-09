@@ -3,6 +3,7 @@ package it.uniroma3.icr.controller;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import it.uniroma3.icr.model.Symbol;
 import it.uniroma3.icr.model.Task;
 import it.uniroma3.icr.model.Administrator;
+import it.uniroma3.icr.model.ComparatoreSimboloPerNome;
 import it.uniroma3.icr.model.Image;
 import it.uniroma3.icr.model.Job;
 import it.uniroma3.icr.model.Result;
@@ -99,7 +101,10 @@ public class AdminController {
 	@RequestMapping(value="/addJob", method = RequestMethod.POST)
 	public String confirmJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
 
-		model.addAttribute("symbols", symbolFacade.retrieveAllSymbols());
+		List<Symbol> symbols = symbolFacade.retrieveAllSymbols();
+		Collections.sort(symbols, new ComparatoreSimboloPerNome());
+		
+		model.addAttribute("symbols", symbols);
 		model.addAttribute("images", imageFacade.retrieveAllImages());
 
 		List<String> manuscriptImage = imageFacade.findAllManuscript();
@@ -193,6 +198,13 @@ public class AdminController {
 	public String insertSample(Model model) throws FileNotFoundException, IOException {
 		symbolFacade.getSampleImage();
 		return "administration/homeAdmin";
+	}
+	
+	@RequestMapping(value="/insertNegativeSample")
+	public String insertNegativeSample() throws FileNotFoundException, IOException {
+		symbolFacade.getNegativeSampleImage();
+		return "administration/homeAdmin";
+
 	}
 
 	@RequestMapping(value="listJobs") 

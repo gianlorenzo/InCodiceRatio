@@ -11,7 +11,7 @@
 <title>ICR</title>
 
 <!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="resources/css/main.css" />
+<link rel="stylesheet" href="resources/css/registration.css" />
 <!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
@@ -45,26 +45,43 @@
 			</nav>
 		</header>
 	</div>
+	<div class="form">
 
 
-	<div align="center">
-		<div style="position: inline; top: 40px;">
 
-			<div>
+		<div class="tab-content">
+			<div id="signup">
+				<h1>Login</h1>
+
 				<form method="POST" name="f"
 					action="<c:url value="/${pageContext.request.contextPath}/j_spring_security_check"/>">
-					<h3>Username</h3>
-					<input type='text' name='j_username' />
+					<div class="top-row">
+						<div class="field-wrap">
+							<label> Username </label> <input type='text' name='j_username'
+								placeholder="Username" />
+						</div>
 
-					<h3>Password</h3>
-					<input type='password' name='j_password'>
-					<div>
-						<br /> <input name="submit" type="submit" value="Invio">
+						<div class="field-wrap">
+							<label> Password </label> <input type='password'
+								name='j_password' placeholder="Password">
+						</div>
+
+
+
+
+						<button type="submit" class="button button-block">Invia</button>
 					</div>
 				</form>
+
 			</div>
+
+			<div id="login"></div>
+
 		</div>
+		<!-- tab-content -->
+
 	</div>
+	<!-- /form -->
 
 
 	<!-- Scripts -->

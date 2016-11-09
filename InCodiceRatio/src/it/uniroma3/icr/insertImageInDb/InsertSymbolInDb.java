@@ -14,7 +14,7 @@ import it.uniroma3.icr.model.Symbol;
 
 @Repository
 public class InsertSymbolInDb {
-	private static final String path ="/usr/share/tomcat/webapps/InCodiceRatio/resources/img/sources/samples/";
+	private static final String path ="C:\\Users\\NandG\\Documents\\img\\sources\\samples\\";
 
 	@Autowired
 	private SessionFactory sessionFactory;

@@ -48,7 +48,8 @@
 	<section id="banner">
 		<div class="inner">
 			<h2>In Codice Ratio</h2>
-			<p>Un nuovo sistema per trascrivere manoscritti di ogni epoca</p>
+			<p>Un nuovo sistema</p> 
+			<p>per trascrivere manoscritti di ogni epoca</p>
 		</div>
 	</section>
 

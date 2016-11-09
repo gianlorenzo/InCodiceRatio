@@ -19,7 +19,7 @@ import it.uniroma3.icr.model.Image;
 @Repository
 public class InsertImageInDb {
 
-	private static final String path ="/usr/share/tomcat/webapps/InCodiceRatio/resources/img/sources/training/";
+	private static final String path ="C:\\Users\\NandG\\Documents\\img\\sources\\training\\";
 
 
 	@Autowired
@@ -61,6 +61,7 @@ public class InsertImageInDb {
 					for(int g=0;g<images.length;g++) {
 						String nameComplete = images[g].getName();
 						String pathFile = images[g].getPath();
+						String newPath = pathFile.replace(File.separator, "/");
 
 
 						String name = FilenameUtils.getBaseName(nameComplete);
@@ -81,7 +82,7 @@ public class InsertImageInDb {
 							String page = pageName;
 							String manuscript = manuscriptName;
 							String type = typeName;
-							String path = pathFile.substring(49, pathFile.length());
+							String path = newPath.substring(24, newPath.length());
 
 							Image img = new Image(width,height,type,page,
 									manuscript,xImg,yImg,path);;
