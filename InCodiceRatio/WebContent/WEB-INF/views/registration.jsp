@@ -50,9 +50,7 @@
 	</div>
   <div class="form">
       
-    
-      
-      <div class="tab-content">
+     <div class="tab-content">
         <div id="signup">   
           <h1>Registrati</h1>
           

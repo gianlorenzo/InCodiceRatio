@@ -1,13 +1,16 @@
 package it.uniroma3.icr.dao.impl;
 
 
+import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 
-
+import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -21,8 +24,6 @@ public class TaskDaoImpl implements TaskDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-
-
 
 	@Override
 	public void insertTask(Task task) {
@@ -128,15 +129,101 @@ public class TaskDaoImpl implements TaskDao {
 		Calendar calendar = Calendar.getInstance();
 		java.util.Date now = calendar.getTime();
 
-
 		java.sql.Timestamp date = new java.sql.Timestamp(now.getTime());
-
 		t.setEndDate(date);
 
 		session.merge(t);
 		session.getTransaction().commit();
 		session.close();
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> studentsProductivity() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String sql = "select student.id, student.name, student.surname, count(*)/40 as numero_task from student, task, result where (student.id=task.student_id and task.id = result.task_id) group by student.id order by numero_task ";
+		Query query = session.createSQLQuery(sql);
+		List<Object> tasks = query.list();
+		session.close();
+		return tasks;
+	}
+
+	@Override
+	public Object taskTimes() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		Criteria criteria = session.createCriteria(Task.class).setProjection(Projections.max("endDate"));
+		Object avgDate = (Object) criteria.uniqueResult();
+		
+		Criteria criteria1 = session.createCriteria(Task.class).setProjection(Projections.max("startDate"));
+		Object avgDate1 = (Object) criteria1.uniqueResult();
+		System.out.println(avgDate);
+		System.out.println(avgDate1);
+		session.close();
+
+		return avgDate;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> majorityVoting() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String sql = "select result.image_id, symbol.transcription, count(*) as numero_Yes from symbol, job, task, result where (symbol.id=job.symbol_id and job.id=task.job_id and task.id = result.task_id) and result.answer='Yes' group by result.image_id, symbol.transcription having count(*)>1 order by symbol.transcription";
+		Query query = session.createSQLQuery(sql);
+		List<Object> voting = query.list();
+		session.close();
+		return voting;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> symbolAnswers() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String sql = "select symbol.transcription, count(*) as task_fatti from symbol, job, task, result where (symbol.id=job.symbol_id and job.id=task.job_id and task.id = result.task_id) and result.answer='Yes' group by symbol.id order by symbol.transcription";
+		Query query = session.createSQLQuery(sql);
+		List<Object> answers = query.list();
+		session.close();
+		return answers;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> voting() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String sql = "select result.image_id, symbol.transcription, count(*) as numero_Yes from symbol, job, task, result where (symbol.id=job.symbol_id and job.id=task.job_id and task.id = result.task_id) and result.answer='Yes' group by result.image_id, symbol.transcription order by symbol.transcription";
+		Query query = session.createSQLQuery(sql);
+		List<Object> voting = query.list();
+		session.close();
+		return voting;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> symbolsMajorityAnswers() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String sql = " select transcription, count(*) from (select result.image_id, symbol.transcription, count(*) as numero_Yes  from symbol, job, task, result where (symbol.id=job.symbol_id and job.id=task.job_id and task.id = result.task_id) and result.answer='Yes' group by result.image_id, symbol.transcription having count(*)>1 order by symbol.transcription) as majorityAnswersVoting group by transcription order by transcription";
+		Query query = session.createSQLQuery(sql);
+		List<Object> majorityAnswers = query.list();
+		session.close();
+		return majorityAnswers;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> correctStudentsAnswers() {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String sql = "select student.id, student.name, student.surname, count(*) as risposte_corrette from student, task, result, (select result.image_id, symbol.transcription, count(*) as numero_Yes from symbol, job, task, result where (symbol.id=job.symbol_id and job.id=task.job_id and task.id = result.task_id) and result.answer='Yes' group by result.image_id, symbol.transcription having count(*)>1 order by symbol.transcription) as majority where student.id = task.student_id and task.id = result.task_id and majority.image_id=result.image_id group by student.id order by count(*)";
+		Query query = session.createSQLQuery(sql);
+		List<Object> correct = query.list();
+		session.close();
+		return correct;
 	}
 
 }

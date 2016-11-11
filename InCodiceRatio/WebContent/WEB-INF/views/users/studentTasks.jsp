@@ -19,7 +19,7 @@
 
 <!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
 <link rel="stylesheet" href="resources/css/main.css" />
-<!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
+<!--[if lte IE 8]><lfnink rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
 <!-- Favicon -->

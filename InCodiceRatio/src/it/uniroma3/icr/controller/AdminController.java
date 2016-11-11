@@ -2,6 +2,9 @@ package it.uniroma3.icr.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.math.BigInteger;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -32,6 +35,12 @@ import it.uniroma3.icr.model.Job;
 import it.uniroma3.icr.model.Result;
 import it.uniroma3.icr.service.impl.SymbolFacade;
 import it.uniroma3.icr.service.impl.TaskFacade;
+import it.uniroma3.icr.view.CorrectStudentsAnswer;
+import it.uniroma3.icr.view.MajorityAnswers;
+import it.uniroma3.icr.view.MajorityVoting;
+import it.uniroma3.icr.view.StudentsProductivity;
+import it.uniroma3.icr.view.SymbolsAnswers;
+import it.uniroma3.icr.view.Voting;
 import it.uniroma3.icr.service.editor.SymbolEditor;
 import it.uniroma3.icr.service.impl.AdminFacade;
 import it.uniroma3.icr.service.impl.ImageFacade;
@@ -84,7 +93,6 @@ public class AdminController {
 			manuscripts.put(manuscript, manuscript);
 		}
 
-
 		model.addAttribute("manuscripts", manuscripts);
 
 		model.addAttribute("job", job);
@@ -103,7 +111,7 @@ public class AdminController {
 
 		List<Symbol> symbols = symbolFacade.retrieveAllSymbols();
 		Collections.sort(symbols, new ComparatoreSimboloPerNome());
-		
+
 		model.addAttribute("symbols", symbols);
 		model.addAttribute("images", imageFacade.retrieveAllImages());
 
@@ -122,7 +130,7 @@ public class AdminController {
 		List<Image> jobImages = new ArrayList<>();
 
 		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
-				job.getNumberOfImages());
+				job.getImageManuscript(),job.getNumberOfImages());
 
 		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
 
@@ -199,7 +207,7 @@ public class AdminController {
 		symbolFacade.getSampleImage();
 		return "administration/homeAdmin";
 	}
-	
+
 	@RequestMapping(value="/insertNegativeSample")
 	public String insertNegativeSample() throws FileNotFoundException, IOException {
 		symbolFacade.getNegativeSampleImage();
@@ -207,12 +215,118 @@ public class AdminController {
 
 	}
 
-	@RequestMapping(value="listJobs") 
+	@RequestMapping(value="/listJobs") 
 	public String jobList(Model model) {
 
 		List<Job> jobs = facadeJob.retriveAlljobs();
 		model.addAttribute("jobs", jobs);
 		return "administration/listJobs";
+	}
+
+	@RequestMapping(value="/resultConsole")
+	public String resultConsole() {
+		return "administration/resultConsole";
+	}
+
+	@RequestMapping(value="/majorityVoting")
+	public String majorityVoting(Model model) {
+		List<Object> voting = facadeTask.majorityVoting();
+		List<MajorityVoting> majority = new ArrayList<>();
+		for(Object o : voting) {
+			MajorityVoting mj = new MajorityVoting();
+			mj.setImageId(((BigInteger)((Object[])o)[0]).intValue());
+			mj.setTranscription((String)((Object[])o)[1]);
+			mj.setNumberOfYes(((BigInteger)((Object[])o)[2]).intValue());
+			majority.add(mj);
+		}
+		model.addAttribute("majority", majority);
+
+		return "administration/majorityVoting";
+	}
+
+	@RequestMapping(value="/symbolsAnswer")
+	public String symbolsAnswer(Model model) {
+		List<Object> answers = facadeTask.symbolAnswers();
+		List<SymbolsAnswers> symbolsAnswers = new ArrayList<>();
+		for(Object o : answers) {
+			SymbolsAnswers sa = new SymbolsAnswers();
+			sa.setTranscription((String)((Object[])o)[0]);
+			sa.setCompletedTasks(((BigInteger)((Object[])o)[1]).intValue());
+			symbolsAnswers.add(sa);
+		}
+		model.addAttribute("symbolsAnswers", symbolsAnswers);
+
+		return "administration/symbolsAnswer";
+	}
+
+	@RequestMapping(value="/symbolsMajorityAnswer")
+	public String symbolsMajorityAnswer(Model model) {
+		List<Object> majorityAnswers = facadeTask.symbolsMajorityAnswers();
+		List<MajorityAnswers> majority = new ArrayList<>();
+		for(Object o : majorityAnswers) {
+			MajorityAnswers ma = new MajorityAnswers();
+			ma.setTranscription((String)((Object[])o)[0]);
+			ma.setCount(((BigInteger)((Object[])o)[1]).intValue());
+			majority.add(ma);
+		}
+		model.addAttribute("majority", majority);
+
+		return "administration/symbolsMajorityAnswer";
+	}
+
+	@RequestMapping(value="/tasksTimes")
+	public String tasksTimes(Model model) {
+
+		return "administration/tasksTimes";
+	}
+
+	@RequestMapping(value="/correctStudentsAnswer")
+	public String correctStudentsAnswer(Model model) {
+		List<Object> correct = facadeTask.correctStudentsAnswers();
+		List<CorrectStudentsAnswer> correctAnswers = new ArrayList<>();
+		for(Object o : correct) {
+			CorrectStudentsAnswer cs = new CorrectStudentsAnswer();
+			cs.setId(((BigInteger)((Object[])o)[0]).intValue());
+			cs.setName((String)((Object[])o)[1]);
+			cs.setSurname((String)((Object[])o)[2]);
+			cs.setCorrectAnswers(((BigInteger)((Object[])o)[3]).intValue());
+			correctAnswers.add(cs);
+		}
+		model.addAttribute("correctAnswers", correctAnswers);
+		return "administration/correctStudentsAnswer";
+	}
+
+	@RequestMapping(value="/voting")
+	public String voting(Model model) {
+		List<Object> voting = facadeTask.voting();
+		List<Voting> listVoting = new ArrayList<>();
+		for(Object o : voting) {
+			Voting v = new Voting();
+			v.setImageId(((BigInteger)((Object[])o)[0]).intValue());
+			v.setTranscription((String)((Object[])o)[1]);
+			v.setNumbersOfYes(((BigInteger)((Object[])o)[2]).intValue());
+			listVoting.add(v);
+		}
+
+		model.addAttribute("listVoting", listVoting);
+		return "administration/voting";
+	}
+
+	@RequestMapping(value="/studentsProductivity")
+	public String studentsProductivity(Model model) throws IllegalArgumentException, IllegalAccessException {
+		List<Object> tasks = facadeTask.studentsProductivity();
+		List<StudentsProductivity> produttivita = new ArrayList<>();
+		for(Object o : tasks) {
+			StudentsProductivity ps = new StudentsProductivity();
+			ps.setId(((BigInteger)((Object[])o)[0]).longValue());
+			ps.setName((String)((Object[])o)[1]);
+			ps.setSurname((String)((Object[])o)[2]);
+			ps.setNumeroTask(((BigInteger)((Object[])o)[3]).intValue());
+			produttivita.add(ps);
+		}
+		model.addAttribute("produttivita", produttivita);
+
+		return "administration/studentsProductivity";
 	}
 
 }

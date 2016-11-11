@@ -39,6 +39,8 @@
 										Database</a></li>
 								<li><a href="insertNegativeSample">Inserisci i falsi positivi nel Database</a></li>
 								<li><a href="listJobs">Job Creati</a></li>
+								<li><a href="resultConsole">Console dei Risultati</a></li>
+								
 								<li><a href="logout">Logout</a></li>
 							</ul>
 						</div></li>

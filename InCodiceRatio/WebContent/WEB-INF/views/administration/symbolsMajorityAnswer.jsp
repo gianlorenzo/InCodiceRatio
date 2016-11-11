@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +18,7 @@
 <link rel="shortcut icon" href="resources/img/siteImages/favicon.ico" />
 
 </head>
-<body>
+<body class="landing">
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
@@ -46,30 +42,22 @@
 		</header>
 	</div>
 	<div class="relative">
-		<h2>Produttività degli studenti</h2>
+		<h2>Simboli con maggioranza di risposte</h2>
 	</div>
-	
-			<table>
-				<tr>
-					<th>ID</th>
-					<th>Nome</th>
-					<th>Cognome</th>
-					<th>Numero di Task Completati</th>
-				</tr>
-				<c:forEach var="ps" items="${produttivita}">
-					<tr>
-						<td><c:out value="${ps.id}"></c:out></td>
-						<td><c:out value="${ps.name}"></c:out></td>
-						<td><c:out value="${ps.surname}"></c:out></td>
-						<td><c:out value="${ps.numeroTask}"></c:out></td>
 
-
-
-					</tr>
-				</c:forEach>
-			</table>
-		
-<!-- Scripts -->
+	<table>
+		<tr>
+			<th>Simbolo</th>
+			<th>Risposte Maggiori</th>
+		</tr>
+		<c:forEach var="ma" items="${majority}">
+			<tr>
+				<th><c:out value="${ma.transcription}"></c:out></th>
+				<th><c:out value="${ma.count}"></c:out></th>
+			</tr>
+		</c:forEach>
+	</table>
+	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>
 	<script src="resources/js/jquery.scrolly.min.js"></script>
@@ -77,8 +65,6 @@
 	<script src="resources/js/util.js"></script>
 	<!--[if lte IE 8]><script src="resources/js/ie/respond.min.js"></script><![endif]-->
 	<script src="resources/js/main.js"></script>
-
-
 
 </body>
 </html>
