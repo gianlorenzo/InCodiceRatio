@@ -40,6 +40,7 @@ import it.uniroma3.icr.view.MajorityAnswers;
 import it.uniroma3.icr.view.MajorityVoting;
 import it.uniroma3.icr.view.StudentsProductivity;
 import it.uniroma3.icr.view.SymbolsAnswers;
+import it.uniroma3.icr.view.TaskTimes;
 import it.uniroma3.icr.view.Voting;
 import it.uniroma3.icr.service.editor.SymbolEditor;
 import it.uniroma3.icr.service.impl.AdminFacade;
@@ -276,7 +277,16 @@ public class AdminController {
 
 	@RequestMapping(value="/tasksTimes")
 	public String tasksTimes(Model model) {
-
+		List<Object> times = facadeTask.taskTimes();
+		List<TaskTimes> taskTimes = new ArrayList<>();
+		for(Object o : times) {
+			TaskTimes ts = new TaskTimes();
+			ts.setAvgDate(((BigInteger)((Object[])o)[0]).intValue());
+			ts.setMaxDate(((BigInteger)((Object[])o)[1]).intValue());
+			ts.setMinDate(((BigInteger)((Object[])o)[2]).intValue());
+			taskTimes.add(ts);
+		}
+		model.addAttribute("taskTimes", taskTimes);
 		return "administration/tasksTimes";
 	}
 

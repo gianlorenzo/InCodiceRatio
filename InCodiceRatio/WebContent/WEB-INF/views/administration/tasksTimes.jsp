@@ -53,11 +53,13 @@
 			<th>Tempo Massimo</th>
 			<th>Tempo Minimo</th>
 		</tr>
-		<tr>
-			<th></th>
-			<th></th>
-			<th></th>
-		</tr>
+		<c:forEach var="ts" items="${taskTimes}">
+			<tr>
+				<th><c:out value="${ts.avgDate}"></c:out></th>
+				<th><c:out value="${ts.maxDate}"></c:out></th>
+				<th><c:out value="${ts.minDate}"></c:out></th>
+			</tr>
+		</c:forEach>
 	</table>
 
 	<!-- Scripts -->

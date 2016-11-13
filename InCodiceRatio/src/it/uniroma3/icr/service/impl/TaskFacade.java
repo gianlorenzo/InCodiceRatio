@@ -43,7 +43,7 @@ public class TaskFacade {
 		return this.taskDaoImpl.studentsProductivity();
 	}
 	
-	public Object taskTimes() {
+	public List<Object> taskTimes() {
 		return this.taskDaoImpl.taskTimes();
 	}
 	

@@ -150,20 +150,17 @@ public class TaskDaoImpl implements TaskDao {
 		return tasks;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Object taskTimes() {
+	public List<Object> taskTimes() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		Criteria criteria = session.createCriteria(Task.class).setProjection(Projections.max("endDate"));
-		Object avgDate = (Object) criteria.uniqueResult();
-		
-		Criteria criteria1 = session.createCriteria(Task.class).setProjection(Projections.max("startDate"));
-		Object avgDate1 = (Object) criteria1.uniqueResult();
-		System.out.println(avgDate);
-		System.out.println(avgDate1);
+		String sql="";
+		Query query = session.createSQLQuery(sql);
+		List<Object> times = query.list();
 		session.close();
 
-		return avgDate;
+		return times;
 	}
 
 	@SuppressWarnings("unchecked")

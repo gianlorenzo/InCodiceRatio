@@ -13,7 +13,7 @@ public interface TaskDao {
 	List<Task> findTaskByStudent(Long id);
 	public void updateEndDate(Task t);
 	public List<Object> studentsProductivity();
-	public Object taskTimes();
+	public List<Object> taskTimes();
 	public List<Object> majorityVoting();
 	public List<Object> symbolAnswers();
 	public List<Object> voting();
