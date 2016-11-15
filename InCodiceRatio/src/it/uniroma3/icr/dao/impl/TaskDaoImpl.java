@@ -155,9 +155,10 @@ public class TaskDaoImpl implements TaskDao {
 	public List<Object> taskTimes() {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String sql="";
+		String sql= " select to_char(avg(task.enddate - task.startdate), 'HH12:MI:SS') as tempo_medio, to_char(max(task.enddate - task.startdate), 'HH12:MI:SS') as tempo_massimo, to_char(min(task.enddate - task.startdate), 'HH12:MI:SS') as tempo_minimo from task where task.enddate is not null";
 		Query query = session.createSQLQuery(sql);
 		List<Object> times = query.list();
+		System.out.println(times);
 		session.close();
 
 		return times;

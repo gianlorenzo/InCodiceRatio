@@ -37,6 +37,9 @@ public class Job {
 	private String imageManuscript;
 	
 	@Column(nullable=false)
+	private String imagePage;
+	
+	@Column(nullable=false)
 	private String difficulty;
 	
 	@ManyToMany
@@ -71,8 +74,15 @@ public class Job {
 	public void setNumberOfImages(int numberOfImages) {
 		this.numberOfImages = numberOfImages;
 	}
-
 	
+	public String getImagePage() {
+		return imagePage;
+	}
+
+	public void setImagePage(String imagePage) {
+		this.imagePage = imagePage;
+	}
+
 	public String getDifficulty() {
 		return difficulty;
 	}

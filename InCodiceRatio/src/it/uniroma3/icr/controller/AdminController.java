@@ -87,6 +87,7 @@ public class AdminController {
 		model.addAttribute("images", imageFacade.retrieveAllImages());
 
 		List<String> manuscriptImage = imageFacade.findAllManuscript();
+		List<String> pageImage = imageFacade.findAllPages();
 
 		Map<String,String> manuscripts = new HashMap<String,String>();
 
@@ -94,7 +95,16 @@ public class AdminController {
 			manuscripts.put(manuscript, manuscript);
 		}
 
+		Map<String,String> pages = new HashMap<String,String>();
+
+
+		for(String page : pageImage) {
+			pages.put(page, page);
+		}
+
 		model.addAttribute("manuscripts", manuscripts);
+		model.addAttribute("pages", pages);
+
 
 		model.addAttribute("job", job);
 		model.addAttribute("task", task);
@@ -117,6 +127,7 @@ public class AdminController {
 		model.addAttribute("images", imageFacade.retrieveAllImages());
 
 		List<String> manuscriptImage = imageFacade.findAllManuscript();
+		List<String> pageImage = imageFacade.findAllPages();
 
 		Map<String,String> manuscripts = new HashMap<String,String>();
 
@@ -124,16 +135,24 @@ public class AdminController {
 			manuscripts.put(manuscript, manuscript);
 		}
 
+		Map<String,String> pages = new HashMap<String,String>();
+
+		for(String page : pageImage) {
+			pages.put(page, page);
+		}
+
 		model.addAttribute("manuscripts", manuscripts);
+		model.addAttribute("pages", pages);
+
 		model.addAttribute("job", job);
 		model.addAttribute("task", task);
 
 		List<Image> jobImages = new ArrayList<>();
 
 		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
-				job.getImageManuscript(),job.getNumberOfImages());
-
-		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
+				job.getImageManuscript(),job.getImagePage(),job.getNumberOfImages());
+		
+			if(job.getNumberOfImages()%job.getTaskSize() == 0) {
 
 			for(int y=0;y<imagesTask.size();y++) {
 				image = imagesTask.get(y);
@@ -141,6 +160,7 @@ public class AdminController {
 			}
 
 			job.setImages(jobImages);
+			
 			facadeJob.addJob(job);
 
 			for(int i = 0; i<job.getNumberOfStudents();i++) {
@@ -226,7 +246,7 @@ public class AdminController {
 
 	@RequestMapping(value="/resultConsole")
 	public String resultConsole() {
-		return "administration/resultConsole";
+		return "administration/resultConsole/resultConsole";
 	}
 
 	@RequestMapping(value="/majorityVoting")
@@ -242,7 +262,7 @@ public class AdminController {
 		}
 		model.addAttribute("majority", majority);
 
-		return "administration/majorityVoting";
+		return "administration/resultConsole/majorityVoting";
 	}
 
 	@RequestMapping(value="/symbolsAnswer")
@@ -257,7 +277,7 @@ public class AdminController {
 		}
 		model.addAttribute("symbolsAnswers", symbolsAnswers);
 
-		return "administration/symbolsAnswer";
+		return "administration/resultConsole/symbolsAnswer";
 	}
 
 	@RequestMapping(value="/symbolsMajorityAnswer")
@@ -272,7 +292,7 @@ public class AdminController {
 		}
 		model.addAttribute("majority", majority);
 
-		return "administration/symbolsMajorityAnswer";
+		return "administration/resultConsole/symbolsMajorityAnswer";
 	}
 
 	@RequestMapping(value="/tasksTimes")
@@ -281,13 +301,13 @@ public class AdminController {
 		List<TaskTimes> taskTimes = new ArrayList<>();
 		for(Object o : times) {
 			TaskTimes ts = new TaskTimes();
-			ts.setAvgDate(((BigInteger)((Object[])o)[0]).intValue());
-			ts.setMaxDate(((BigInteger)((Object[])o)[1]).intValue());
-			ts.setMinDate(((BigInteger)((Object[])o)[2]).intValue());
+			ts.setAvgDate(((String)((Object[])o)[0]).toString());
+			ts.setMaxDate(((String)((Object[])o)[1]).toString());
+			ts.setMinDate(((String)((Object[])o)[2]).toString());
 			taskTimes.add(ts);
 		}
 		model.addAttribute("taskTimes", taskTimes);
-		return "administration/tasksTimes";
+		return "administration/resultConsole/tasksTimes";
 	}
 
 	@RequestMapping(value="/correctStudentsAnswer")
@@ -303,7 +323,7 @@ public class AdminController {
 			correctAnswers.add(cs);
 		}
 		model.addAttribute("correctAnswers", correctAnswers);
-		return "administration/correctStudentsAnswer";
+		return "administration/resultConsole/correctStudentsAnswer";
 	}
 
 	@RequestMapping(value="/voting")
@@ -319,7 +339,7 @@ public class AdminController {
 		}
 
 		model.addAttribute("listVoting", listVoting);
-		return "administration/voting";
+		return "administration/resultConsole/voting";
 	}
 
 	@RequestMapping(value="/studentsProductivity")
@@ -336,7 +356,7 @@ public class AdminController {
 		}
 		model.addAttribute("produttivita", produttivita);
 
-		return "administration/studentsProductivity";
+		return "administration/resultConsole/studentsProductivity";
 	}
 
 }

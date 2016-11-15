@@ -37,13 +37,18 @@ public class ImageFacade {
 		insertImageInDb.getListJpegProperties();
 	}
 
-	public List<Image> getImagesForTypeAndWidth(String type, int width,String manuscript, int limit) {
-		return this.imageDaoImpl.findImageForTypeAndWidth(type, width, manuscript, limit);
+	public List<Image> getImagesForTypeAndWidth(String type, int width,String manuscript, String page,  int limit) {
+		return this.imageDaoImpl.findImageForTypeAndWidth(type, width,manuscript, page, limit);
 	}
 
 	public List<String> findAllManuscript() {
 		return this.imageDaoImpl.findAllManuscript();
 	}
+	
+	public List<String> findAllPages() {
+		return this.imageDaoImpl.findAllPages();
+	}
+	
 	public Object[] countImage() {
 		return this.countImage();
 	}

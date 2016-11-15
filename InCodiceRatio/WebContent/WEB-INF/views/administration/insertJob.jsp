@@ -43,95 +43,95 @@
 			</ul>
 		</nav>
 	</header>
-	
+
 	<div class="form">
-      
-    
-      
-      <div class="tab-content">
-        <div id="signup">   
-          <h1>Crea un nuovo Job</h1>
-          
-          <form:form method="post" action="addJob" modelAttribute="job" name="form">
-          
-            <div class="field-wrap">
-              <label>
-                Titolo
-              </label>
-<form:input type="text" path="title" placeholder="Titolo" />            </div>
-        
-            <div class="field-wrap">
-              <label>
-                Descrizione
-              </label>
-<form:textarea path="description" rows="5" cols="5" />          
 
-          <div class="field-wrap">
-            <label>
-              Difficoltà
-            </label>
-<form:input type="text" path="difficulty" placeholder="Difficoltà" />          </div>
-          
-          <div class="field-wrap">
-            <label>
-              #Studenti
-            </label>
-            <form:input type="text" path='students'
-						placeholder="Numero di Studenti" onBlur="isnum(this)" />
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              #Immagini
-            </label>
-<form:input type="text" path='numberOfImages'
-						placeholder="Numero di Immagini" onBlur="isnum(this)" />          </div>
-          
-          <div class="field-wrap">
-            <label>
-             Dimensione Task
-            </label>
-<form:input type="text" path='taskSize'
-						placeholder="Dimensione Task" onBlur="isnum(this)" />          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Manoscritto
-            </label>
-					<form:select path="imageManuscript">
 
-						<form:options items="${manuscripts}" />
 
-					</form:select>
-          </div>
-          <div class="field-wrap">
-            <label>
-            Simbolo
-            </label>
-					<form:select path="symbol">
-							<font color="7a0000"><form:options items="${symbols}"
-									itemLabel="transcription" itemValue="id" /> </font>
-						</form:select>
-          </div>
-          
-         
-          
-          <button type="submit" class="button button-block">Conferma</button> 
-          </div>
-          </form:form>
+		<div class="tab-content">
+			<div id="signup">
+				<h1>Crea un nuovo Job</h1>
 
-        </div>
-        
-        <div id="login">   
-         
-        </div>
-        
-      </div><!-- tab-content -->
-      
-</div> <!-- /form -->
-      
+				<form:form method="post" action="addJob" modelAttribute="job"
+					name="form">
 
-	
+					<div class="field-wrap">
+						<label> Titolo </label>
+						<form:input type="text" path="title" placeholder="Titolo" />
+					</div>
+
+					<div class="field-wrap">
+						<label> Descrizione </label>
+						<form:textarea path="description" rows="5" cols="5" />
+
+						<div class="field-wrap">
+							<label> Difficoltà </label>
+							<form:input type="text" path="difficulty"
+								placeholder="Difficoltà" />
+						</div>
+
+						<div class="field-wrap">
+							<label> #Studenti </label>
+							<form:input type="text" path='students'
+								placeholder="Numero di Studenti" onBlur="isnum(this)" />
+						</div>
+
+						<div class="field-wrap">
+							<label> #Immagini </label>
+							<form:input type="text" path='numberOfImages'
+								placeholder="Numero di Immagini" onBlur="isnum(this)" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Dimensione Task </label>
+							<form:input type="text" path='taskSize'
+								placeholder="Dimensione Task" onBlur="isnum(this)" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Manoscritto </label>
+							<form:select path="imageManuscript">
+
+								<form:options items="${manuscripts}" />
+
+							</form:select>
+						</div>
+						
+						<div class="field-wrap">
+							<label> Pagina </label>
+							<form:select path="imagePage">
+
+								<form:options items="${pages}" />
+
+							</form:select>
+						</div>
+						
+						<div class="field-wrap">
+							<label> Simbolo </label>
+							<form:select path="symbol">
+								<font color="7a0000"><form:options items="${symbols}"
+										itemLabel="transcription" itemValue="id" /> </font>
+							</form:select>
+						</div>
+
+
+
+						<button type="submit" class="button button-block">Conferma</button>
+					</div>
+				</form:form>
+
+			</div>
+
+			<div id="login"></div>
+
+		</div>
+		<!-- tab-content -->
+
+	</div>
+	<!-- /form -->
+
+
+
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>

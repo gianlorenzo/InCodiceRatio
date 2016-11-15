@@ -2,35 +2,37 @@ package it.uniroma3.icr.view;
 
 public class TaskTimes {
 	
-	private int avgDate;
+	private String avgDate;
 	
-	private int maxDate;
+	private String maxDate;
 	
-	private int minDate;
+	private String minDate;
 
-	public int getAvgDate() {
+	public String getAvgDate() {
 		return avgDate;
 	}
 
-	public void setAvgDate(int avgDate) {
+	public void setAvgDate(String avgDate) {
 		this.avgDate = avgDate;
 	}
 
-	public int getMaxDate() {
+	public String getMaxDate() {
 		return maxDate;
 	}
 
-	public void setMaxDate(int maxDate) {
+	public void setMaxDate(String maxDate) {
 		this.maxDate = maxDate;
 	}
 
-	public int getMinDate() {
+	public String getMinDate() {
 		return minDate;
 	}
 
-	public void setMinDate(int minDate) {
+	public void setMinDate(String minDate) {
 		this.minDate = minDate;
 	}
+
+	
 	
 	
 
