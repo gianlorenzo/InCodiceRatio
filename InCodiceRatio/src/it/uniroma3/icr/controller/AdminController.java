@@ -2,9 +2,7 @@ package it.uniroma3.icr.controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.math.BigInteger;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -33,6 +31,7 @@ import it.uniroma3.icr.model.ComparatoreSimboloPerNome;
 import it.uniroma3.icr.model.Image;
 import it.uniroma3.icr.model.Job;
 import it.uniroma3.icr.model.Result;
+import it.uniroma3.icr.model.Student;
 import it.uniroma3.icr.service.impl.SymbolFacade;
 import it.uniroma3.icr.service.impl.TaskFacade;
 import it.uniroma3.icr.view.CorrectStudentsAnswer;
@@ -47,11 +46,15 @@ import it.uniroma3.icr.service.impl.AdminFacade;
 import it.uniroma3.icr.service.impl.ImageFacade;
 import it.uniroma3.icr.service.impl.JobFacade;
 import it.uniroma3.icr.service.impl.ResultFacade;
+import it.uniroma3.icr.service.impl.StudentFacade;
 
 @Controller
 public class AdminController {
 
 	private @Autowired SymbolEditor symbolEditor;
+
+	@Autowired
+	private StudentFacade studentFacade;
 
 	@Autowired
 	private AdminFacade adminFacade;
@@ -150,9 +153,9 @@ public class AdminController {
 		List<Image> jobImages = new ArrayList<>();
 
 		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
-				job.getImageManuscript(),job.getImagePage(),job.getNumberOfImages());
-		
-			if(job.getNumberOfImages()%job.getTaskSize() == 0) {
+				job.getImageManuscript(),job.getNumberOfImages());
+
+		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
 
 			for(int y=0;y<imagesTask.size();y++) {
 				image = imagesTask.get(y);
@@ -160,7 +163,7 @@ public class AdminController {
 			}
 
 			job.setImages(jobImages);
-			
+
 			facadeJob.addJob(job);
 
 			for(int i = 0; i<job.getNumberOfStudents();i++) {
@@ -209,29 +212,52 @@ public class AdminController {
 		return "login";
 
 	}
-
+	
 	@RequestMapping(value="insertImage")
-	public String insertImages(Model model) throws FileNotFoundException, IOException {
-		imageFacade.getListImageProperties();
+	public String insertImagesDB(@ModelAttribute Image image,Model model) throws FileNotFoundException, IOException {
+		String path = imageFacade.getPath();
+		String p = image.getManuscript();
+		path = path.concat(p).concat("/");
+		
+		
+		System.out.println(path);
+		
+		imageFacade.getListImageProperties(path);
 		return "administration/homeAdmin";
 	}
 
-	@RequestMapping(value="insertSymbol")
+
+	@RequestMapping(value="/insertImageByManuscript")
+	public String insertImages(@ModelAttribute Image image,Model model) throws FileNotFoundException, IOException {
+		List<String> manuscriptsImage = imageFacade.getManuscript();
+		Map<String,String> manuscripts = new HashMap<String,String>();
+		for(String manuscript : manuscriptsImage) {
+			manuscripts.put(manuscript, manuscript);
+		}
+		
+		model.addAttribute("manuscripts", manuscripts);
+		return "administration/insertImage";
+	}
+
+	@RequestMapping(value="/insertSymbol")
 	public String insertSymbol(Model model) throws FileNotFoundException, IOException {
-
-		symbolFacade.insertSymbolInDb();
+		String path = symbolFacade.getPath();
+		symbolFacade.insertSymbolInDb(path);
 		return "administration/homeAdmin";
 	}
 
-	@RequestMapping(value="insertSample")
+	@RequestMapping(value="/insertSample")
 	public String insertSample(Model model) throws FileNotFoundException, IOException {
-		symbolFacade.getSampleImage();
+		String path = symbolFacade.getPath();		
+		symbolFacade.getSampleImage(path);
 		return "administration/homeAdmin";
 	}
 
 	@RequestMapping(value="/insertNegativeSample")
 	public String insertNegativeSample() throws FileNotFoundException, IOException {
-		symbolFacade.getNegativeSampleImage();
+		String path = symbolFacade.getNegativePath();
+		
+		symbolFacade.getNegativeSampleImage(path);
 		return "administration/homeAdmin";
 
 	}
@@ -357,6 +383,22 @@ public class AdminController {
 		model.addAttribute("produttivita", produttivita);
 
 		return "administration/resultConsole/studentsProductivity";
+	}
+
+	@RequestMapping(value="/toChangeStudentPassword")
+	public String toChangeStudentPassword(@ModelAttribute Student s,Model model) {
+		List<Student> students = studentFacade.retrieveAllStudents();
+		model.addAttribute("students", students);
+		
+		
+		
+		return "administration/changeStudentPassword";
+	}
+
+	@RequestMapping(value="/changeStudentPassword", method = RequestMethod.POST)
+	public String changeStudentPassword(@ModelAttribute Student s) {
+		
+		return "administration/homeAdmin";
 	}
 
 }

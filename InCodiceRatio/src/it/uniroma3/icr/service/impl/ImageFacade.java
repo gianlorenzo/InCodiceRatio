@@ -8,12 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.icr.dao.impl.ImageDaoImpl;
+import it.uniroma3.icr.insertImageInDb.GetManuscript;
 import it.uniroma3.icr.insertImageInDb.InsertImageInDb;
 import it.uniroma3.icr.model.Image;
 
 
 @Service
 public class ImageFacade {
+	
+	@Autowired
+	private GetManuscript getManuscript;
 
 	@Autowired
 	private ImageDaoImpl imageDaoImpl;
@@ -33,13 +37,23 @@ public class ImageFacade {
 		return this.imageDaoImpl.findAll();
 	}
 
-	public void getListImageProperties() throws FileNotFoundException, IOException {
-		insertImageInDb.getListJpegProperties();
+	public void getListImageProperties(String p) throws FileNotFoundException, IOException {
+		insertImageInDb.getListJpegProperties(p);
 	}
 
-	public List<Image> getImagesForTypeAndWidth(String type, int width,String manuscript, String page,  int limit) {
-		return this.imageDaoImpl.findImageForTypeAndWidth(type, width,manuscript, page, limit);
+	public List<Image> getImagesForTypeAndWidth(String type, int width,String manuscript, int limit) {
+		return this.imageDaoImpl.findImageForTypeAndWidth(type, width,manuscript, limit);
 	}
+	
+	public List<String> getManuscript() throws FileNotFoundException, IOException {
+		return this.getManuscript.getManuscript();
+	}
+	
+	public String getPath() throws FileNotFoundException, IOException {
+		return this.getManuscript.getPath();
+	}
+
+
 
 	public List<String> findAllManuscript() {
 		return this.imageDaoImpl.findAllManuscript();

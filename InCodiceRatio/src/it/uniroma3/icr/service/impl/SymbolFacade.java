@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.icr.dao.impl.SymbolDaoImpl;
+import it.uniroma3.icr.insertImageInDb.GetNegativeSamplePath;
+import it.uniroma3.icr.insertImageInDb.GetSamplePath;
 import it.uniroma3.icr.insertImageInDb.InsertNegativeSampleInDb;
 import it.uniroma3.icr.insertImageInDb.InsertSampleInDb;
 import it.uniroma3.icr.insertImageInDb.InsertSymbolInDb;
@@ -16,6 +18,12 @@ import it.uniroma3.icr.model.Symbol;
 
 @Service
 public class SymbolFacade {
+	
+	@Autowired
+	private GetNegativeSamplePath negativeSamplePath;
+	
+	@Autowired
+	private GetSamplePath getSamplePath;
 	
 	@Autowired
 	private SymbolDaoImpl symbolDaoImpl;
@@ -34,8 +42,8 @@ public class SymbolFacade {
 		
 	}
 	
-	public void insertSymbolInDb() throws FileNotFoundException, IOException {
-		insertSymbol.insertSymbolInDb();
+	public void insertSymbolInDb(String p) throws FileNotFoundException, IOException {
+		insertSymbol.insertSymbolInDb(p);
 	}
 	
 	public List<Symbol> retrieveAllSymbols() {
@@ -46,12 +54,21 @@ public class SymbolFacade {
 		symbolDaoImpl.insertSymbol(symbol);
 	}
 	
-	public void getSampleImage() throws FileNotFoundException, IOException {
-		insertSample.getSampleImage();
+	public void getSampleImage(String p) throws FileNotFoundException, IOException {
+		insertSample.getSampleImage(p);
 	}
 	
-	public void getNegativeSampleImage() throws FileNotFoundException, IOException {
-		insertNegativeSample.getNegativeSampleImage();
+	public String getPath() {
+		return this.getSamplePath.getPath();
+	}
+	
+    public String getNegativePath() {
+    	return this.negativeSamplePath.getNegativePath();
+    }
+
+	
+	public void getNegativeSampleImage(String p) throws FileNotFoundException, IOException {
+		insertNegativeSample.getNegativeSampleImage(p);
 	}
 
 	

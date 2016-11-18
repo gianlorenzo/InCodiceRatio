@@ -127,7 +127,7 @@ public class Image {
 		this.results = results;
 	}
 
-	public Image(Long id, int x, int y, int width, int height, String page, String manuscript, String type,
+	public Image(Long id, int x, int y, int width, int height,String page, String manuscript, String type,
 			List<Job> jobs, List<Result> results) {
 		super();
 		this.id = id;
@@ -142,13 +142,12 @@ public class Image {
 		this.results = results;
 	}
 
-	public Image (int width, int height, String type,String page,
-			String manuscript, int x,int y,String path) {
+	public Image (int width, int height, String type,String manuscript, String page, int x,int y,String path) {
 		this.width = width;
 		this.height = height;
 		this.type = type;
-		this.page = page;
 		this.manuscript = manuscript;
+		this.page = page;
 		this.x = x;
 		this.y = y;
 		this.path = path;

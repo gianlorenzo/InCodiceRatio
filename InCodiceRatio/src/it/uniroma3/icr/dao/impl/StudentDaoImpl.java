@@ -51,4 +51,25 @@ public class StudentDaoImpl implements StudentDao {
 		return students;
 	}
 
+	@Override
+	public void updateStudent(Student s) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		session.merge(s);
+		session.getTransaction().commit();
+		session.close();
+	}
+
+	@Override
+	public Student findUserBySurname(String surname) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String s = "FROM Student u WHERE u.surname = :surname";
+		Query query = session.createQuery(s);
+		query.setParameter("surname", surname);
+		Student u = (Student)query.uniqueResult();
+		session.close();
+		return u;		
+	}
+
 }

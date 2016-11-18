@@ -45,25 +45,21 @@
 	<table>
 		<tr>
 			<th>Titolo</th>
-			<th>Descrizione</th>
 			<th>Difficoltà</th>
 			<th>Numero di Studenti</th>
 			<th>Numero di Immagini</th>
 			<th>Dimensione del Task</th>
 			<th>Manoscritto</th>
-			<th>Pagina</th>
 			<th>Simbolo</th>
 		</tr>
 
 		<tr>
 			<th>${job.title}</th>
-			<th>${job.description}</th>
 			<th>${job.difficulty}</th>
 			<th>${job.students}</th>
 			<th>${job.numberOfImages}</th>
 			<th>${job.taskSize}</th>
 			<th>${job.imageManuscript}</th>
-			<th>${job.imagePage}</th>
 			<th>${job.symbol.transcription}</th>
 		</tr>
 	</table>

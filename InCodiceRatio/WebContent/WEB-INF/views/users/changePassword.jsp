@@ -1,13 +1,14 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!DOCTYPE html>
-
-
+<%@page session="true"%>
+<%@ taglib uri="http://www.springframework.org/tags/form"
+	prefix="springForm"%>
+<!DOCTYPE html >
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
 
 <!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
@@ -16,12 +17,7 @@
 <!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
 
 
-<!-- Favicon -->
-<link rel="shortcut icon"
-	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
-
 </head>
-
 <body class="landing">
 	<!-- Page Wrapper -->
 	<div id="page-wrapper">
@@ -36,9 +32,9 @@
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="login">Log In</a></li>
-								<li><a href="registration">Registra un nuovo Studente</a></li>
-								<li><a href="index">Torna alla pagina principale</a></li>
+								<li><a href="homeStudent">Torna alla pagina dello
+										studente</a></li>
+								<li><a href="logout">Logout</a></li>
 							</ul>
 						</div></li>
 				</ul>
@@ -48,24 +44,32 @@
 	<div class="form">
 		<div class="tab-content">
 			<div id="signup">
-				<h1>Login</h1>
-
-				<form method="POST" name="f"
-					action="<c:url value="/${pageContext.request.contextPath}/j_spring_security_check"/>">
+				<h1>Modifica Passoword</h1>
+				<form:form method="post" action="changePassword"
+					modelAttribute="student" name="f1" onsubmit="return matchpass()">
 					<div class="top-row">
-						<div class="field-wrap">
-							<label> Username </label> <input type='text' name='j_username'
-								placeholder="Username" />
-						</div>
 
 						<div class="field-wrap">
-							<label> Password </label> <input type='password'
-								name='j_password' placeholder="Password">
+							<label>Nuova Password </label>
+							<form:input type='password' path="password"
+								placeholder="Password" />
+						</div>
+						<div class="field-wrap">
+							<label> Conferma Password </label> <input type="password"
+								placeholder="Conferma Password" name="password2" />
 						</div>
 
-						<button type="submit" class="button button-block">Invia</button>
+						<form:hidden path="id" />
+						<form:hidden path="name" />
+						<form:hidden path="surname" />
+						<form:hidden path="school" />
+						<form:hidden path="schoolGroup" />
+						<form:hidden path="section" />
+						<form:hidden path="username" />
+
+						<button type="submit" class="button button-block">Conferma</button>
 					</div>
-				</form>
+				</form:form>
 
 			</div>
 
@@ -77,7 +81,6 @@
 	</div>
 	<!-- /form -->
 
-
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>
@@ -86,6 +89,9 @@
 	<script src="resources/js/util.js"></script>
 	<!--[if lte IE 8]><script src="resources/js/ie/respond.min.js"></script><![endif]-->
 	<script src="resources/js/main.js"></script>
+	<script src="resources/js/checkPassword.js"></script>
+
+
 
 </body>
 </html>

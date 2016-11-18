@@ -36,13 +36,8 @@
 		<h2>${task.job.title}${task.job.symbol.transcription}</h2>
 	</ul>
 
-
-
-
-
-
 	<div align="center">
-		<h3>Spunta le immagini che ti sembrano simili agli esempi sopra</h3>
+		<h3>Spunta le immagini che ti sembrano simili agli esempi sottostanti</h3>
 	</div>
 	<table class="pos">
 		<c:forEach varStatus="vs" var="sample" items="${positiveSamples}">
@@ -50,7 +45,9 @@
 			<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
 		</c:forEach>
 	</table>
-
+	
+	<br />
+	
 	<div align="center">
 		<h3>Attenzione: non vanno bene immagini come queste</h3>
 	</div>

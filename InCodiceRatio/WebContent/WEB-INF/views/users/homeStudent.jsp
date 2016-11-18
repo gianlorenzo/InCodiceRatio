@@ -36,6 +36,8 @@
 							<ul>
 								<li><a href="newTask">Vai al prossimo task</a></li>
 								<li><a href="studentTasks">Task Effettuati</a></li>
+								<li><a href="toChangePassword">Modifica Password</a></li>
+								
 								<li><a href="logout">Logout</a></li>
 							</ul>
 						</div></li>

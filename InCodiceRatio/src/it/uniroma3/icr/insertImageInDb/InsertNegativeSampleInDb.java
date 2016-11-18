@@ -23,7 +23,6 @@ import it.uniroma3.icr.model.Symbol;
 @Repository
 public class InsertNegativeSampleInDb {
 	
-	private static final String path = "C:\\Users\\NandG\\Documents\\img\\sources\\negativeSamples\\";
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -59,8 +58,8 @@ public class InsertNegativeSampleInDb {
 
 	}
 	
-	public void getNegativeSampleImage() throws FileNotFoundException, IOException {
-		File[] files = new File(path).listFiles();
+	public void getNegativeSampleImage(String p) throws FileNotFoundException, IOException {
+		File[] files = new File(p).listFiles();
 
 		for(int i=0;i<files.length;i++) {
 
@@ -83,7 +82,6 @@ public class InsertNegativeSampleInDb {
 
 
 						String pathFile = images[g].getPath();
-						String newPath = pathFile.replace(File.separator, "/");
 
 						String name = FilenameUtils.getBaseName(nameComplete);
 						String[] parts = name.split("_");
@@ -103,7 +101,7 @@ public class InsertNegativeSampleInDb {
 							int xImg = x;
 							int yImg = y;
 							String manuscript = manuscriptName;
-							String path = newPath.substring(24, newPath.length());
+							String path = pathFile.substring(49, pathFile.length());
 
 							NegativeSample negativeSample = new NegativeSample(width,height,xImg,yImg,manuscript,
 									type,path);

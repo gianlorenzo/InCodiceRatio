@@ -61,8 +61,6 @@
 					</div>
 
 					<div class="field-wrap">
-						<label> Descrizione </label>
-						<form:textarea path="description" rows="5" cols="5" />
 
 						<div class="field-wrap">
 							<label> Difficoltà </label>
@@ -93,15 +91,6 @@
 							<form:select path="imageManuscript">
 
 								<form:options items="${manuscripts}" />
-
-							</form:select>
-						</div>
-						
-						<div class="field-wrap">
-							<label> Pagina </label>
-							<form:select path="imagePage">
-
-								<form:options items="${pages}" />
 
 							</form:select>
 						</div>

@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -61,6 +63,7 @@ public class UserController {
 			if(bindingResult.hasErrors()) {
 				return "registration";
 			}
+			
 			if(u!=null) {
 				model.addAttribute("usernameError","Username già esistente");
 				return "registration";
@@ -68,12 +71,32 @@ public class UserController {
 			PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 			String passwordEncode = passwordEncoder.encode(student.getPassword());
 			student.setPassword(passwordEncode);
+			
 			model.addAttribute("student", student);
-
+			
 			userFacade.addUser(student);
 			return "login";
 
 
+	}
+	
+	@RequestMapping(value="/toChangePassword")
+	public String toChangePassword(@ModelAttribute Student student, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String username = auth.getName();
+		student = userFacade.retrieveUser(username);
+		model.addAttribute("student", student);
+		return "users/changePassword";
+		
+	}
+	
+	@RequestMapping(value="/changePassword", method = RequestMethod.POST)
+	public String changePassword(@ModelAttribute Student student) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String passwordEncode = passwordEncoder.encode(student.getPassword());
+		student.setPassword(passwordEncode);
+		userFacade.updateStudent(student);
+		return "users/homeStudent";
 	}
 
 	@RequestMapping(value="/homeStudent")

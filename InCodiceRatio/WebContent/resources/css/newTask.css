@@ -1248,7 +1248,7 @@ p {
 	margin: 0 0 2em 0;
 }
 
-h1, h4, h5, h6 {
+h1, h3, h4, h5, h6 {
 	color: #000;
 	font-weight: 800;
 	letter-spacing: 0.225em;
@@ -1272,6 +1272,7 @@ h2 {
 	top: 100;
 	text-transform: uppercase;
 }
+
 
 
 

@@ -31,7 +31,7 @@
 						<div id="menu">
 							<ul>
 								<li><a href="insertJob">Crea un nuovo Job</a></li>
-								<li><a href="insertImage">Inserisci le immagini nel
+								<li><a href="insertImageByManuscript">Inserisci le immagini nel
 										Database</a></li>
 								<li><a href="insertSymbol">Inserisci i simboli nel
 										Database</a></li>
@@ -40,6 +40,7 @@
 								<li><a href="insertNegativeSample">Inserisci i falsi positivi nel Database</a></li>
 								<li><a href="listJobs">Job Creati</a></li>
 								<li><a href="resultConsole">Console dei Risultati</a></li>
+								<li><a href="toChangeStudentPassword">Modifica la password di uno studente</a></li>
 								
 								<li><a href="logout">Logout</a></li>
 							</ul>

@@ -14,7 +14,6 @@ import it.uniroma3.icr.model.Symbol;
 
 @Repository
 public class InsertSymbolInDb {
-	private static final String path ="C:\\Users\\NandG\\Documents\\img\\sources\\samples\\";
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -28,9 +27,9 @@ public class InsertSymbolInDb {
 	}
 
 
-	public void insertSymbolInDb() throws FileNotFoundException, IOException {
+	public void insertSymbolInDb(String p) throws FileNotFoundException, IOException {
 
-		File[] files = new File(path).listFiles();
+		File[] files = new File(p).listFiles();
 
 		for (int i=0;i<files.length; i++) {
 			String symbolType = files[i].getName();

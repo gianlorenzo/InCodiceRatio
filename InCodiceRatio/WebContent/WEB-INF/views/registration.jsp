@@ -26,7 +26,7 @@
 </head>
 
 <body class="landing">
-<!-- Page Wrapper -->
+	<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -48,85 +48,78 @@
 			</nav>
 		</header>
 	</div>
-  <div class="form">
-      
-     <div class="tab-content">
-        <div id="signup">   
-          <h1>Registrati</h1>
-          
-          <form:form method="post" action="addUser" modelAttribute="student" name="form">
-          
-          <div class="top-row">
-            <div class="field-wrap">
-              <label>
-                Nome
-              </label>
-              <form:input type="text" path="name" placeholder="Nome"  />
-            </div>
-        
-            <div class="field-wrap">
-              <label>
-                Cognome
-              </label>
-              <form:input type="text" path="surname" placeholder="Cognome" />
-            </div>
-          
+	<div class="form">
 
-          <div class="field-wrap">
-            <label>
-              Scuola
-            </label>
-					<form:input type="text" path='school' placeholder="Scuola" />
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Anno
-            </label>
-            <form:select path="schoolGroup">
-						<form:options items="${schoolGroups}" />
-					</form:select>
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Sezione
-            </label>
-					<form:input type="text" path='section' placeholder="Sezione" />
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Username<font size="3" color="red">${usernameError}</font>
-            </label>
-					<form:input type="text" path='username' placeholder="Username" />
-          </div>
-          
-          <div class="field-wrap">
-            <label>
-              Password
-            </label>
-					<form:input type="password" path='password' placeholder="Password" />
-          </div>
-          
-          <font color="white"><springForm:errors path="username" /></font> <font
-					color="white"><springForm:errors path="password" /></font>
-          
-          <button type="submit" class="button button-block">Conferma</button> 
-          </div>
-          </form:form>
+		<div class="tab-content">
+			<div id="signup">
+				<h1>Registrati</h1>
 
-        </div>
-        
-        <div id="login">   
-         
-        </div>
-        
-      </div><!-- tab-content -->
-      
-</div> <!-- /form -->
-      
-      
+				<form:form method="post" action="addUser" modelAttribute="student"
+					name="f1" onsubmit="return matchpass()">
+
+					<div class="top-row">
+						<div class="field-wrap">
+							<label> Nome </label>
+							<form:input type="text" path="name" placeholder="Nome" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Cognome </label>
+							<form:input type="text" path="surname" placeholder="Cognome" />
+						</div>
+
+
+						<div class="field-wrap">
+							<label> Scuola </label>
+							<form:input type="text" path='school' placeholder="Scuola" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Anno </label>
+							<form:select path="schoolGroup">
+								<form:options items="${schoolGroups}" />
+							</form:select>
+						</div>
+
+						<div class="field-wrap">
+							<label> Sezione </label>
+							<form:input type="text" path='section' placeholder="Sezione" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Username<font size="3" color="red">${usernameError}</font>
+							</label>
+							<form:input type="text" path='username' placeholder="Username" />
+						</div>
+
+						<div class="field-wrap">
+							<label> Password </label>
+							<form:input type="password" path='password'
+								placeholder="Password" name="password" />
+						</div>
+						<div class="field-wrap">
+							<label> Conferma Password </label> <input type="password"
+								placeholder="Conferma Password" name="password2" />
+						</div>
+
+						<font color="white"><springForm:errors path="username" /></font>
+						<font color="white"><springForm:errors path="password" /></font>
+
+						<button type="submit" class="button button-block">Conferma</button>
+					</div>
+				</form:form>
+
+			</div>
+
+			<div id="login"></div>
+
+		</div>
+		<!-- tab-content -->
+
+	</div>
+	<!-- /form -->
+
+
 
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
@@ -136,8 +129,10 @@
 	<script src="resources/js/util.js"></script>
 	<!--[if lte IE 8]><script src="resources/js/ie/respond.min.js"></script><![endif]-->
 	<script src="resources/js/main.js"></script>
-      	
-      	
+	<script src="resources/js/checkPassword.js"></script>
+
+
+
 
 </body>
 </html>
