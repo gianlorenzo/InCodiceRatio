@@ -47,4 +47,16 @@ public class SymbolDaoImpl implements SymbolDao {
 		session.close();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Symbol> findSymbolByManuscript(String manuscript) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String s = "FROM Symbol s where s.manuscript = :manuscript";
+		Query query = session.createQuery(s);
+		query.setParameter("manuscript", manuscript);
+		List<Symbol> symbols = query.list();
+		return symbols;
+	}
+
 }

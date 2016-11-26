@@ -7,6 +7,9 @@
 	prefix="springForm"%>
 
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
+
+<%@ page import="it.uniroma3.icr.model.Symbol"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +26,6 @@
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
 </head>
-<body>
 <body class="landing">
 	<!-- Header -->
 	<header id="header" class="alt">
@@ -48,32 +50,38 @@
 
 		<div class="tab-content">
 			<div id="signup">
-				<h1>Seleziona il manoscritto</h1>
+				<h1>Seleziona Manoscritto</h1>
 
-				<form:form method="post" action="insertImage" modelAttribute="image"
+				<form:form method="post" action="selectManuscript" modelAttribute="job"
 					name="form">
+
+					
 
 					<div class="field-wrap">
 
+						
+						
 						<div class="field-wrap">
 							<label> Manoscritto </label>
-							<form:select path="manuscript">
+							<form:select path="imageManuscript">
 
 								<form:options items="${manuscripts}" />
 
 							</form:select>
 						</div>
+						
+						
 						<div id="formsubmitbutton">
 
-							<button type="submit" class="button button-block" onclick="ButtonClicked()">Conferma</button>
-						</div>
+						<button type="submit" class="button button-block" onclick="ButtonClicked()">Conferma</button>
 					</div>
-
+					
+					</div>
 				</form:form>
 
 			</div>
-
-			<div id="buttonreplacement" style="margin-left: 60px; display: none;">
+			
+			<div id="buttonreplacement" style="margin-left:60px; display:none;">
 
 				<img src="resources/img/siteImages/loadIcon.gif" alt="">
 
@@ -88,6 +96,7 @@
 	<!-- /form -->
 
 
+
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>
@@ -99,7 +108,7 @@
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/file.js"></script>
 	<script src="resources/js/load.js"></script>
-
+	
 
 </body>
 </html>

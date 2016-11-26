@@ -1,6 +1,14 @@
 package it.uniroma3.icr.insertImageInDb;
 
 
+
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.stereotype.Repository;
@@ -15,6 +23,21 @@ public class GetSamplePath implements ServletContextAware{
     	String path = servletContext.getInitParameter("pathSample");
     	return path;
     }
+    
+    
+    public List<String> getManuscript() throws FileNotFoundException, IOException {
+		List<String> manuscripts = new ArrayList<>();
+		
+		String path = this.getSamplePath();
+		
+		File[] files = new File(path).listFiles();
+		for(int i=0;i<files.length;i++) {
+			String manuscriptName = files[i].getName();
+			manuscripts.add(manuscriptName);
+		}
+		return manuscripts;
+		
+	}
 
 
 	@Override
@@ -25,7 +48,9 @@ public class GetSamplePath implements ServletContextAware{
 	
 	public String getPath() {
 		String path = this.getSamplePath();
-		return path;
+		String newPath = path.replace(File.separator, "/");
+
+		return newPath;
 	}
 
 }

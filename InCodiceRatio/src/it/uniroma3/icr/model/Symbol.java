@@ -25,6 +25,9 @@ public class Symbol {
 	@Column(nullable =false)
 	private int width;
 	
+	@Column(nullable=false)
+	private String manuscript;
+	
 	@OneToMany(mappedBy="symbol")
 	private List<Sample> samples;
 	
@@ -35,10 +38,11 @@ public class Symbol {
 		
 	}
 	
-	public Symbol (String transcription, String type,int width) {
+	public Symbol (String transcription, String type,String manuscript, int width) {
 		this.transcription = transcription;
 		this.type = type;
 		this.width = width;
+		this.manuscript = manuscript;
 	}
 
 	public Symbol(Long id, String transcription, String type, List<Job> jobs) {
@@ -63,6 +67,14 @@ public class Symbol {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getManuscript() {
+		return manuscript;
+	}
+
+	public void setManuscript(String manuscript) {
+		this.manuscript = manuscript;
 	}
 
 	public String getTranscription() {

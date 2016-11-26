@@ -65,7 +65,14 @@ public class SymbolFacade {
     public String getNegativePath() {
     	return this.negativeSamplePath.getNegativePath();
     }
-
+    
+    public List<String> getManuscript() throws FileNotFoundException, IOException {
+    	return this.getSamplePath.getManuscript();
+    }
+    
+    public List<String> getNegativeManuscript() throws FileNotFoundException, IOException {
+    	return this.negativeSamplePath.getNegativeManuscript();
+    }
 	
 	public void getNegativeSampleImage(String p) throws FileNotFoundException, IOException {
 		insertNegativeSample.getNegativeSampleImage(p);
@@ -78,6 +85,10 @@ public class SymbolFacade {
 	
 	public List<Sample> findAllNegativeSamplesBySymbolId(long id) {
 		return this.insertNegativeSample.findAllNegativeSamplesBySymbolId(id);
+	}
+	
+	public List<Symbol> findSymbolByManuscript(String manuscript) {
+		return this.symbolDaoImpl.findSymbolByManuscript(manuscript);
 	}
 	
 }

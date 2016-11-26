@@ -22,22 +22,20 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<h1>
-				<a href="index.html">In Codice Ratio</a>
-			</h1>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="insertJob">Crea un nuovo Job</a></li>
+								<li><a href="toSelectManuscript">Crea un nuovo Job</a></li>
 								<li><a href="insertImageByManuscript">Inserisci le immagini nel
 										Database</a></li>
-								<li><a href="insertSymbol">Inserisci i simboli nel
+								<li><a href="insertSymbolByManuscript">Inserisci i simboli nel
 										Database</a></li>
-								<li><a href="insertSample">Inserisci gli esempi nel
+								<li><a href="insertSampleByManuscript">Inserisci gli esempi nel
 										Database</a></li>
-								<li><a href="insertNegativeSample">Inserisci i falsi positivi nel Database</a></li>
+								<li><a href="insertNegativeByManuscript">Inserisci i falsi positivi nel Database</a></li>
 								<li><a href="listJobs">Job Creati</a></li>
 								<li><a href="resultConsole">Console dei Risultati</a></li>
 								<li><a href="toChangeStudentPassword">Modifica la password di uno studente</a></li>

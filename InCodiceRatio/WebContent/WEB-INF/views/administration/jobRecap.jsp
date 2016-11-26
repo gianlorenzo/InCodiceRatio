@@ -20,7 +20,7 @@
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
 </head>
-<body class="landing">
+<body class="landing" onload="">
 
 	<!-- Header -->
 	<header id="header" class="alt">
@@ -30,6 +30,7 @@
 				<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
+							<li><a href="toSelectManuscript">Crea un nuovo Job</a></li>
 							<li><a href="homeAdmin">Torna alla pagina di
 									amministrazione</a></li>
 							<li><a href="logout">Logout</a></li>

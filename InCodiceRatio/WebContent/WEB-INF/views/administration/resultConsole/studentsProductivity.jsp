@@ -58,10 +58,10 @@
 				</tr>
 				<c:forEach var="ps" items="${produttivita}">
 					<tr>
-						<td><c:out value="${ps.id}"></c:out></td>
-						<td><c:out value="${ps.name}"></c:out></td>
-						<td><c:out value="${ps.surname}"></c:out></td>
-						<td><c:out value="${ps.numeroTask}"></c:out></td>
+						<th><c:out value="${ps.id}"></c:out></th>
+						<th><c:out value="${ps.name}"></c:out></th>
+						<th><c:out value="${ps.surname}"></c:out></th>
+						<th><c:out value="${ps.numeroTask}"></c:out></th>
 
 
 

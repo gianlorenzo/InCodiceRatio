@@ -24,9 +24,7 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<h1>
-				<a href="index.html">In Codice Ratio</a>
-			</h1>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
@@ -47,8 +45,8 @@
 	<section id="banner">
 		<div class="inner">
 			<div class="inner">
-				<h2>Complimenti!</h2>
-				<p>Hai completato tutti i Task Disponibili</p>
+				<h2>Complimenti ${student.name}</h2>
+				<p>Hai completato tutti i Task Disponibili!</p>
 			</div>
 		</div>
 	</section>

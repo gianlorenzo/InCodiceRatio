@@ -36,7 +36,7 @@ public class Job {
 	@Column(nullable=false)
 	private String imageManuscript;
 	
-	@Column(nullable=false)
+	@Column
 	private String difficulty;
 	
 	@ManyToMany

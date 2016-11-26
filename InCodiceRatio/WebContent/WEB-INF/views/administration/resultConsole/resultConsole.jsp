@@ -22,9 +22,7 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<h1>
-				<a href="index.html">In Codice Ratio</a>
-			</h1>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>

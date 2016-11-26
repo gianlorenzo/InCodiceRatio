@@ -1,29 +1,32 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page session="true"%>
+<%@ taglib uri="http://www.springframework.org/tags/form"
+	prefix="springForm"%>
 
 <!DOCTYPE html>
-
-
 <html>
 <head>
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>ICR</title>
 
 <!--[if lte IE 8]><script src="resources/js/ie/html5shiv.js"></script><![endif]-->
-<link rel="stylesheet" href="resources/css/registration.css" />
+<link rel="stylesheet" href="resources/css/main.css" />
+
+
 <!--[if lte IE 8]><link rel="stylesheet" href="resources/css/ie8.css" /><![endif]-->
 <!--[if lte IE 9]><link rel="stylesheet" href="resources/css/ie9.css" /><![endif]-->
-
 
 <!-- Favicon -->
 <link rel="shortcut icon"
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
 </head>
-
 <body class="landing">
-	<!-- Page Wrapper -->
+
+<!-- Page Wrapper -->
 	<div id="page-wrapper">
 
 		<!-- Header -->
@@ -35,7 +38,6 @@
 						<div id="menu">
 							<ul>
 								<li><a href="login">Log In</a></li>
-								<li><a href="registration">Registra un nuovo Studente</a></li>
 								<li><a href="index">Torna alla pagina principale</a></li>
 							</ul>
 						</div></li>
@@ -43,39 +45,32 @@
 			</nav>
 		</header>
 	</div>
-	<div class="form">
-		<div class="tab-content">
-			<div id="signup">
-				<h1>Login</h1>
-
-				<form method="POST" name="f"
-					action="<c:url value="/${pageContext.request.contextPath}/j_spring_security_check"/>">
-					<div class="top-row">
-						<div class="field-wrap">
-							<label> Username </label> <input type='text' name='j_username'
-								placeholder="Username" />
-						</div>
-
-						<div class="field-wrap">
-							<label> Password </label> <input type='password'
-								name='j_password' placeholder="Password">
-						</div>
-
-						<button type="submit" class="button button-block">Invia</button>
-					</div>
-				</form>
-
-			</div>
-
-			<div id="login"></div>
-
-		</div>
-		<!-- tab-content -->
-
+	
+	<div class="relative">
+		<h2>Riepilogo dei dati inseriti</h2>
 	</div>
-	<!-- /form -->
+	
+	<table>
+		<tr>
+			<th>Nome</th>
+			<th>Cognome</th>
+			<th>Scuola</th>
+			<th>Anno</th>
+			<th>Sezione</th>
+			<th>Username</th>
+		</tr>
 
-
+		<tr>
+			<th>${student.name}</th>
+			<th>${student.surname}</th>
+			<th>${student.school}</th>
+			<th>${student.schoolGroup}</th>
+			<th>${student.section}</th>
+			<th>${student.username}</th>
+		</tr>
+	</table>
+	
+	
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>

@@ -30,7 +30,9 @@ import it.uniroma3.icr.model.Administrator;
 import it.uniroma3.icr.model.ComparatoreSimboloPerNome;
 import it.uniroma3.icr.model.Image;
 import it.uniroma3.icr.model.Job;
+import it.uniroma3.icr.model.NegativeSample;
 import it.uniroma3.icr.model.Result;
+import it.uniroma3.icr.model.Sample;
 import it.uniroma3.icr.model.Student;
 import it.uniroma3.icr.service.impl.SymbolFacade;
 import it.uniroma3.icr.service.impl.TaskFacade;
@@ -82,15 +84,12 @@ public class AdminController {
 		binder.registerCustomEditor(Symbol.class, this.symbolEditor);
 		binder.setValidator(validator);
 	}
-
-	@RequestMapping(value="/insertJob")
-	private String newJob(@ModelAttribute Job job,@ModelAttribute Task task, Model model) {
-
-		model.addAttribute("symbols", symbolFacade.retrieveAllSymbols());
-		model.addAttribute("images", imageFacade.retrieveAllImages());
+	
+	@RequestMapping(value="/toSelectManuscript")
+	private String toSelectManuscript(@ModelAttribute Job job,@ModelAttribute Task task, Model model) {
 
 		List<String> manuscriptImage = imageFacade.findAllManuscript();
-		List<String> pageImage = imageFacade.findAllPages();
+		
 
 		Map<String,String> manuscripts = new HashMap<String,String>();
 
@@ -98,19 +97,31 @@ public class AdminController {
 			manuscripts.put(manuscript, manuscript);
 		}
 
-		Map<String,String> pages = new HashMap<String,String>();
-
-
-		for(String page : pageImage) {
-			pages.put(page, page);
-		}
 
 		model.addAttribute("manuscripts", manuscripts);
-		model.addAttribute("pages", pages);
 
 
 		model.addAttribute("job", job);
 		model.addAttribute("task", task);
+		return"administration/selectManuscript";
+	}
+
+	
+	@RequestMapping(value="/selectManuscript")
+	private String newJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript, Model model) {
+
+		manuscript = job.getImageManuscript();
+		List<Symbol> symbols = symbolFacade.findSymbolByManuscript(job.getImageManuscript());
+		Collections.sort(symbols, new ComparatoreSimboloPerNome());
+		
+		System.out.println("Manoscritto:"+manuscript);
+
+
+		
+		model.addAttribute("manuscript", manuscript);
+		
+		model.addAttribute("symbols", symbols);
+		model.addAttribute("job", job);
 		return"administration/insertJob";
 
 	}
@@ -120,42 +131,22 @@ public class AdminController {
 		return"administration/homeAdmin";
 	}
 
-	@RequestMapping(value="/addJob", method = RequestMethod.POST)
-	public String confirmJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
-
-		List<Symbol> symbols = symbolFacade.retrieveAllSymbols();
-		Collections.sort(symbols, new ComparatoreSimboloPerNome());
-
-		model.addAttribute("symbols", symbols);
-		model.addAttribute("images", imageFacade.retrieveAllImages());
-
-		List<String> manuscriptImage = imageFacade.findAllManuscript();
-		List<String> pageImage = imageFacade.findAllPages();
-
-		Map<String,String> manuscripts = new HashMap<String,String>();
-
-		for(String manuscript : manuscriptImage) {
-			manuscripts.put(manuscript, manuscript);
-		}
-
-		Map<String,String> pages = new HashMap<String,String>();
-
-		for(String page : pageImage) {
-			pages.put(page, page);
-		}
-
-		model.addAttribute("manuscripts", manuscripts);
-		model.addAttribute("pages", pages);
+	@RequestMapping(value="/addJob")
+	public String confirmJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript,
+			@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
+		
+		System.out.println("Manoscritto:"+manuscript);
 
 		model.addAttribute("job", job);
 		model.addAttribute("task", task);
+		model.addAttribute("manuscript", manuscript);
 
 		List<Image> jobImages = new ArrayList<>();
 
 		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
 				job.getImageManuscript(),job.getNumberOfImages());
 
-		if(job.getNumberOfImages()%job.getTaskSize() == 0) {
+		if((job.getNumberOfImages()%job.getTaskSize() == 0)) {
 
 			for(int y=0;y<imagesTask.size();y++) {
 				image = imagesTask.get(y);
@@ -213,15 +204,11 @@ public class AdminController {
 
 	}
 	
-	@RequestMapping(value="insertImage")
+	@RequestMapping(value="/insertImage")
 	public String insertImagesDB(@ModelAttribute Image image,Model model) throws FileNotFoundException, IOException {
 		String path = imageFacade.getPath();
 		String p = image.getManuscript();
 		path = path.concat(p).concat("/");
-		
-		
-		System.out.println(path);
-		
 		imageFacade.getListImageProperties(path);
 		return "administration/homeAdmin";
 	}
@@ -238,24 +225,63 @@ public class AdminController {
 		model.addAttribute("manuscripts", manuscripts);
 		return "administration/insertImage";
 	}
+	
+	@RequestMapping(value="/insertSymbolByManuscript")
+	public String insertSymbolByManuscript(@ModelAttribute Symbol symbol, Model model) throws FileNotFoundException, IOException {
+		List<String> manuscriptsSymbol = symbolFacade.getManuscript();
+		Map<String,String> manuscripts = new HashMap<String,String>();
+		for(String manuscript : manuscriptsSymbol) {
+			manuscripts.put(manuscript, manuscript);
+		}
+		model.addAttribute("manuscripts", manuscripts);
+		return "administration/insertSymbol";
+	}
 
 	@RequestMapping(value="/insertSymbol")
-	public String insertSymbol(Model model) throws FileNotFoundException, IOException {
+	public String insertSymbol(@ModelAttribute Symbol symbol, Model model) throws FileNotFoundException, IOException {
 		String path = symbolFacade.getPath();
+		String p = symbol.getManuscript();
+		path = path.concat(p).concat("/");
 		symbolFacade.insertSymbolInDb(path);
 		return "administration/homeAdmin";
 	}
+	
+	@RequestMapping(value="/insertSampleByManuscript")
+	public String insertSampleByManuscript(@ModelAttribute Sample sample, Model model) throws FileNotFoundException, IOException {
+		List<String> manuscriptsSymbol = symbolFacade.getManuscript();
+		Map<String,String> manuscripts = new HashMap<String,String>();
+		for(String manuscript : manuscriptsSymbol) {
+			manuscripts.put(manuscript, manuscript);
+		}
+		model.addAttribute("manuscripts", manuscripts);
+		return "administration/insertSample";
+	}
 
 	@RequestMapping(value="/insertSample")
-	public String insertSample(Model model) throws FileNotFoundException, IOException {
-		String path = symbolFacade.getPath();		
+	public String insertSample(@ModelAttribute Sample sample, Model model) throws FileNotFoundException, IOException {
+		String path = symbolFacade.getPath();
+		String p = sample.getManuscript();
+		path = path.concat(p).concat("/");
 		symbolFacade.getSampleImage(path);
 		return "administration/homeAdmin";
 	}
+	
+	@RequestMapping(value="/insertNegativeByManuscript")
+	public String insertNegativeByManuscript(@ModelAttribute NegativeSample negativeSample, Model model) throws FileNotFoundException, IOException {
+		List<String> manuscriptsSymbol = symbolFacade.getNegativeManuscript();
+		Map<String,String> manuscripts = new HashMap<String,String>();
+		for(String manuscript : manuscriptsSymbol) {
+			manuscripts.put(manuscript, manuscript);
+		}
+		model.addAttribute("manuscripts", manuscripts);
+		return "administration/insertNegativeSample";
+	}
 
 	@RequestMapping(value="/insertNegativeSample")
-	public String insertNegativeSample() throws FileNotFoundException, IOException {
+	public String insertNegativeSample(@ModelAttribute NegativeSample negativeSample, Model model) throws FileNotFoundException, IOException {
 		String path = symbolFacade.getNegativePath();
+		String p = negativeSample.getManuscript();
+		path = path.concat(p).concat("/");
 		
 		symbolFacade.getNegativeSampleImage(path);
 		return "administration/homeAdmin";

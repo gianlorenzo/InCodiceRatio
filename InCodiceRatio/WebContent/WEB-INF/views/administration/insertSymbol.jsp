@@ -50,8 +50,8 @@
 			<div id="signup">
 				<h1>Seleziona il manoscritto</h1>
 
-				<form:form method="post" action="insertImage" modelAttribute="image"
-					name="form">
+				<form:form method="post" action="insertSymbol"
+					modelAttribute="symbol" name="form">
 
 					<div class="field-wrap">
 
@@ -65,11 +65,18 @@
 						</div>
 						<div id="formsubmitbutton">
 
-							<button type="submit" class="button button-block" onclick="ButtonClicked()">Conferma</button>
+
+							<button type="submit" class="button button-block"
+								onclick="ButtonClicked()">Conferma</button>
 						</div>
 					</div>
-
 				</form:form>
+
+			</div>
+
+			<div id="buttonreplacement" style="margin-left: 60px; display: none;">
+
+				<img src="resources/img/siteImages/loadIcon.gif" alt="">
 
 			</div>
 

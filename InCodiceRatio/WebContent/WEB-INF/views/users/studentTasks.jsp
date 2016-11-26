@@ -52,7 +52,7 @@
 	</div>
 
 	<div class="relative">
-		<h2>Task Effettuati da: ${pageContext.request.userPrincipal.name}</h2>
+		<h2>Task Effettuati da: ${s.name}</h2>
 	</div>
 
 	<table>

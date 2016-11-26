@@ -81,6 +81,7 @@ public class TaskController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String s = auth.getName();
 		Student student = studentFacade.retrieveUser(s);
+		model.addAttribute("student", student);
 
 		Long taskId = (Long)request.getSession().getAttribute("thisId");
 		
@@ -96,6 +97,8 @@ public class TaskController {
 			List<Result> list = resultFacade.findTaskResult(task);
 			Collections.shuffle(list);
 			taskResults.setResultList(list);	
+			
+			model.addAttribute("student", student);
 
 			model.addAttribute("positiveSamples", positiveSamples);
 			model.addAttribute("negativeSamples", negativeSamples);
@@ -112,6 +115,18 @@ public class TaskController {
 	@RequestMapping(value="/secondConsole", method = RequestMethod.POST)
 	public String taskRecap(@ModelAttribute("taskResults")TaskWrapper taskResults,
 			Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String s = auth.getName();
+		Student student = studentFacade.retrieveUser(s);
+		model.addAttribute("student", student);
+		
+		String action = request.getParameter("action");
+		String targetUrl = "";
+
+		
+		if("Conferma e vai al prossimo task".equals(action)) {
+		
 		List<Result> results = taskResults.getResultList();
 		for(Result result : results) {
 			Task task = result.getTask();
@@ -123,8 +138,25 @@ public class TaskController {
 		request.getSession().removeAttribute("thisId");
 		response.sendRedirect("newTask");
 
-		return "users/newTask";
+		targetUrl = "users/newTask";
+		}
+		else if("Conferma e torna alla pagina dello studente".equals(action)) {
+			List<Result> results = taskResults.getResultList();
+			for(Result result : results) {
+				Task task = result.getTask();
+				taskFacade.updateEndDate(task);
+				if(result.getAnswer() == null)
+					result.setAnswer("No");
+			}
+			resultFacade.updateListResult(results);
+			request.getSession().removeAttribute("thisId");
 
+			targetUrl = "users/homeStudent";
+			
+		}
+		
+		return targetUrl;
+		
 	}
 
 	@RequestMapping(value="/studentTasks")
@@ -134,6 +166,7 @@ public class TaskController {
 		List<Task> studentTasks = taskFacade.findTaskByStudent(s.getId());
 		Collections.sort(studentTasks, new ComparatorePerData());
 		model.addAttribute("studentTasks", studentTasks);
+		model.addAttribute("s", s);
 		return "users/studentTasks";
 	}
 

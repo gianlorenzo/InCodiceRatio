@@ -49,9 +49,9 @@
 	<!-- Banner -->
 	<section id="banner">
 		<div class="inner">
-
+			
 			<h2>Pagina dello studente:
-				${pageContext.request.userPrincipal.name}</h2>
+				${student.name} ${student.surname}</h2>
 		</div>
 	</section>
 	<!-- Scripts -->

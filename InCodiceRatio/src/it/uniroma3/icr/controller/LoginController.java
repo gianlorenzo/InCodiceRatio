@@ -55,9 +55,11 @@ public class LoginController  {
 	public String loginRole(Model model,HttpServletRequest request) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String role = auth.getAuthorities().toString();
+		Student student = studentFacade.retrieveUser(auth.getName());
 		String targetUrl = "";
 
 		if(role.contains("ROLE_USER")) {
+			model.addAttribute("student", student);
 			targetUrl = "/users/homeStudent";
 		} else if(role.contains("ROLE_ADMIN")) {
 			targetUrl = "/administration/homeAdmin";

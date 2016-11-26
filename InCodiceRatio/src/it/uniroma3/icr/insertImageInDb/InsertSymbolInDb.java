@@ -1,5 +1,7 @@
 package it.uniroma3.icr.insertImageInDb;
 
+
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,50 +33,53 @@ public class InsertSymbolInDb {
 
 		File[] files = new File(p).listFiles();
 
-		for (int i=0;i<files.length; i++) {
-			String symbolType = files[i].getName();
+		for(int i=0;i<files.length;i++) {
+			String manuscriptSymbol = files[i].getParent();
+			
+			String newManuscript = manuscriptSymbol.replace(File.separator,"/");
+			
+
+
+			String[] parts1 = newManuscript.split("/");
+			String finalManuscript = parts1[11];
+
+			String typeSymbol = files[i].getName();
 
 			File[] transcriptionsSymbol = files[i].listFiles();
 			for(int j=0;j<transcriptionsSymbol.length;j++) {
 				String transcriptionSymbol = transcriptionsSymbol[j].getName();
-
-				File[] manuscriptsSymbol =transcriptionsSymbol[j].listFiles();
-				for(int y=0;y<manuscriptsSymbol.length;y++) {
-					File[] images = manuscriptsSymbol[y].listFiles();
-					File image = images[0];
-					String nameComplete = image.getName();
-					String name = FilenameUtils.getBaseName(nameComplete);
-					String[] parts = name.split("_");
+				File[] images = transcriptionsSymbol[j].listFiles();
+				File image = images[0];
+				String nameComplete = image.getName();
+				String name = FilenameUtils.getBaseName(nameComplete);
+				String parts[] = name.split("_");
+				
+				int width = Integer.valueOf(parts[0]);
+				
+				BufferedInputStream in = null;
+				
+				try {
+					String transcription = transcriptionSymbol;
+					String type = typeSymbol;
+					String manuscript = finalManuscript;
 					
-					int width = Integer.valueOf(parts[0]);
-					
-					BufferedInputStream in = null;
+					Symbol symbol = new Symbol(transcription,type,manuscript,width);
+					this.insertSymbol(symbol);
+				}
+				finally {
+					if (in != null) {
+						try {
 
-					try {
-
-						String transcription = transcriptionSymbol;
-						String type = symbolType;
-
-						Symbol symbol = new Symbol (transcription,type,width);
-						this.insertSymbol(symbol);
-					}
-					finally {
-						if (in != null) {
-							try {
-
-								in.close();
-							}
-							catch (IOException e) {
-								e.printStackTrace();
-							}
+							in.close();
+						}
+						catch (IOException e) {
+							e.printStackTrace();
 						}
 					}
-
 				}
 			}
-
 		}
 	}
-}
+	}
 
 

@@ -86,15 +86,8 @@
 								placeholder="Dimensione Task" onBlur="isnum(this)" />
 						</div>
 
-						<div class="field-wrap">
-							<label> Manoscritto </label>
-							<form:select path="imageManuscript">
 
-								<form:options items="${manuscripts}" />
 
-							</form:select>
-						</div>
-						
 						<div class="field-wrap">
 							<label> Simbolo </label>
 							<form:select path="symbol">
@@ -103,11 +96,23 @@
 							</form:select>
 						</div>
 
+						<form:hidden path="imageManuscript" />
+
+						<div id="formsubmitbutton">
+							<button type="submit" class="button button-block"
+								onclick="ButtonClicked()">Conferma</button>
+						</div>
 
 
-						<button type="submit" class="button button-block">Conferma</button>
+
 					</div>
 				</form:form>
+
+			</div>
+
+			<div id="buttonreplacement" style="margin-left:60px; display:none;">
+
+				<img src="resources/img/siteImages/loadIcon.gif" alt="">
 
 			</div>
 
@@ -119,6 +124,7 @@
 	</div>
 	<!-- /form -->
 
+	
 
 
 	<!-- Scripts -->
@@ -131,6 +137,7 @@
 	<script src="resources/js/ie/respond.min.js"></script>
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/file.js"></script>
+	<script src="resources/js/load.js"></script>
 
 
 </body>

@@ -8,5 +8,6 @@ public interface SymbolDao {
 	public void insertSymbol(Symbol symbol);
 	public Symbol findSymbol(long id);
 	public List<Symbol> findAll();
+	public List<Symbol> findSymbolByManuscript(String manuscript);
 
 }

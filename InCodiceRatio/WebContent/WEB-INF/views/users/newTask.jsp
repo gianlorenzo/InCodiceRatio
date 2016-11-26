@@ -28,86 +28,106 @@
 <link rel="shortcut icon"
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
-
 </head>
 
 <body class="landing">
 	<ul>
-		<h2>${task.job.title}${task.job.symbol.transcription}</h2>
+		<li>
+			<h2>${student.name} ${student.surname}</h2>
+		
+			<h2>Stai svolgendo il task relativo al ${task.job.title} ${task.job.symbol.transcription}</h2>
+		</li>
+		
 	</ul>
 
 	<div align="center">
-		<h3>Spunta le immagini che ti sembrano simili agli esempi sottostanti</h3>
-	</div>
-	<table class="pos">
-		<c:forEach varStatus="vs" var="sample" items="${positiveSamples}">
+		<h3>Spunta le immagini che ti sembrano simili agli esempi
+			sottostanti</h3>
 
-			<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
-		</c:forEach>
-	</table>
-	
-	<br />
-	
+		<table class="pos">
+			<tr>
+				<c:forEach varStatus="vs" var="sample" items="${positiveSamples}">
+
+					<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
+				</c:forEach>
+			</tr>
+		</table>
+
+	</div>
+
 	<div align="center">
 		<h3>Attenzione: non vanno bene immagini come queste</h3>
-	</div>
-	<table class="neg">
-		<c:forEach varStatus="vs" var="sample" items="${negativeSamples}">
+		<table class="neg">
+			<tr>
+				<c:forEach varStatus="vs" var="sample" items="${negativeSamples}">
 
-			<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
-		</c:forEach>
-	</table>
+					<td><img src="resources${sample.path}" alt="${sample.id}" /></td>
+
+				</c:forEach>
+			</tr>
+		</table>
+	</div>
 
 
 	<form:form method="post" action="secondConsole"
 		modelAttribute="taskResults" name="form">
 
-		<table class="${task.job.difficulty}">
-			<c:forEach varStatus="vs" var="result"
-				items="${taskResults.resultList}">
-
-				<c:if test="${vs.count % 10 == 1}">
-
-					<tr>
-				</c:if>
-				<td>
-
-					<div>
-						<img src="resources${result.image.path}" alt="${result.image.id}"
-							class="resized" />
-					</div>
-					<div align="center">
-						<label><form:checkbox style="display:inline"
-								path="resultList[${vs.index}].answer" value="Yes" /> </label>
-					</div>
-				</td>
-				<c:if test="${vs.count % 10 == 0}">
-					</tr>
-
-
-				</c:if>
-				<form:hidden path="resultList[${vs.index}].id" />
-				<form:hidden path="resultList[${vs.index}].image.id" />
-				<form:hidden path="resultList[${vs.index}].task.id" />
-				<form:hidden path="resultList[${vs.index}].task.student.id" />
-				<form:hidden path="resultList[${vs.index}].task.batch" />
-				<form:hidden path="resultList[${vs.index}].task.job.id" />
-				<form:hidden path="resultList[${vs.index}].task.startDate" />
-
-			</c:forEach>
-		</table>
 
 		<div align="center">
-			<input type="submit" value="Conferma e vai al prossimo Task">
+			<table class="${task.job.difficulty}">
+				<c:forEach varStatus="vs" var="result"
+					items="${taskResults.resultList}">
+
+					<c:if test="${vs.count % 10 == 1}">
+
+						<tr>
+					</c:if>
+					<td>
+
+						<div>
+							<img src="resources${result.image.path}" alt="${result.image.id}"
+								class="resized" />
+						</div>
+						<div align="center">
+							<label><form:checkbox style="display:inline"
+									path="resultList[${vs.index}].answer" value="Yes" /> </label>
+						</div>
+					</td>
+					<c:if test="${vs.count % 10 == 0}">
+						</tr>
+
+
+					</c:if>
+					<form:hidden path="resultList[${vs.index}].id" />
+					<form:hidden path="resultList[${vs.index}].image.id" />
+					<form:hidden path="resultList[${vs.index}].task.id" />
+					<form:hidden path="resultList[${vs.index}].task.student.id" />
+					<form:hidden path="resultList[${vs.index}].task.batch" />
+					<form:hidden path="resultList[${vs.index}].task.job.id" />
+					<form:hidden path="resultList[${vs.index}].task.startDate" />
+
+				</c:forEach>
+			</table>
 		</div>
+		<div align="center">
+			<input type="submit" name="action" value="Conferma e vai al prossimo task">
+		</div>
+		
+		<br />
+		
+		<div align="center">
+			<input type="submit" name="action" value="Conferma e torna alla pagina dello studente">
+		</div>
+		
 	</form:form>
-	
+
 	<div align="center">
 		<form:form method="post" action="homeStudent">
 			<input type="submit" value="Torna alla pagina dello studente">
 		</form:form>
-	
+
 	</div>
+
 
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
@@ -117,6 +137,8 @@
 	<script src="resources/js/util.js"></script>
 	<!--[if lte IE 8]><script src="resources/js/ie/respond.min.js"></script><![endif]-->
 	<script src="resources/js/main.js"></script>
+	<script src="resources/js/backButton.js"></script>
+	
 
 </body>
 </html>

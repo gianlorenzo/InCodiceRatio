@@ -25,17 +25,13 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			<h1>
-				<a href="index.html">In Codice Ratio</a>
-			</h1>
+			
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
 								<li><a href="registration">Registra un nuovo Studente</a></li>
-								<li><a href="registrationAdmin">Registra un nuovo
-										Amministratore</a></li>
 								<li><a href="login">Log In</a></li>
 							</ul>
 						</div></li>

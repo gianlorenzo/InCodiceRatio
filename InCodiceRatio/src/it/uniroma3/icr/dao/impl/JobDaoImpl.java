@@ -34,7 +34,6 @@ public class JobDaoImpl implements JobDao {
 		String hql = "FROM Job";
 		Query query = session.createQuery(hql);
 		List<Job> empList = query.list();
-		System.out.println("Job List:" + empList);
 		session.close();
 		return empList;
 	}

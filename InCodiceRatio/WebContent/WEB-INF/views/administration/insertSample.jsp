@@ -50,8 +50,8 @@
 			<div id="signup">
 				<h1>Seleziona il manoscritto</h1>
 
-				<form:form method="post" action="insertImage" modelAttribute="image"
-					name="form">
+				<form:form method="post" action="insertSample"
+					modelAttribute="sample" name="form">
 
 					<div class="field-wrap">
 
@@ -63,12 +63,12 @@
 
 							</form:select>
 						</div>
+
 						<div id="formsubmitbutton">
 
 							<button type="submit" class="button button-block" onclick="ButtonClicked()">Conferma</button>
 						</div>
 					</div>
-
 				</form:form>
 
 			</div>
