@@ -38,7 +38,7 @@
 								<li><a href="insertNegativeByManuscript">Inserisci i falsi positivi nel Database</a></li>
 								<li><a href="listJobs">Job Creati</a></li>
 								<li><a href="resultConsole">Console dei Risultati</a></li>
-								<li><a href="toChangeStudentPassword">Modifica la password di uno studente</a></li>
+								<li><a href="toSelectStudent">Modifica la password di uno studente</a></li>
 								
 								<li><a href="logout">Logout</a></li>
 							</ul>

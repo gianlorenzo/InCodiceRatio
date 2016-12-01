@@ -7,7 +7,6 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.List;
 
 import javax.imageio.ImageIO;
@@ -19,7 +18,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import it.uniroma3.icr.model.NegativeSample;
 import it.uniroma3.icr.model.Sample;
 import it.uniroma3.icr.model.Symbol;
 

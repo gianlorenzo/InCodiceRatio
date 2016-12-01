@@ -85,6 +85,44 @@ public class AdminController {
 		binder.setValidator(validator);
 	}
 	
+	
+	@RequestMapping(value="/toSelectStudent")
+	private String toSelectStudent(@ModelAttribute Student stundet, Model model) {
+		List<Student> studentsList = studentFacade.retrieveAllStudents();
+		
+		Map<String,String> students = new HashMap<>();
+		
+		for (Student s : studentsList) {
+			students.put(s.getSurname(),s.getSurname());
+		}
+		
+		model.addAttribute("students", students);
+		
+		return "administration/selectStudent";
+		
+	}
+	
+	@RequestMapping(value="/selectStudent")
+	public String selectStudent (@ModelAttribute Student student, @ModelAttribute String surname, Model model) {
+		
+		
+		
+		System.out.println("Cognome"+surname);
+		
+		return "administration/changeStudentPassword";
+	}
+	
+	@RequestMapping(value="/changeStudentPassword")
+	public String changePassword (@ModelAttribute Student student, @ModelAttribute String surname,@ModelAttribute String password, Model model) {
+		
+		student.setPassword(password);
+		studentFacade.updateStudent(student);
+		
+		return "administration/homeAdmin";
+
+		
+	}
+	
 	@RequestMapping(value="/toSelectManuscript")
 	private String toSelectManuscript(@ModelAttribute Job job,@ModelAttribute Task task, Model model) {
 
@@ -112,12 +150,7 @@ public class AdminController {
 
 		manuscript = job.getImageManuscript();
 		List<Symbol> symbols = symbolFacade.findSymbolByManuscript(job.getImageManuscript());
-		Collections.sort(symbols, new ComparatoreSimboloPerNome());
-		
-		System.out.println("Manoscritto:"+manuscript);
-
-
-		
+		Collections.sort(symbols, new ComparatoreSimboloPerNome());	
 		model.addAttribute("manuscript", manuscript);
 		
 		model.addAttribute("symbols", symbols);
@@ -135,7 +168,6 @@ public class AdminController {
 	public String confirmJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript,
 			@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
 		
-		System.out.println("Manoscritto:"+manuscript);
 
 		model.addAttribute("job", job);
 		model.addAttribute("task", task);

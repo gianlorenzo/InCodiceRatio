@@ -106,7 +106,6 @@ public class TaskController {
 			model.addAttribute("task", task);
 			model.addAttribute("taskResults", taskResults);
 			
-
 			return "users/newTask";
 		}
 		return "users/goodBye";
@@ -123,9 +122,12 @@ public class TaskController {
 		
 		String action = request.getParameter("action");
 		String targetUrl = "";
+		
+		String conferma1 = "Conferma e vai al prossimo task";
+		String conferma2 = "Conferma e torna alla pagina dello studente";
 
 		
-		if("Conferma e vai al prossimo task".equals(action)) {
+		if(conferma1.equals(action)) {
 		
 		List<Result> results = taskResults.getResultList();
 		for(Result result : results) {
@@ -140,7 +142,7 @@ public class TaskController {
 
 		targetUrl = "users/newTask";
 		}
-		else if("Conferma e torna alla pagina dello studente".equals(action)) {
+		else if(conferma2.equals(action)) {
 			List<Result> results = taskResults.getResultList();
 			for(Result result : results) {
 				Task task = result.getTask();

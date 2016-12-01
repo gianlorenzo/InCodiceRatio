@@ -1,6 +1,5 @@
 package it.uniroma3.icr.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
 
 import it.uniroma3.icr.model.Task;

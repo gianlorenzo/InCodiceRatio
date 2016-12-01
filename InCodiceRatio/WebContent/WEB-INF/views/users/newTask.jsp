@@ -13,6 +13,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,6 +85,7 @@
 						<tr>
 					</c:if>
 					<td>
+					
 
 						<div>
 							<img src="resources${result.image.path}" alt="${result.image.id}"
@@ -94,7 +97,7 @@
 						</div>
 					</td>
 					<c:if test="${vs.count % 10 == 0}">
-						</tr>
+						
 
 
 					</c:if>

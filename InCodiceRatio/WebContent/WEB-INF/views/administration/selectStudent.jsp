@@ -5,7 +5,9 @@
 <%@page session="true"%>
 <%@ taglib uri="http://www.springframework.org/tags/form"
 	prefix="springForm"%>
-<!DOCTYPE html >
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -20,61 +22,56 @@
 <link rel="shortcut icon"
 	href="<c:url value="resources/img/siteImages/favicon.ico"/>">
 
-
-
 </head>
+<body>
 <body class="landing">
-	<!-- Page Wrapper -->
-	<div id="page-wrapper">
+	<!-- Header -->
+	<header id="header" class="alt">
 
-		<!-- Header -->
-		<header id="header" class="alt">
-			
-			<nav id="nav">
-				<ul>
-					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
-						<div id="menu">
-							<ul>
-								<li><a href="homeStudent">Torna alla pagina dello
-										studente</a></li>
-								<li><a href="logout">Logout</a></li>
-							</ul>
-						</div></li>
-				</ul>
-			</nav>
-		</header>
-	</div>
+		<nav id="nav">
+			<ul>
+				<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
+					<div id="menu">
+						<ul>
+							<li><a href="homeAdmin">Torna alla pagina di
+									amministrazione</a></li>
+							<li><a href="logout">Logout</a></li>
+						</ul>
+					</div></li>
+			</ul>
+		</nav>
+	</header>
+
 	<div class="form">
+
+
+
 		<div class="tab-content">
 			<div id="signup">
-				<h1>Modifica Passoword</h1>
-				<form:form method="post" action="changePassword"
-					modelAttribute="student" name="f1" onsubmit="return matchpass()">
-					<div class="top-row">
+				<h1>Seleziona lo studente</h1>
+
+				<form:form method="post" action="selectStudent" modelAttribute="student"
+					name="form">
+
+					<div class="field-wrap">
 
 						<div class="field-wrap">
-							<label>Nuova Password </label>
-							<form:input type='password' path="password"
-								placeholder="Password" />
-						</div>
-						<div class="field-wrap">
-							<label> Conferma Password </label> <input type="password"
-								placeholder="Conferma Password" name="password2" />
+							<label> Studente </label>
+							<form:select path="surname">
+
+								<form:options items="${students}" />
+
+							</form:select>
 						</div>
 
-						<form:hidden path="id" />
-						<form:hidden path="name" />
-						<form:hidden path="surname" />
-						<form:hidden path="school" />
-						<form:hidden path="schoolGroup" />
-						<form:hidden path="section" />
-						<form:hidden path="username" />
-
-						<button type="submit" class="button button-block">Conferma</button>
+							<button type="submit" class="button button-block">Conferma</button>
 					</div>
+
 				</form:form>
 
 			</div>
+
+			
 
 			<div id="login"></div>
 
@@ -84,16 +81,17 @@
 	</div>
 	<!-- /form -->
 
+
 	<!-- Scripts -->
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>
 	<script src="resources/js/jquery.scrolly.min.js"></script>
 	<script src="resources/js/skel.min.js"></script>
 	<script src="resources/js/util.js"></script>
-	<!--[if lte IE 8]><script src="resources/js/ie/respond.min.js"></script><![endif]-->
+	<!--[if lte IE 8]>-->
+	<script src="resources/js/ie/respond.min.js"></script>
 	<script src="resources/js/main.js"></script>
-	<script src="resources/js/checkPassword.js"></script>
-
+	<script src="resources/js/file.js"></script>
 
 
 </body>
