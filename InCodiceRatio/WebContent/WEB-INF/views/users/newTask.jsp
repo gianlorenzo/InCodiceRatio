@@ -97,7 +97,7 @@
 						</div>
 					</td>
 					<c:if test="${vs.count % 10 == 0}">
-						
+						</tr>
 
 
 					</c:if>
