@@ -65,9 +65,7 @@ public class LoginController  {
 			targetUrl = "/administration/homeAdmin";
 		}
 
-
 		return targetUrl;
-
 	}
 }
 

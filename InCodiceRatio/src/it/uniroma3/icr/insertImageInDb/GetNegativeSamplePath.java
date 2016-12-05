@@ -2,6 +2,7 @@ package it.uniroma3.icr.insertImageInDb;
 
 
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -25,9 +26,7 @@ public class GetNegativeSamplePath implements ServletContextAware{
     
     public String getNegativePath() {
     	String path = this.getNegativeSamplePath();
-    	String newPath = path.replace(File.separator, "/");
-
-		return newPath;
+    	return path;
     }
     
     public List<String> getNegativeManuscript() throws FileNotFoundException, IOException {

@@ -2,6 +2,7 @@ package it.uniroma3.icr.insertImageInDb;
 
 
 
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,13 +36,9 @@ public class InsertSymbolInDb {
 
 		for(int i=0;i<files.length;i++) {
 			String manuscriptSymbol = files[i].getParent();
-			
-			String newManuscript = manuscriptSymbol.replace(File.separator,"/");
-			
 
-
-			String[] parts1 = newManuscript.split("/");
-			String finalManuscript = parts1[11];
+			String[] parts1 = manuscriptSymbol.split("/");
+			String finalManuscript = parts1[10];
 
 			String typeSymbol = files[i].getName();
 
@@ -80,6 +77,6 @@ public class InsertSymbolInDb {
 			}
 		}
 	}
-	}
+}
 
 

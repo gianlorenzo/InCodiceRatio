@@ -2,6 +2,7 @@ package it.uniroma3.icr.insertImageInDb;
 
 
 
+
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -46,11 +47,12 @@ public class InsertImageInDb {
 		for(int i=0;i<files.length;i++) {
 
 			String manuscriptImage = files[i].getParent();
-			String newManuscript = manuscriptImage.replace(File.separator, "/");
-			
 
-			String[] parts1 = newManuscript.split("/");
-			String finalManuscript = parts1[11];
+
+			String[] parts1 = manuscriptImage.split("/");
+
+			String finalManuscript = parts1[10];
+
 
 			String namePage = files[i].getName();
 
@@ -61,8 +63,6 @@ public class InsertImageInDb {
 				for(int n=0;n<images.length;n++) {
 					String nameComplete = images[n].getName();
 					String pathFile = images[n].getPath();
-					String newPath = pathFile.replace(File.separator, "/");
-
 
 					String name = FilenameUtils.getBaseName(nameComplete);
 					String[] parts = name.split("_");
@@ -81,7 +81,7 @@ public class InsertImageInDb {
 						int yImg = y;
 						String page = namePage;
 						String type = typeName;
-						String path = newPath.substring(77, newPath.length());
+						String path = pathFile.substring(49, pathFile.length());
 						String manuscript = finalManuscript;
 						Image img = new Image(width,height,type,manuscript,page,xImg,yImg,path);
 

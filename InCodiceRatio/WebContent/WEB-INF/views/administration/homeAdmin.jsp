@@ -28,7 +28,8 @@
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
-								<li><a href="toSelectManuscript">Crea un nuovo Job</a></li>
+								<li><a href="toSelectManuscript">Crea un nuovo Job selezionando il manoscritto ed il tipo</a></li>
+								<li><a href="toSelectManuscriptByWidth">Crea un nuovo Job selezionando il manoscritto e la larghezza</a></li>
 								<li><a href="insertImageByManuscript">Inserisci le immagini nel
 										Database</a></li>
 								<li><a href="insertSymbolByManuscript">Inserisci i simboli nel

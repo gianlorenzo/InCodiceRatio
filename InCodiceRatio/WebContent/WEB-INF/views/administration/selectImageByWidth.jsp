@@ -52,7 +52,7 @@
 			<div id="signup">
 				<h1>Seleziona Manoscritto</h1>
 
-				<form:form method="post" action="selectManuscript" modelAttribute="job"
+				<form:form method="post" action="selectImageByWidth" modelAttribute="job"
 					name="form">
 
 					

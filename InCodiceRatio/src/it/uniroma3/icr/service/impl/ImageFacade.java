@@ -41,9 +41,14 @@ public class ImageFacade {
 		insertImageInDb.getListJpegProperties(p);
 	}
 
-	public List<Image> getImagesForTypeAndWidth(String type, int width,String manuscript, int limit) {
-		return this.imageDaoImpl.findImageForTypeAndWidth(type, width,manuscript, limit);
+	public List<Image> getImagesForTypeAndManuscript(String type,String manuscript, int limit) {
+		return this.imageDaoImpl.findImageForTypeAndManuscript(type,manuscript, limit);
 	}
+	
+	public List<Image> findImageForTypeAndWidthAndManuscript(String type, String manuscript, int width, int limit) {
+		return this.imageDaoImpl.findImageForTypeAndWidthAndManuscript(type, manuscript, width, limit);
+	}
+
 	
 	public List<String> getManuscript() throws FileNotFoundException, IOException {
 		return this.getManuscript.getManuscript();

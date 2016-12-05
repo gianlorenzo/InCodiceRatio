@@ -2,6 +2,7 @@ package it.uniroma3.icr.insertImageInDb;
 
 
 
+
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -66,13 +67,9 @@ public class InsertNegativeSampleInDb {
 
 		for(int i=0;i<files.length;i++) {
 			String manuscriptSymbol = files[i].getParent();
-			String newManuscript = manuscriptSymbol.replace(File.separator,"/");
 
-			System.out.println(newManuscript);
-
-
-			String[] parts1 = newManuscript.split("/");
-			String finalManuscript = parts1[11];
+			String[] parts1 = manuscriptSymbol.split("/");
+			String finalManuscript = parts1[10];
 
 			String typeSymbol = files[i].getName();
 
@@ -80,14 +77,11 @@ public class InsertNegativeSampleInDb {
 			for(int j=0;j<transcriptionsSymbol.length;j++) {
 				String transcriptionSymbol = transcriptionsSymbol[j].getName();
 				File[] images = transcriptionsSymbol[j].listFiles();
-
 				for(int m=0;m<images.length;m++) {
 
 					String nameComplete = images[m].getName();
 
 					String pathFile = images[m].getPath();
-					String newPath = pathFile.replace(File.separator, "/");
-
 
 
 					String name = FilenameUtils.getBaseName(nameComplete);
@@ -102,12 +96,12 @@ public class InsertNegativeSampleInDb {
 					try {
 						BufferedImage f = ImageIO.read(images[m]);
 
-						Symbol s = this.findSymbol(transcriptionSymbol, finalManuscript);
+						Symbol s = this.findSymbol(transcriptionSymbol,finalManuscript);
 
 						int height = f.getHeight();
 						int xImg = x;
 						int yImg = y;
-						String path = newPath.substring(77, newPath.length());
+						String path = pathFile.substring(49, pathFile.length());
 
 						String type = typeSymbol;
 						String manuscript = finalManuscript;

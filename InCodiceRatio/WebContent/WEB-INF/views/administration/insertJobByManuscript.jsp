@@ -50,9 +50,9 @@
 
 		<div class="tab-content">
 			<div id="signup">
-				<h1>Crea un nuovo Job</h1>
+				<h1>Crea un nuovo Job selezionando il manoscritto ed il tipo</h1>
 
-				<form:form method="post" action="addJob" modelAttribute="job"
+				<form:form method="post" action="addJobByWidth" modelAttribute="job"
 					name="form">
 
 					<div class="field-wrap">

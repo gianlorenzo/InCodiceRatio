@@ -85,44 +85,6 @@ public class AdminController {
 		binder.setValidator(validator);
 	}
 	
-	
-	@RequestMapping(value="/toSelectStudent")
-	private String toSelectStudent(@ModelAttribute Student stundet, Model model) {
-		List<Student> studentsList = studentFacade.retrieveAllStudents();
-		
-		Map<String,String> students = new HashMap<>();
-		
-		for (Student s : studentsList) {
-			students.put(s.getSurname(),s.getSurname());
-		}
-		
-		model.addAttribute("students", students);
-		
-		return "administration/selectStudent";
-		
-	}
-	
-	@RequestMapping(value="/selectStudent")
-	public String selectStudent (@ModelAttribute Student student, @ModelAttribute String surname, Model model) {
-		
-		
-		
-		System.out.println("Cognome"+surname);
-		
-		return "administration/changeStudentPassword";
-	}
-	
-	@RequestMapping(value="/changeStudentPassword")
-	public String changePassword (@ModelAttribute Student student, @ModelAttribute String surname,@ModelAttribute String password, Model model) {
-		
-		student.setPassword(password);
-		studentFacade.updateStudent(student);
-		
-		return "administration/homeAdmin";
-
-		
-	}
-	
 	@RequestMapping(value="/toSelectManuscript")
 	private String toSelectManuscript(@ModelAttribute Job job,@ModelAttribute Task task, Model model) {
 
@@ -141,12 +103,30 @@ public class AdminController {
 
 		model.addAttribute("job", job);
 		model.addAttribute("task", task);
-		return"administration/selectManuscript";
+		return"administration/selectImageByManuscript";
+	}
+	
+	@RequestMapping(value="/toSelectManuscriptByWidth")
+	private String toSelectManuscriptByWidth(@ModelAttribute Job job,@ModelAttribute Task task, Model model) {
+		
+		List<String> manuscriptImage = imageFacade.findAllManuscript();
+		
+		Map<String,String> manuscripts = new HashMap<String,String>();
+
+		for(String manuscript : manuscriptImage) {
+			manuscripts.put(manuscript, manuscript);
+		}
+
+		model.addAttribute("manuscripts", manuscripts);
+		model.addAttribute("job", job);
+		model.addAttribute("task", task);
+		return"administration/selectImageByWidth";
+		
 	}
 
 	
-	@RequestMapping(value="/selectManuscript")
-	private String newJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript, Model model) {
+	@RequestMapping(value="/selectImageByManuscript")
+	private String newJobByManuscript(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript, Model model) {
 
 		manuscript = job.getImageManuscript();
 		List<Symbol> symbols = symbolFacade.findSymbolByManuscript(job.getImageManuscript());
@@ -155,17 +135,26 @@ public class AdminController {
 		
 		model.addAttribute("symbols", symbols);
 		model.addAttribute("job", job);
-		return"administration/insertJob";
+		return"administration/insertJobByManuscript";
 
 	}
+	
+	@RequestMapping(value="/selectImageByWidth")
+	private String newJobByWidth(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript, Model model) {
 
-	@RequestMapping(value="/homeAdmin")
-	public String toHomeAdmin() {
-		return"administration/homeAdmin";
+		manuscript = job.getImageManuscript();
+		List<Symbol> symbols = symbolFacade.findSymbolByManuscript(job.getImageManuscript());
+		Collections.sort(symbols, new ComparatoreSimboloPerNome());	
+		model.addAttribute("manuscript", manuscript);
+		
+		model.addAttribute("symbols", symbols);
+		model.addAttribute("job", job);
+		return"administration/insertJobByWidth";
+
 	}
-
-	@RequestMapping(value="/addJob")
-	public String confirmJob(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript,
+	
+	@RequestMapping(value="/addJobByWidth")
+	public String confirmJobByWidth(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript,
 			@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
 		
 
@@ -175,7 +164,66 @@ public class AdminController {
 
 		List<Image> jobImages = new ArrayList<>();
 
-		List<Image> imagesTask = imageFacade.getImagesForTypeAndWidth(job.getSymbol().getType(), job.getSymbol().getWidth(),
+		List<Image> imagesTask = imageFacade.findImageForTypeAndWidthAndManuscript(job.getSymbol().getType(), 
+				job.getSymbol().getManuscript(),job.getSymbol().getWidth(), job.getNumberOfImages());
+
+		if((job.getNumberOfImages()%job.getTaskSize() == 0)) {
+
+			for(int y=0;y<imagesTask.size();y++) {
+				image = imagesTask.get(y);
+				jobImages.add(image);
+			}
+
+			job.setImages(jobImages);
+
+			facadeJob.addJob(job);
+
+			for(int i = 0; i<job.getNumberOfStudents();i++) {
+				int batchNumber = 0;
+
+				for(int r=0;r<job.getImages().size();r++) {
+
+					if ((r % job.getTaskSize())==0) {
+						task = new Task();
+						task.setBatch(batchNumber);
+						task.setJob(job);
+						facadeTask.addTask(task);
+						batchNumber++;
+					}
+
+					Image j = job.getImages().get(r);
+					result = new Result();
+					result.setImage(j);
+					result.setTask(task);
+					facadeResult.addResult(result);
+
+				}
+			}
+
+			return "administration/jobRecap";
+		}
+		return "administration/insertJob";
+
+	}
+
+
+	@RequestMapping(value="/homeAdmin")
+	public String toHomeAdmin() {
+		return"administration/homeAdmin";
+	}
+
+	@RequestMapping(value="/addJobByManuscript")
+	public String confirmJobByManuscript(@ModelAttribute Job job,@ModelAttribute Task task,@ModelAttribute String manuscript,
+			@ModelAttribute Image image,@ModelAttribute Result result, Model model) {
+		
+
+		model.addAttribute("job", job);
+		model.addAttribute("task", task);
+		model.addAttribute("manuscript", manuscript);
+
+		List<Image> jobImages = new ArrayList<>();
+
+		List<Image> imagesTask = imageFacade.getImagesForTypeAndManuscript(job.getSymbol().getType(), 
 				job.getImageManuscript(),job.getNumberOfImages());
 
 		if((job.getNumberOfImages()%job.getTaskSize() == 0)) {

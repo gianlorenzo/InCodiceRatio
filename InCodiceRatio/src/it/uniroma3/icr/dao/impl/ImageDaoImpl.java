@@ -53,14 +53,13 @@ public class ImageDaoImpl implements ImageDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Image> findImageForTypeAndWidth(String type,int width,String manuscript, int limit) {
+	public List<Image> findImageForTypeAndManuscript(String type,String manuscript, int limit) {
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		String s = "FROM Image i WHERE i.type = :type and i.width = :width and i.manuscript = :manuscript ORDER BY RANDOM()";
+		String s = "FROM Image i WHERE i.type = :type and i.manuscript = :manuscript ORDER BY RANDOM()";
 		
 		Query query = session.createQuery(s);
 		query.setParameter("type", type);
-		query.setParameter("width", width);
 		query.setParameter("manuscript", manuscript);
 		List<Image> images = query.setMaxResults(limit).list();
 		
@@ -105,6 +104,23 @@ public class ImageDaoImpl implements ImageDao {
 		session.close();
 		return pages;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Image> findImageForTypeAndWidthAndManuscript(String type, String manuscript, int width, int limit) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		String s = "FROM Image i WHERE i.type = :type and i.width = :width and i.manuscript = :manuscript ORDER BY RANDOM()";
+		
+		Query query = session.createQuery(s);
+		query.setParameter("type", type);
+		query.setParameter("width", width);
+		query.setParameter("manuscript", manuscript);
+		
+		List<Image> images = query.setMaxResults(limit).list();
+		
+		session.close();
+		return images;	}
 
 }
 

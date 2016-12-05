@@ -3,6 +3,7 @@ package it.uniroma3.icr.insertImageInDb;
 
 
 
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -48,9 +49,7 @@ public class GetSamplePath implements ServletContextAware{
 	
 	public String getPath() {
 		String path = this.getSamplePath();
-		String newPath = path.replace(File.separator, "/");
-
-		return newPath;
+		return path;
 	}
 
 }
