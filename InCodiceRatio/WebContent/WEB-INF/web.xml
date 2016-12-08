@@ -20,6 +20,11 @@
     <param-value>/WEB-INF/log4j.properties</param-value>
   </context-param>
   
+   <error-page>
+    <exception-type>java.lang.Exception</exception-type>
+    <location>/WEB-INF/views/error.jsp</location>
+  </error-page>
+  
   
   <listener>
     <listener-class>

@@ -48,7 +48,7 @@
 
 		<div class="tab-content">
 			<div id="signup">
-				<h1>Seleziona il manoscritto</h1>
+				<h1>Inserisci le immagini</h1>
 
 				<form:form method="post" action="insertImage" modelAttribute="image"
 					name="form">

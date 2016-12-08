@@ -19,9 +19,4 @@ public interface TaskDao {
 	public List<Object> symbolsMajorityAnswers();
 	public List<Object> correctStudentsAnswers();
 
-
-
-
-
-	
 }

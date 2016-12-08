@@ -48,7 +48,7 @@
 
 		<div class="tab-content">
 			<div id="signup">
-				<h1>Seleziona il manoscritto</h1>
+				<h1>Inserisci gli esempi</h1>
 
 				<form:form method="post" action="insertSample"
 					modelAttribute="sample" name="form">

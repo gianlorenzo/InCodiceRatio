@@ -30,11 +30,12 @@
 <body class="landing">
 	<ul>
 		<li>
-			<h2>${student.name} ${student.surname}</h2>
-		
-			<h2>Stai svolgendo il task relativo al ${task.job.title} ${task.job.symbol.transcription}</h2>
+			<h2>${student.name}${student.surname}</h2>
+
+			<h2>Stai svolgendo il task relativo al ${task.job.title}
+				${task.job.symbol.transcription}</h2>
 		</li>
-		
+
 	</ul>
 
 	<div align="center">
@@ -80,19 +81,20 @@
 						<tr>
 					</c:if>
 					<td>
-					
+
 
 						<div>
 							<img src="resources${result.image.path}" alt="${result.image.id}"
 								class="resized" />
 						</div>
 						<div align="center">
-							<label><form:checkbox style="display:inline"
+							<label><form:checkbox style="display:inline" name="foo"
 									path="resultList[${vs.index}].answer" value="Yes" /> </label>
 						</div>
 					</td>
 					<c:if test="${vs.count % 10 == 0}">
 						</tr>
+
 
 
 					</c:if>
@@ -104,19 +106,35 @@
 					<form:hidden path="resultList[${vs.index}].task.job.id" />
 					<form:hidden path="resultList[${vs.index}].task.startDate" />
 
+
+
 				</c:forEach>
 			</table>
 		</div>
+
 		<div align="center">
-			<input type="submit" name="action" value="Conferma e vai al prossimo task">
+			<table>
+				<tr>
+					<td><font color="black">Seleziona tutto</font>
+					<input type="checkbox" onchange="checkAll(this)"
+						name="chk[]" /></td>
+				</tr>
+			</table>
 		</div>
+
 		
+		<div align="center">
+			<input type="submit" name="action"
+				value="Conferma e vai al prossimo task">
+		</div>
+
 		<br />
-		
+
 		<div align="center">
-			<input type="submit" name="action" value="Conferma e torna alla pagina dello studente">
+			<input type="submit" name="action"
+				value="Conferma e torna alla pagina dello studente">
 		</div>
-		
+
 	</form:form>
 
 	<div align="center">
@@ -128,6 +146,8 @@
 
 
 	<!-- Scripts -->
+	<script src="resources/js/selectAll.js"></script>
+
 	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/jquery.scrollex.min.js"></script>
 	<script src="resources/js/jquery.scrolly.min.js"></script>
@@ -136,7 +156,7 @@
 	<!--[if lte IE 8]><script src="resources/js/ie/respond.min.js"></script><![endif]-->
 	<script src="resources/js/main.js"></script>
 	<script src="resources/js/backButton.js"></script>
-	
+
 
 </body>
 </html>
