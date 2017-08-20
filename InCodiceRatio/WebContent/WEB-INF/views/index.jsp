@@ -25,13 +25,14 @@
 
 		<!-- Header -->
 		<header id="header" class="alt">
-			
+
 			<nav id="nav">
 				<ul>
 					<li class="special"><a href="#menu" class="menuToggle"><span>Menu</span></a>
 						<div id="menu">
 							<ul>
 								<li><a href="registration">Registra un nuovo Studente</a></li>
+								<li><a href="registrationAdmin">Registra un nuovo Amministratore</a></li>
 								<li><a href="login">Log In</a></li>
 							</ul>
 						</div></li>
@@ -44,7 +45,7 @@
 	<section id="banner">
 		<div class="inner">
 			<h2>In Codice Ratio</h2>
-			<p>Un nuovo sistema</p> 
+			<p>Un nuovo sistema</p>
 			<p>per trascrivere manoscritti di ogni epoca</p>
 		</div>
 	</section>

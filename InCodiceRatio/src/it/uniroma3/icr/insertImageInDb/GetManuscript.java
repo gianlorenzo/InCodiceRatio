@@ -1,8 +1,13 @@
+/*******************************************************************************
+ * Copyright (c) 2017 Gianlorenzo Didonato.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ *******************************************************************************/
+
 package it.uniroma3.icr.insertImageInDb;
-
-
-
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,7 +35,7 @@ public class GetManuscript implements ServletContextAware{
 	public List<String> getManuscript() throws FileNotFoundException, IOException {
 		List<String> manuscripts = new ArrayList<>();
 		
-		String path = this.getImagePath();
+		String path = this.getPath();
 		
 		File[] files = new File(path).listFiles();
 		for(int i=0;i<files.length;i++) {
@@ -44,7 +49,8 @@ public class GetManuscript implements ServletContextAware{
 	
 	public String getPath() throws FileNotFoundException, IOException {
 		String path = this.getImagePath();
-		return path;
+		String newPath = path.replace(File.separator, "/");
+		return newPath;
 		
 	}
 
